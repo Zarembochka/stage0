@@ -81,6 +81,7 @@ body {
     background: url(images/background.jpg) no-repeat center; 
     height: 600px;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .welcome__overlay {
@@ -111,4 +112,60 @@ body {
     letter-spacing: 3px;
     text-transform: uppercase;
 }
+
+/* =====About===== */
+.about {
+    margin-bottom: 40px;
+}
+
+.section__title {
+    color: #0C0C0E;
+    font-family: Forum;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 0;
+}
+
+.section__title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 20px;
+    border-bottom: 1px solid #0C0C0E;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.about__text {
+    color: #000;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.about__inner {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+.about__carousel__image {
+    display: flex;
+    margin: 0 auto;
+}
+
+
+
 
