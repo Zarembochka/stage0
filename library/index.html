@@ -11,43 +11,45 @@
     <title>Brooklin Public Library</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container-full">
         <header class="header">
-            <div class="header__inner">
-                <h1 class="header__title title">
-                    Brooklin Public Library
-                </h1>
-                <nav class="header__list">
-                    <li class="header__list__item">
-                        <a href="#!" class="header__list__link">
-                             About
-                        </a>
-                    </li>
-                    <li class="header__list__item">
-                        <a href="#!" class="header__list__link">
-                            Favorites
-                        </a>
-                    </li>
-                    <li class="header__list__item">
-                        <a href="#!" class="header__list__link">
-                           Coffee shop
-                        </a>
-                    </li>
-                    <li class="header__list__item">
-                        <a href="#!" class="header__list__link">
-                            Contacts
-                        </a>
-                    </li>
-                    <li class="header__list__item">
-                        <a href="#!" class="header__list__link">
-                            Library card
-                        </a>
-                    </li>
-                </nav>
-            </div>
+            <div class="container">
+                <div class="header__inner">
+                    <h1 class="header__title title">
+                        Brooklin Public Library
+                    </h1>
+                    <nav class="header__list">
+                        <li class="header__list__item">
+                            <a href="#!" class="header__list__link">
+                                About
+                            </a>
+                        </li>
+                        <li class="header__list__item">
+                            <a href="#!" class="header__list__link">
+                                Favorites
+                            </a>
+                        </li>
+                        <li class="header__list__item">
+                            <a href="#!" class="header__list__link">
+                            Coffee shop
+                            </a>
+                        </li>
+                        <li class="header__list__item">
+                            <a href="#!" class="header__list__link">
+                                Contacts
+                            </a>
+                        </li>
+                        <li class="header__list__item">
+                            <a href="#!" class="header__list__link">
+                                Library card
+                            </a>
+                        </li>
+                    </nav>
+                </div>
 
-            <div class="header__image">
-                <img class="header__icon" src="images/svg/icon_profile.svg" alt="icon profile">
+                <div class="header__image">
+                    <img class="header__icon" src="images/svg/icon_profile.svg" alt="icon profile">
+                </div>
             </div>
         </header>
         <main>
@@ -63,28 +65,51 @@
             </section>
 
             <section class="about">
-                <h2 class="section__title">
-                    About
-                </h2>
-                <p class="about__text">
-                    The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
-                </p>
-                <div class="about__inner">
-                    <div class="about__item">
-                        <img src="images/about/about_1.jpg" alt="image 1">
+                <div class="container">
+                    <h2 class="section__title">
+                        About
+                    </h2>
+                    <p class="about__text">
+                        The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
+                    </p>
+                    <div class="about__inner">
+                        <div class="about__item">
+                            <img src="images/about/about_1.jpg" alt="image 1">
+                        </div>
+
+                        <div class="about__item">
+                            <img src="images/about/about_2.jpg" alt="image 2">
+                        </div>
+
+                        <div class="about__item">
+                            <img src="images/about/about_3.jpg" alt="image 3">
+                        </div>
                     </div>
 
-                    <div class="about__item">
-                        <img src="images/about/about_2.jpg" alt="image 2">
-                    </div>
-
-                    <div class="about__item">
-                        <img src="images/about/about_3.jpg" alt="image 3">
+                    <div class="about__carousel">
+                        <img src="images/svg/carousel_1.svg" alt="carousel 1" class="about__carousel__image">
                     </div>
                 </div>
+            </section>
 
-                <div class="about__carousel">
-                    <img src="images/svg/carousel_1.svg" alt="carousel 1" class="about__carousel__image">
+            <section class="favorites">
+                <div class="container">
+                    <h2 class="section__title">
+                        Favorites
+                    </h2>
+                    <p class="favorites__text">
+                        Pick favorites of season
+                    </p>
+                    <form class="favorites__form" action="">
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                        <label for="winter" class="favorites__form__label favorites__form__label-checked">Winter</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                        <label for="spring" class="favorites__form__label">Spring</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                        <label for="summer" class="favorites__form__label">Summer</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                        <label for="autumn" class="favorites__form__label">Autumn</label>
+                    </form>
                 </div>
             </section>
         </main>
