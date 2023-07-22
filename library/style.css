@@ -186,6 +186,7 @@ body {
 .favorites__form {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 42px;
 }
 
 .favorites__form__radio {
@@ -208,5 +209,98 @@ body {
 
 .favorites__form__label-checked {
     font-weight: 700;
+}
+
+.favorites__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.favorites__book {
+    padding: 15px 175px 15px 20px;
+    border: 1px solid #000;
+    width: 550px;
+    /* width: 36.3636%; */
+    /* height: 100%; */
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 2.66667;
+    color: #000;
+    position: relative;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorites__book__pick {
+    margin: 0;
+    color: #000;
+    font-family: Forum;
+    font-size: 20px;
+    line-height: 2;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.favorites__book__pick::after {
+    content: '';
+    display: block;
+    width: 60px;
+    border-bottom: 1px solid #BB945F;;
+    margin-bottom: 20px;
+}
+
+.favorites__book__title {
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.favorites__book__author {
+    margin: 0;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.favorites__book__description {
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.favorites__book__btn {
+    padding: 9px 27px;
+    border-radius: 2px;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    background-color: #ffffff;
+    width: 75px;
+    margin-top: auto;
+}
+
+.favorites__book__btn-buy {
+    border: 1px solid #0C0C0E;
+    color: #0C0C0E;
+}
+
+.favorites__book__btn-own {
+    border: 1px solid #BB945F;
+    color: #BB945F;
+}
+
+.favorites__book__image {
+    position: absolute;
+    bottom: -1px;
+    right: -40px;
 }
 
