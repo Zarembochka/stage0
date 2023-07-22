@@ -212,11 +212,16 @@ body {
 }
 
 .favorites__items {
+    display: none;
+}
+
+.favorites__items-checked {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 
 .favorites__book {
     padding: 15px 175px 15px 20px;
