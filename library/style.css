@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
 }
@@ -52,10 +56,12 @@ body {
 .header__list {
     display: flex;
     gap: 30px;
+    margin: 0;
     margin-right: 40px;
+    list-style: none;
 }
 
-.header__list {
+.header__nav {
     font-family: 'Inter', sans-serif;
     font-weight: normal;
     font-size: 20px;
@@ -66,6 +72,12 @@ body {
 .header__list__link {
     color: #ffffff;
     text-decoration: none;
+}
+
+.header__list__link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+    transition: 0.2s all linear;
 }
 
 .header__image {
@@ -120,7 +132,7 @@ body {
 
 /* =====About===== */
 .about {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .section__title {
@@ -163,12 +175,19 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
+}
+
+.about__carousel {
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .about__carousel__image {
-    display: flex;
-    margin: 0 auto;
+    display: inline-flex;
+    text-align: center;
 }
 
 /* =====Favorites===== */
@@ -304,6 +323,16 @@ body {
     letter-spacing: 1px;
     background-color: #ffffff;
     text-align: center;
+    position: relative;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
 }
 
 .btn:not(:disabled):hover {
@@ -370,9 +399,13 @@ body {
     margin-bottom: 40px;
 }
 
-.coffeeshop__desserts {
-    justify-content: flex-end;
+.coffeeshop__table__desserts {
+    width: 34.45%;
 }
+
+/* .coffeeshop__desserts {
+    justify-content: flex-end;
+} */
 
 .coffeeshop__menu__title {
     color: #BB945F;

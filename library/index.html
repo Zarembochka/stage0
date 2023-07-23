@@ -18,32 +18,34 @@
                     <h1 class="header__title title">
                         Brooklyn Public Library
                     </h1>
-                    <nav class="header__list">
-                        <li class="header__list__item">
-                            <a href="#!" class="header__list__link">
-                                About
-                            </a>
-                        </li>
-                        <li class="header__list__item">
-                            <a href="#!" class="header__list__link">
-                                Favorites
-                            </a>
-                        </li>
-                        <li class="header__list__item">
-                            <a href="#!" class="header__list__link">
-                            Coffee shop
-                            </a>
-                        </li>
-                        <li class="header__list__item">
-                            <a href="#!" class="header__list__link">
-                                Contacts
-                            </a>
-                        </li>
-                        <li class="header__list__item">
-                            <a href="#!" class="header__list__link">
-                                Library card
-                            </a>
-                        </li>
+                    <nav class="header__nav">
+                        <ul class="header__list">
+                            <li class="header__list__item">
+                                <a href="#about" class="header__list__link">
+                                    About
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#favorites" class="header__list__link">
+                                    Favorites
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#coffeeshop" class="header__list__link">
+                                Coffee shop
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#contacts" class="header__list__link">
+                                    Contacts
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#librarycard" class="header__list__link">
+                                    Library card
+                                </a>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
 
@@ -69,7 +71,7 @@
             <!-- /welcome -->
 
             <!-- about -->
-            <section class="about">
+            <section class="about" id="about">
                 <div class="container">
                     <h2 class="section__title">
                         About
@@ -99,7 +101,7 @@
             <!-- /about -->
 
             <!-- favorites -->
-            <section class="favorites">
+            <section class="favorites" id="favorites">
                 <div class="container">
                     <h2 class="section__title">
                         Favorites
@@ -107,7 +109,7 @@
                     <p class="favorites__text">
                         Pick favorites of season
                     </p>
-                    <form class="favorites__form" action="">
+                    <form class="favorites__form">
                         <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
                         <label for="winter" class="favorites__form__label favorites__form__label-checked">Winter</label>
                         <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
@@ -444,7 +446,7 @@
             <!-- /favorites -->
 
             <!-- coffeeshop -->
-            <section class="coffeeshop">
+            <section class="coffeeshop" id="coffeeshop">
                 <div class="container">
                     <h2 class="section__title">
                         Coffee shop
@@ -494,7 +496,7 @@
                         <!-- /drinks -->
 
                         <!-- desserts -->
-                        <table class="coffeeshop__table">
+                        <table class="coffeeshop__table coffeeshop__table__desserts">
                             <caption class="coffeeshop__menu__title coffeeshop__menu__title-left">
                                 Desserts & Cakes
                             </caption>
@@ -538,7 +540,7 @@
             <!-- /coffeeshop -->
 
             <!-- contacts -->
-            <section class="contacts">
+            <section class="contacts" id="contacts">
                 <div class="container">
                     <h2 class="section__title">
                         Our Contacts
@@ -583,7 +585,7 @@
             <!-- /contacts -->
 
             <!-- librarycard -->
-            <section class="librarycard">
+            <section class="librarycard" id="librarycard">
                 <div class="container">
                     <h2 class="section__title">
                         Digital Library Cards
@@ -597,7 +599,7 @@
                                 <h3 class="librarycard__card__title">
                                     Brooklyn Public Library
                                 </h3>
-                                <form class="librarycard__form" action="" method="post">
+                                <form class="librarycard__form" method="post">
                                     <div class="librarycard__form__inner">
                                         <input class="librarycard__form__input" name="name" type="text" placeholder="Reader's name">
                                         <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
