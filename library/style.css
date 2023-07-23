@@ -85,6 +85,7 @@ body {
     background: url(images/background.jpg) no-repeat center; 
     height: 600px;
     position: relative;
+    margin-top: -10px;
     margin-bottom: 30px;
 }
 
@@ -119,7 +120,7 @@ body {
 
 /* =====About===== */
 .about {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .section__title {
@@ -148,12 +149,12 @@ body {
 .section__text {
     color: #000;
     text-align: center;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 2;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     margin: 0;
     margin-bottom: 20px;
 }
@@ -186,7 +187,7 @@ body {
 
 .favorites__form {
     display: flex;
-    margin-bottom: 42px;
+    margin-bottom: 39px;
 }
 
 .favorites__form__radio {
@@ -222,6 +223,10 @@ body {
     font-weight: 700;
 }
 
+.favorites__inner {
+    padding-right: 40px;
+}
+
 .favorites__items {
     display: none;
 }
@@ -235,11 +240,9 @@ body {
 
 
 .favorites__book {
-    padding: 15px 175px 15px 20px;
+    padding: 13px 20px 14px;
     border: 1px solid #000;
-    width: 550px;
-    /* width: 36.3636%; */
-    /* height: 100%; */
+    width: 40.5%;
     font-family: Inter;
     font-size: 15px;
     font-style: normal;
@@ -289,6 +292,7 @@ body {
 .favorites__book__description {
     text-transform: capitalize;
     margin-bottom: 15px;
+    padding-right: 152px;
 }
 
 .btn {
@@ -310,7 +314,7 @@ body {
 }
 
 .favorites__book__btn {
-    padding: 9px 27px;
+    padding: 7px 27px;
     width: 75px;
     margin-top: auto;
 }
@@ -341,6 +345,11 @@ body {
     letter-spacing: 2px;
     text-transform: capitalize;
     margin-bottom: 20px;
+}
+
+.coffeeshop__text {
+    letter-spacing: 2px;
+    text-transform: none;
 }
 
 .coffeeshop__inner {
@@ -422,6 +431,7 @@ body {
 .coffeeshop__menu__price {
     display: flex;
     padding: 0;
+    letter-spacing: 1px;
 }
 
 /* =====contacts==== */
@@ -436,12 +446,11 @@ body {
     line-height: 2;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .contacts__inner {
     display: flex;
-    margin-bottom: 40px;
 }
 
 .contacts__item {
@@ -471,6 +480,7 @@ body {
     font-weight: 700;
     text-align: left;
     margin-bottom: 40px;
+    font-size: 20px;
 }
 
 .contacts__phone {
