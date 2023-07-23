@@ -418,3 +418,65 @@ body {
     display: flex;
     padding: 0;
 }
+
+/* =====contacts==== */
+
+.contacts {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.contacts__inner {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.contacts__item {
+    width: 50%;
+}
+
+.contacts__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.contacts__link {
+    text-decoration: none;
+    color: #000;
+}
+
+.contacts__link:hover {
+    text-decoration: underline;
+    font-weight: 700;
+    transition: 0.2s all linear;
+}
+
+.contacts__description__title {
+    margin: 0;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.contacts__phone {
+    margin-bottom: 20px;
+}
+
+.contacts__phone__info {
+    margin: 0;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    text-align: left;
+}
