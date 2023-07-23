@@ -291,8 +291,7 @@ body {
     margin-bottom: 15px;
 }
 
-.favorites__book__btn {
-    padding: 9px 27px;
+.btn {
     border-radius: 2px;
     font-family: Inter;
     font-size: 10px;
@@ -300,6 +299,18 @@ body {
     line-height: normal;
     letter-spacing: 1px;
     background-color: #ffffff;
+    text-align: center;
+}
+
+.btn:not(:disabled):hover {
+    cursor: pointer;
+    border: 1px solid #BB945F;
+    background: #BB945F;
+    transition: 0.2s all linear;
+}
+
+.favorites__book__btn {
+    padding: 9px 27px;
     width: 75px;
     margin-top: auto;
 }
@@ -308,12 +319,6 @@ body {
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
     cursor: pointer;
-}
-
-.favorites__book__btn-buy:hover {
-    border: 1px solid #BB945F;
-    background: #BB945F;
-    transition: 0.2s all linear;
 }
 
 .favorites__book__btn-own {
@@ -514,8 +519,6 @@ body {
 }
 
 .librarycard__card {
-    /* height: 300px; */
-    /* width: 100%; */
     border: 3px solid #BB945F;
     background: #FFF;
     display: flex;
@@ -567,24 +570,9 @@ body {
 .librarycard__form__btn {
     padding: 10px 40px;
     margin: 0 auto;
-    border-radius: 2px;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
-    text-align: center;
-    font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1px;
-    background-color: #FFF;
-}
-
-.librarycard__form__btn:hover {
-    cursor: pointer;
-    border: 1px solid #BB945F;
-    background: #BB945F;
-    transition: 0.2s all linear;
 }
 
 .librarycard__info {
@@ -614,22 +602,9 @@ body {
 
 .librarycard__info__btn {
     padding: 10px 0;
-    display: flex;
     width: 75px;
-    /* height: 30px; */ 
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 2px;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
-    font-family: Inter;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1px;
-    background-color: #FFF;
     margin-right: 20px;
 }
 
