@@ -185,7 +185,6 @@ body {
 
 .favorites__form {
     display: flex;
-    align-items: flex-start;
     margin-bottom: 42px;
 }
 
@@ -195,6 +194,17 @@ body {
     height: 17px;
     border: 2px solid #000;
     margin-right: 20px;
+    display: none;
+}
+
+.favorites__form__radio + label {
+    background: url(images/svg/radio.svg) no-repeat scroll 0 50%;
+    cursor: pointer;
+    padding-left: 37px;
+}
+
+.favorites__form__radio:checked + label {
+    background: url(images/svg/radio_checked.svg) no-repeat scroll 0 50%;
 }
 
 .favorites__form__label {
@@ -296,6 +306,13 @@ body {
 .favorites__book__btn-buy {
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
+    cursor: pointer;
+}
+
+.favorites__book__btn-buy:hover {
+    border: 1px solid #BB945F;
+    background: #BB945F;
+    transition: 0.2s all linear;
 }
 
 .favorites__book__btn-own {
