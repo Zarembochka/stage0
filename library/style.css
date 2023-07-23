@@ -145,7 +145,7 @@ body {
     margin-bottom: 40px;
 }
 
-.about__text {
+.section__text {
     color: #000;
     text-align: center;
     font-family: 'Inter', sans-serif;
@@ -153,6 +153,7 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 2;
+    letter-spacing: 2px;
     margin: 0;
     margin-bottom: 20px;
 }
@@ -326,3 +327,94 @@ body {
     right: -40px;
 }
 
+/* =====coffeeshop===== */
+
+.coffeeshop {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.coffeeshop__inner {
+    display: flex;
+    padding-top: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.coffeeshop__table {
+    width: 31.5%;
+    border-spacing: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.coffeeshop__desserts {
+    justify-content: flex-end;
+}
+
+.coffeeshop__menu__title {
+    color: #BB945F;
+    font-family: Forum;
+    font-size: 40px;
+    line-height: 1;
+    margin: 0;
+}
+
+.coffeeshop__menu__title-right {
+    margin-right: auto;
+}
+
+.coffeeshop__menu__title-left {
+    margin-left: auto;
+}
+
+.coffeeshop__menu {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+}
+
+.coffeeshop__menu__item {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 60px;
+}
+
+.coffeeshop__menu__dish {
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    line-height: 2;
+    display: flex;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.coffeeshop__menu__dish-right {
+    margin-right: auto;
+}
+
+.coffeeshop__menu__line {
+    width: 100px;
+    height: 1px;
+    background: #BB945F;
+    padding: 0;
+}
+
+.coffeeshop__menu__price {
+    display: flex;
+    padding: 0;
+}
