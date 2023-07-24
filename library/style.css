@@ -66,7 +66,6 @@ body {
     font-weight: normal;
     font-size: 20px;
     line-height: 2.5;
-    list-style: none;
 }
 
 .link {
@@ -132,7 +131,7 @@ body {
 
 /* =====About===== */
 .about {
-    margin-bottom: 50px;
+    margin-bottom: 57px;
 }
 
 .section__title {
@@ -175,7 +174,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .about__carousel__image {
@@ -203,7 +202,7 @@ body {
 
 .favorites__form {
     display: flex;
-    margin-bottom: 39px;
+    margin-bottom: 40px;
 }
 
 .favorites__form__radio {
@@ -256,7 +255,7 @@ body {
 
 
 .favorites__book {
-    padding: 13px 20px 14px;
+    padding: 14px 20px 15px;
     border: 1px solid #000;
     width: 40.5%;
     font-family: Inter;
@@ -340,18 +339,18 @@ body {
 }
 
 .favorites__book__btn {
-    padding: 7px 27px;
     width: 75px;
     margin-top: auto;
 }
 
 .favorites__book__btn-buy {
+    padding: 7px 27px 8px;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
-    cursor: pointer;
 }
 
 .favorites__book__btn-own {
+    padding: 9px 25px;
     border: 1px solid #BB945F;
     color: #BB945F;
 }
@@ -476,7 +475,7 @@ body {
     line-height: 2;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-bottom: 50px;
+    margin-bottom: 36px;
 }
 
 .contacts__inner {
@@ -505,12 +504,19 @@ body {
     transition: 0.2s all linear;
 }
 
-.contacts__description__title {
+.contacts__title {
     margin: 0;
     font-weight: 700;
     text-align: left;
-    margin-bottom: 40px;
     font-size: 20px;
+}
+
+.contacts__description__title {
+    margin-bottom: 40px;
+}
+
+.contacts__staff__title {
+    margin-bottom: 20px;
 }
 
 .contacts__phone {
@@ -536,7 +542,7 @@ body {
     font-weight: 400;
     line-height: 1.66667;
     letter-spacing: 0.6px;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .librarycard__inner {
@@ -571,17 +577,17 @@ body {
     font-family: Forum;
     font-size: 30px;
     font-weight: 400;
-    margin: 20px;
+    margin: 17px;
     margin-bottom: 0;
     padding: 20px;
     background: #BB945F;
 }
 
 .librarycard__form {
-    margin: 0 20px;
+    margin: 0 17px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .librarycard__form__inner {
@@ -608,7 +614,7 @@ body {
 }
 
 .librarycard__form__btn {
-    padding: 10px 40px;
+    padding: 9px 39px;
     margin: 0 auto;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
@@ -641,7 +647,7 @@ body {
 }
 
 .librarycard__info__btn {
-    padding: 10px 0;
+    padding: 8px 0;
     width: 75px;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
@@ -724,3 +730,5 @@ body {
     line-height: 1;
     letter-spacing: 2px;
 }
+
+
