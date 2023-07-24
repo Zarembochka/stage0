@@ -178,16 +178,13 @@ body {
     margin-bottom: 35px;
 }
 
-.about__carousel {
-    cursor: pointer;
-    padding: 5px;
-    margin: 0 auto;
-    width: fit-content;
-}
-
 .about__carousel__image {
-    display: inline-flex;
+    display: block;
     text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 /* =====Favorites===== */
@@ -654,3 +651,5 @@ body {
 .librarycard__info__btn:last-of-type {
     margin-right: 0;
 }
+
+/* =====footer===== */
