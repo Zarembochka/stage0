@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/bpl.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Brooklin Public Library</title>
+</head>
+<body>
+    <script src="index.js"></script>
+    <!-- header -->
+    <header class="header">
+        <div class="container-full">
+            <div class="container">
+                <div class="header__inner">
+                    <h1 class="header__title title">
+                        Brooklyn Public Library
+                    </h1>
+                    <nav class="header__nav">
+                        <ul class="header__list">
+                            <li class="header__list__item">
+                                <a href="#about" class="link">
+                                    About
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#favorites" class="link">
+                                    Favorites
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#coffeeshop" class="link">
+                                    Coffee shop
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#contacts" class="link">
+                                    Contacts
+                                </a>
+                            </li>
+                            <li class="header__list__item">
+                                <a href="#librarycard" class="link">
+                                    Library Card
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="header__image">
+                        <img class="header__icon" src="./images/svg/icon_profile.svg" alt="icon profile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
+
+    <!-- main -->
+    <main>
+        <!-- welcome -->
+        <section class="welcome">
+            <div class="welcome__overlay">
+            </div>
+            <div class="container-full"> 
+                <div class="welcome__inner">
+                    <div class="welcome__greeting">
+                        <h2 class="welcome__title title">
+                            Welcome <br> to the Brooklyn Library
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /welcome -->
+
+        <!-- about -->
+        <section class="about" id="about">
+            <div class="container-full">
+                <div class="container">
+                    <h2 class="section__title">
+                        About
+                    </h2>
+                    <p class="section__text">
+                        The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
+                    </p>
+                    <div class="about__inner">
+                        <div class="about__item">
+                            <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
+                        </div>
+
+                        <div class="about__item">
+                            <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
+                        </div>
+
+                        <div class="about__item">
+                            <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
+                        </div>
+                    </div>
+
+                    <div class="about__carousel">
+                        <img src="./images/svg/carousel_1.svg" alt="carousel 1" class="about__carousel__image">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /about -->
+
+        <!-- favorites -->
+        <section class="favorites" id="favorites">
+            <div class="container-full">
+                <div class="container">
+                    <h2 class="section__title">
+                        Favorites
+                    </h2>
+                    <p class="favorites__text">
+                        Pick favorites of season
+                    </p>
+                    <form class="favorites__form">
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                        <label for="winter" class="favorites__form__label favorites__form__label-checked">Winter</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                        <label for="spring" class="favorites__form__label">Spring</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                        <label for="summer" class="favorites__form__label">Summer</label>
+                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                        <label for="autumn" class="favorites__form__label">Autumn</label>
+                    </form>
+
+                    <div class="favorites__inner">
+                        <!-- winter -->
+                        <div class="favorites__items favorites__items-winter favorites__items-checked">
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    The Book Eaters
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Sunyi Dean
+                                </h3>
+                                <div class="favorites__book__description">
+                                    An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_1.jpg" alt="The book eaters">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Cackle
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Rachel Harrison
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_2.jpg" alt="Cackle">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Dante: Poet of the Secular World
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Erich Auerbach
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.
+                                </div>
+                                <button class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_3.jpg" alt="Dante: Poet of the Secular World">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    The Last Queen
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Clive Irving
+                                </h3>
+                                <div class="favorites__book__description">
+                                    A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
+                                    Own
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_4.jpg" alt="The Last Queen">
+                            </div>
+                        </div>
+                        <!-- /winter -->
+
+                        <!-- spring -->
+                        <div class="favorites__items favorites__items-spring">
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    The Body
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Stephen King
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Powerful novel that takes you back to a nostalgic time, exploring both the beauty and danger and loss of innocence that is youth.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_1.jpg" alt="The Body">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Carry: A Memoir of Survival on Stolen Land
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Toni Jenson
+                                </h3>
+                                <div class="favorites__book__description">
+                                    This memoir about the author's relationship with gun violence feels both expansive and intimate, resulting in a lyrical indictment of the way things are.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_2.jpg" alt="Carry: A Memoir of Survival on Stolen Land">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Days of Distraction
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Alexandra Chang
+                                </h3>
+                                <div class="favorites__book__description">
+                                    A sardonic view of Silicon Valley culture, a meditation on race, and a journal of displacement and belonging, all in one form-defying package of spare prose.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_3.jpg" alt="Days of Distraction">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Dominicana
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Angie Cruz
+                                </h3>
+                                <div class="favorites__book__description">
+                                    A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
+                                </div>                                    <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
+                                    Own
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_4.jpg" alt="Dominicana">
+                            </div>
+                        </div>
+                        <!-- /spring -->
+
+                        <!-- summer -->
+                        <div class="favorites__items favorites__items-summer">
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Crude: A Memoir
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Pablo Fajardo & ​​Sophie Tardy-Joubert
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_1.jpg" alt="Crude: A Memoir">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Let My People Go Surfing
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Yvon Chouinard
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_2.jpg" alt="Let My People Go Surfing">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    The Octopus Museum: Poems
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Brenda Shaughnessy
+                                </h3>
+                                <div class="favorites__book__description">
+                                    This collection of bold and scathingly beautiful feminist poems imagines what comes after our current age of environmental destruction, racism, sexism, and divisive politics.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_3.jpg" alt="The Octopus Museum: Poems">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Shark Dialogues: A Novel
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Kiana Davenport
+                                </h3>
+                                <div class="favorites__book__description">
+                                    An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_4.jpg" alt="Shark Dialogues: A Novel">
+                            </div>
+                        </div>
+                        <!-- /summer -->
+
+                        <!-- autumn -->
+                        <div class="favorites__items favorites__items-autumn">
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Casual Conversation
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Renia White
+                                </h3>
+                                <div class="favorites__book__description">
+                                    White's impressive debut collection takes readers through and beyond the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_1.jpg" alt="Casual Conversation">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    The Great Fire
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Lou Ureneck
+                                </h3>
+                                <div class="favorites__book__description">
+                                    The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_2.jpg" alt="The Great Fire">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Rickey: The Life and Legend
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Howard Bryant
+                                </h3>
+                                <div class="favorites__book__description">
+                                    With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_3.jpg" alt="Rickey: The Life and Legend">
+                            </div>
+
+                            <div class="favorites__book">
+                                <p class="favorites__book__pick">
+                                    Staff Picks
+                                </p>
+                                <h3 class="favorites__book__title">
+                                    Slug: And Other Stories
+                                </h3>
+                                <h3 class="favorites__book__author">
+                                    By Megan Milks
+                                </h3>
+                                <div class="favorites__book__description">
+                                    Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
+                                </button>
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_4.jpg" alt="Slug: And Other Stories">
+                            </div>
+                        </div>
+                        <!-- /autumn -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /favorites -->
+
+        <!-- coffeeshop -->
+        <section class="coffeeshop" id="coffeeshop">
+            <div class="container-full">
+                <div class="container">
+                    <h2 class="section__title">
+                        Coffee shop
+                    </h2>
+                    <p class="section__text coffeeshop__text">
+                        In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. you can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.
+                    </p>
+                    <div class="coffeeshop__inner">
+                            <!-- drinks -->
+                            <table class="coffeeshop__table">
+                                <caption class="coffeeshop__menu__title coffeeshop__menu__title-right">
+                                    Coffee & Tea
+                                </caption>
+                                <tbody class="coffeeshop__menu">
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold Brew Coffee</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$3</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">French Press Pot</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$5</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Espresso</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cappuccino</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$4</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Hot tea</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold tea</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /drinks -->
+
+                            <!-- desserts -->
+                            <table class="coffeeshop__table coffeeshop__table__desserts">
+                                <caption class="coffeeshop__menu__title coffeeshop__menu__title-left">
+                                    Desserts & Cakes
+                                </caption>
+                                <tbody class="coffeeshop__menu">
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Forest Gateau</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Blue Moon</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Truffle Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$15</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Chocolate Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$18</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Poet’s Dream Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Pineapple Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$14</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /desserts -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /coffeeshop -->
+
+        <!-- contacts -->
+        <section class="contacts" id="contacts">
+            <div class="container-full">
+                <div class="container">
+                    <h2 class="section__title">
+                        Our Contacts
+                    </h2>
+                    <div class="contacts__inner">
+                        <div class="contacts__item">
+                            <div class="contacts__description">
+                                <div class="contacts__phone">
+                                    <h3 class="contacts__title contacts__description__title">
+                                        For all Library inquiries:
+                                    </h3>
+                                    <p class="contacts__phone__info">
+                                        Please call&nbsp;
+                                        <a class="contacts__link" href="tel:+6177302370" target="_blank">(617) 730-2370</a>
+                                    </p>
+                                    <p class="contacts__phone__info">
+                                        For TTY service, please call&nbsp;
+                                        <a class="contacts__link" href="tel:+6177302370" target="_blank">(617) 730-2370</a>
+                                    </p>
+                                    <p class="contacts__phone__info">
+                                        Putterham Library:&nbsp;
+                                        <a class="contacts__link" href="tel:+6177302385" target="_blank">(617) 730-2385</a>
+                                    </p>
+                                </div>
+                                <div class="contacts__staff">
+                                    <h3 class="contacts__title contacts__staff__title">
+                                        Senior Staff
+                                    </h3>
+                                    <p class="contacts__phone__info ">
+                                        Library Director:&nbsp;
+                                        <a class="contacts__link contacts__description__title" href="mailto:AmandaHirst@gmail.com">Amanda Hirst</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contacts__item">
+                            <img class="contacts__map" src="./images/contacts/map.jpg" alt="map">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /contacts -->
+
+        <!-- librarycard -->
+        <section class="librarycard" id="librarycard">
+            <div class="container-full">
+                <div class="container">
+                    <h2 class="section__title">
+                        Digital Library Cards
+                    </h2>
+                    <div class="librarycard__inner">
+                        <div class="librarycard__item">
+                            <h3 class="librarycard__title">
+                                Find your Library card
+                            </h3>
+                            <div class="librarycard__card">
+                                <h3 class="librarycard__card__title">
+                                    Brooklyn Public Library
+                                </h3>
+                                <form class="librarycard__form" method="post">
+                                    <div class="librarycard__form__inner">
+                                        <input class="librarycard__form__input" name="name" type="text" placeholder="Reader's name">
+                                        <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
+                                    </div>
+                                    <button class="btn librarycard__form__btn" type="submit">Check the card</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="librarycard__info">
+                            <h3 class="librarycard__title librarycard__info__title">
+                                Get a reader card
+                            </h3>
+                            <p class="librarycard__info__text">
+                                You will be able to see a reader card after logging into account or you can register a new account
+                            </p>
+                            <div class="librarycard__info__buttons">
+                                <button class="btn librarycard__info__btn">Sign Up</button>
+                                <button class="btn librarycard__info__btn">Log in</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /librarycard -->
+    </main>
+    <!-- /main -->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container-full">
+            <div class="container">
+                <div class="footer__inner">
+                    <div class="footer__item">
+                        <div class="footer__address">
+                            <a class="link" href="https://www.google.com/maps/place/286+Cadman+Plaza+W,+Brooklyn,+NY+11201,+%D0%A1%D0%A8%D0%90/@40.6956337,-73.9928847,17z/data=!4m10!1m2!2m1!1s286+Cadman+Plaza,+New+York,+NY+11238,+United+States!3m6!1s0x89c25a49b649b8c3:0x6342a2291cea2e!8m2!3d40.6956458!4d-73.9912976!15sCjMyODYgQ2FkbWFuIFBsYXphLCBOZXcgWW9yaywgTlkgMTEyMzgsIFVuaXRlZCBTdGF0ZXOSAQpzdWJwcmVtaXNl4AEA!16s%2Fg%2F11s2lgz8ns?entry=ttu" target="_blank">286 Cadman Plaza, New York, NY 11238, United States</a>
+                        </div>
+                        <div class="footer__open">
+                            Mon - Fri
+                            <br>
+                            08:00 am - 07:00 pm
+                        </div>
+                    </div>
+                    <div class="footer__item">
+                        <div class="footer__social">
+                            <ul class="footer__list">
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://twitter.com/" target="_blank">
+                                        <img class="footer__social__ico" src="./images/social/twitter.svg" alt="twitter logo">
+                                    </a>
+                                </li>
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://www.instagram.com/rsschool_news/" target="_blank">
+                                        <img class="footer__social__ico"  src="./images/social/instagram.svg" alt="instagram logo">
+                                    </a>
+                                </li>
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://www.facebook.com/rsschoolEN/" target="_blank">
+                                        <img class="footer__social__ico"  src="./images/social/facebook.svg" alt="facebook logo">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer__open">
+                            Sat - Sun
+                            <br>
+                            10:00 am - 06:00 pm
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__line">
+                </div>
+                <div class="footer__bottom">
+                    <div class="footer__bottom__year">
+                        2023
+                    </div>
+                    <div class="footer__bottom__rsschol">
+                        <a class="link" target="_blank" href="https://rs.school/js-stage0/">
+                            The Rolling Scopes School
+                        </a>
+                    </div>
+                    <div class="footer__bottom__github">
+                        <a class="link" target="_blank" href="https://github.com/Zarembochka">
+                            Liubou
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /footer -->
+</body>
+</html>
