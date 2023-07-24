@@ -15,7 +15,7 @@ body {
 /* ===== header ====== */
 .header {
     background-color: #0C0C0E;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     width: 100%;
     height: 90px;
     display: flex;
@@ -23,6 +23,7 @@ body {
 }
 
 .container-full {
+    width: 100%;
     max-width: 1440px;
     margin: 0 auto;
 }
@@ -34,7 +35,7 @@ body {
 .header__inner {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     padding: 20px 0;
     width: 100%;
 }
@@ -66,6 +67,7 @@ body {
     font-weight: normal;
     font-size: 20px;
     line-height: 2.5;
+    margin-left: auto;
 }
 
 .link {
@@ -79,11 +81,6 @@ body {
     transition: 0.2s all linear;
 }
 
-.header__image {
-    display: flex;
-    align-items: center;
-}
-
 .header__icon {
    height: 28px;
    width: 28px;
@@ -93,11 +90,18 @@ body {
 
 /* =====welcom===== */
 .welcome {
-    background: url(images/background.jpg) no-repeat center; 
+    background: url(./images/background.jpg) no-repeat center;
+    background-size: cover;
     height: 600px;
-    position: relative;
     margin-top: -10px;
     margin-bottom: 30px;
+}
+
+.welcome__inner {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 300px;
 }
 
 .welcome__overlay {
@@ -106,7 +110,7 @@ body {
     height: 50%;
 }
 
-.welcome__inner {
+.welcome__greeting {
     display: flex;
     width: 600px;
     height: 220px;
@@ -172,9 +176,17 @@ body {
 
 .about__inner {
     display: flex;
-    justify-content: space-between;
+    column-gap: 1.7857%;
     flex-direction: row;
     margin-bottom: 30px;
+}
+
+.about__item {
+    width: 33.33333%;
+}
+
+.about__item__image {
+    width: 100%;
 }
 
 .about__carousel__image {
@@ -215,13 +227,13 @@ body {
 }
 
 .favorites__form__radio + label {
-    background: url(images/svg/radio.svg) no-repeat scroll 0 50%;
+    background: url(./images/svg/radio.svg) no-repeat scroll 0 50%;
     cursor: pointer;
     padding-left: 37px;
 }
 
 .favorites__form__radio:checked + label {
-    background: url(images/svg/radio_checked.svg) no-repeat scroll 0 50%;
+    background: url(./images/svg/radio_checked.svg) no-repeat scroll 0 50%;
 }
 
 .favorites__form__label {
@@ -398,10 +410,6 @@ body {
 .coffeeshop__table__desserts {
     width: 34.45%;
 }
-
-/* .coffeeshop__desserts {
-    justify-content: flex-end;
-} */
 
 .coffeeshop__menu__title {
     color: #BB945F;
@@ -692,9 +700,17 @@ body {
     text-align: right;
 }
 
-.footer__social {
+.footer__list {
     display: flex;
     gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__list__item {
+    margin: 0;
+    padding: 0;
 }
 
 .footer__social__link {

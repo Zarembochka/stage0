@@ -7,14 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/bpl.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/bpl.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>Brooklin Public Library</title>
 </head>
 <body>
-    <div class="container-full">
-        <!-- header -->
-        <header class="header">
+    <script src="index.js"></script>
+    <!-- header -->
+    <header class="header">
+        <div class="container-full">
+            <div class="container">
                 <div class="header__inner">
                     <h1 class="header__title title">
                         Brooklyn Public Library
@@ -33,7 +35,7 @@
                             </li>
                             <li class="header__list__item">
                                 <a href="#coffeeshop" class="link">
-                                Coffee shop
+                                    Coffee shop
                                 </a>
                             </li>
                             <li class="header__list__item">
@@ -43,36 +45,41 @@
                             </li>
                             <li class="header__list__item">
                                 <a href="#librarycard" class="link">
-                                    Library card
+                                    Library Card
                                 </a>
                             </li>
                         </ul>
                     </nav>
+                    <div class="header__image">
+                        <img class="header__icon" src="./images/svg/icon_profile.svg" alt="icon profile">
+                    </div>
                 </div>
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
 
-                <div class="header__image">
-                    <img class="header__icon" src="images/svg/icon_profile.svg" alt="icon profile">
-                </div>
-        </header>
-        <!-- /header -->
-
-        <!-- main -->
-        <main>
-            <!-- welcome -->
-            <section class="welcome">
-                <div class="welcome__overlay">
-
-                </div>
+    <!-- main -->
+    <main>
+        <!-- welcome -->
+        <section class="welcome">
+            <div class="welcome__overlay">
+            </div>
+            <div class="container-full"> 
                 <div class="welcome__inner">
-                    <h2 class="welcome__title title">
-                        Welcome <br> to the Brooklyn Library
-                    </h2>
+                    <div class="welcome__greeting">
+                        <h2 class="welcome__title title">
+                            Welcome <br> to the Brooklyn Library
+                        </h2>
+                    </div>
                 </div>
-            </section>
-            <!-- /welcome -->
+            </div>
+        </section>
+        <!-- /welcome -->
 
-            <!-- about -->
-            <section class="about" id="about">
+        <!-- about -->
+        <section class="about" id="about">
+            <div class="container-full">
                 <div class="container">
                     <h2 class="section__title">
                         About
@@ -82,27 +89,29 @@
                     </p>
                     <div class="about__inner">
                         <div class="about__item">
-                            <img src="images/about/about_1.jpg" alt="image 1">
+                            <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
                         </div>
 
                         <div class="about__item">
-                            <img src="images/about/about_2.jpg" alt="image 2">
+                            <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
                         </div>
 
                         <div class="about__item">
-                            <img src="images/about/about_3.jpg" alt="image 3">
+                            <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
                         </div>
                     </div>
 
                     <div class="about__carousel">
-                        <img src="images/svg/carousel_1.svg" alt="carousel 1" class="about__carousel__image">
+                        <img src="./images/svg/carousel_1.svg" alt="carousel 1" class="about__carousel__image">
                     </div>
                 </div>
-            </section>
-            <!-- /about -->
+            </div>
+        </section>
+        <!-- /about -->
 
-            <!-- favorites -->
-            <section class="favorites" id="favorites">
+        <!-- favorites -->
+        <section class="favorites" id="favorites">
+            <div class="container-full">
                 <div class="container">
                     <h2 class="section__title">
                         Favorites
@@ -140,7 +149,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/winter/book_1.jpg" alt="The book eaters">
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_1.jpg" alt="The book eaters">
                             </div>
 
                             <div class="favorites__book">
@@ -159,7 +168,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/winter/book_2.jpg" alt="Cackle">
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_2.jpg" alt="Cackle">
                             </div>
 
                             <div class="favorites__book">
@@ -178,7 +187,7 @@
                                 <button class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/winter/book_3.jpg" alt="Dante: Poet of the Secular World">
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_3.jpg" alt="Dante: Poet of the Secular World">
                             </div>
 
                             <div class="favorites__book">
@@ -197,7 +206,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
                                     Own
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/winter/book_4.jpg" alt="The Last Queen">
+                                <img class="favorites__book__image" src="./images/favorites/winter/book_4.jpg" alt="The Last Queen">
                             </div>
                         </div>
                         <!-- /winter -->
@@ -220,7 +229,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/spring/book_1.jpg" alt="The Body">
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_1.jpg" alt="The Body">
                             </div>
 
                             <div class="favorites__book">
@@ -239,7 +248,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/spring/book_2.jpg" alt="Carry: A Memoir of Survival on Stolen Land">
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_2.jpg" alt="Carry: A Memoir of Survival on Stolen Land">
                             </div>
 
                             <div class="favorites__book">
@@ -258,7 +267,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/spring/book_3.jpg" alt="Days of Distraction">
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_3.jpg" alt="Days of Distraction">
                             </div>
 
                             <div class="favorites__book">
@@ -273,11 +282,10 @@
                                 </h3>
                                 <div class="favorites__book__description">
                                     A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
+                                </div>                                    <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
                                     Own
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/spring/book_4.jpg" alt="Dominicana">
+                                <img class="favorites__book__image" src="./images/favorites/spring/book_4.jpg" alt="Dominicana">
                             </div>
                         </div>
                         <!-- /spring -->
@@ -300,7 +308,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/summer/book_1.jpg" alt="Crude: A Memoir">
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_1.jpg" alt="Crude: A Memoir">
                             </div>
 
                             <div class="favorites__book">
@@ -319,7 +327,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/summer/book_2.jpg" alt="Let My People Go Surfing">
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_2.jpg" alt="Let My People Go Surfing">
                             </div>
 
                             <div class="favorites__book">
@@ -338,7 +346,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/summer/book_3.jpg" alt="The Octopus Museum: Poems">
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_3.jpg" alt="The Octopus Museum: Poems">
                             </div>
 
                             <div class="favorites__book">
@@ -357,7 +365,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/summer/book_4.jpg" alt="Shark Dialogues: A Novel">
+                                <img class="favorites__book__image" src="./images/favorites/summer/book_4.jpg" alt="Shark Dialogues: A Novel">
                             </div>
                         </div>
                         <!-- /summer -->
@@ -380,7 +388,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/autumn/book_1.jpg" alt="Casual Conversation">
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_1.jpg" alt="Casual Conversation">
                             </div>
 
                             <div class="favorites__book">
@@ -399,7 +407,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/autumn/book_2.jpg" alt="The Great Fire">
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_2.jpg" alt="The Great Fire">
                             </div>
 
                             <div class="favorites__book">
@@ -418,7 +426,7 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/autumn/book_3.jpg" alt="Rickey: The Life and Legend">
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_3.jpg" alt="Rickey: The Life and Legend">
                             </div>
 
                             <div class="favorites__book">
@@ -437,17 +445,19 @@
                                 <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
                                     Buy
                                 </button>
-                                <img class="favorites__book__image" src="images/favorites/autumn/book_4.jpg" alt="Slug: And Other Stories">
+                                <img class="favorites__book__image" src="./images/favorites/autumn/book_4.jpg" alt="Slug: And Other Stories">
                             </div>
                         </div>
                         <!-- /autumn -->
                     </div>
                 </div>
-            </section>
-            <!-- /favorites -->
+            </div>
+        </section>
+        <!-- /favorites -->
 
-            <!-- coffeeshop -->
-            <section class="coffeeshop" id="coffeeshop">
+        <!-- coffeeshop -->
+        <section class="coffeeshop" id="coffeeshop">
+            <div class="container-full">
                 <div class="container">
                     <h2 class="section__title">
                         Coffee shop
@@ -456,92 +466,94 @@
                         In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. you can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.
                     </p>
                     <div class="coffeeshop__inner">
-                        <!-- drinks -->
-                        <table class="coffeeshop__table">
-                            <caption class="coffeeshop__menu__title coffeeshop__menu__title-right">
-                                Coffee & Tea
-                            </caption>
-                            <tbody class="coffeeshop__menu">
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold Brew Coffee</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$3</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">French Press Pot</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$5</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Espresso</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$2</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cappuccino</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$4</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Hot tea</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$2</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold tea</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$2</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- /drinks -->
+                            <!-- drinks -->
+                            <table class="coffeeshop__table">
+                                <caption class="coffeeshop__menu__title coffeeshop__menu__title-right">
+                                    Coffee & Tea
+                                </caption>
+                                <tbody class="coffeeshop__menu">
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold Brew Coffee</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$3</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">French Press Pot</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$5</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Espresso</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cappuccino</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$4</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Hot tea</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish coffeeshop__menu__dish-right">Cold tea</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /drinks -->
 
-                        <!-- desserts -->
-                        <table class="coffeeshop__table coffeeshop__table__desserts">
-                            <caption class="coffeeshop__menu__title coffeeshop__menu__title-left">
-                                Desserts & Cakes
-                            </caption>
-                            <tbody class="coffeeshop__menu">
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Forest Gateau</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$16</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Blue Moon</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$16</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Truffle Cake</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$15</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Chocolate Cake</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$18</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Poet’s Dream Cake</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$16</td>
-                                </tr>
-                                <tr class="coffeeshop__menu__item">
-                                    <td class="coffeeshop__menu__dish">Pineapple Cake</td>
-                                    <td class="coffeeshop__menu__line"></td>
-                                    <td class="coffeeshop__menu__price">$14</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- /desserts -->
+                            <!-- desserts -->
+                            <table class="coffeeshop__table coffeeshop__table__desserts">
+                                <caption class="coffeeshop__menu__title coffeeshop__menu__title-left">
+                                    Desserts & Cakes
+                                </caption>
+                                <tbody class="coffeeshop__menu">
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Forest Gateau</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Blue Moon</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Truffle Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$15</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Chocolate Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$18</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Poet’s Dream Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$16</td>
+                                    </tr>
+                                    <tr class="coffeeshop__menu__item">
+                                        <td class="coffeeshop__menu__dish">Pineapple Cake</td>
+                                        <td class="coffeeshop__menu__line"></td>
+                                        <td class="coffeeshop__menu__price">$14</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /desserts -->
                     </div>
                 </div>
-            </section>
-            <!-- /coffeeshop -->
+            </div>
+        </section>
+        <!-- /coffeeshop -->
 
-            <!-- contacts -->
-            <section class="contacts" id="contacts">
+        <!-- contacts -->
+        <section class="contacts" id="contacts">
+            <div class="container-full">
                 <div class="container">
                     <h2 class="section__title">
                         Our Contacts
@@ -578,15 +590,17 @@
                             </div>
                         </div>
                         <div class="contacts__item">
-                            <img class="contacts__map" src="images/contacts/map.jpg" alt="map">
+                            <img class="contacts__map" src="./images/contacts/map.jpg" alt="map">
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- /contacts -->
+            </div>
+        </section>
+        <!-- /contacts -->
 
-            <!-- librarycard -->
-            <section class="librarycard" id="librarycard">
+        <!-- librarycard -->
+        <section class="librarycard" id="librarycard">
+            <div class="container-full">
                 <div class="container">
                     <h2 class="section__title">
                         Digital Library Cards
@@ -623,13 +637,15 @@
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- /librarycard -->
-        </main>
-        <!-- /main -->
+            </div>
+        </section>
+        <!-- /librarycard -->
+    </main>
+    <!-- /main -->
 
-        <!-- footer -->
-        <footer class="footer">
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container-full">
             <div class="container">
                 <div class="footer__inner">
                     <div class="footer__item">
@@ -644,15 +660,23 @@
                     </div>
                     <div class="footer__item">
                         <div class="footer__social">
-                            <a class="footer__social__link" href="https://twitter.com/" target="_blank">
-                                <img class="footer__social__ico" src="images/social/twitter.svg" alt="twitter logo">
-                            </a>
-                            <a class="footer__social__link" href="https://www.instagram.com/rsschool_news/" target="_blank">
-                                <img class="footer__social__ico"  src="images/social/instagram.svg" alt="instagram logo">
-                            </a>
-                            <a class="footer__social__link" href="https://www.facebook.com/rsschoolEN/" target="_blank">
-                                <img class="footer__social__ico"  src="images/social/facebook.svg" alt="facebook logo">
-                            </a>
+                            <ul class="footer__list">
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://twitter.com/" target="_blank">
+                                        <img class="footer__social__ico" src="./images/social/twitter.svg" alt="twitter logo">
+                                    </a>
+                                </li>
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://www.instagram.com/rsschool_news/" target="_blank">
+                                        <img class="footer__social__ico"  src="./images/social/instagram.svg" alt="instagram logo">
+                                    </a>
+                                </li>
+                                <li class="footer__list__item">
+                                    <a class="footer__social__link" href="https://www.facebook.com/rsschoolEN/" target="_blank">
+                                        <img class="footer__social__ico"  src="./images/social/facebook.svg" alt="facebook logo">
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="footer__open">
                             Sat - Sun
@@ -679,8 +703,8 @@
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- /footer -->
-    </div>
+        </div>
+    </footer>
+    <!-- /footer -->
 </body>
 </html>
