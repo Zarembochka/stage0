@@ -541,6 +541,10 @@ body {
     text-align: left;
 }
 
+.contacts__map {
+    width: 100%;
+}
+
 /* =====librarycard===== */
 
 .librarycard {
