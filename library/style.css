@@ -234,6 +234,7 @@ body {
 
 .favorites__form__radio:checked + label {
     background: url(./images/svg/radio_checked.svg) no-repeat scroll 0 50%;
+    font-weight: 700;
 }
 
 .favorites__form__label {
@@ -246,9 +247,6 @@ body {
     margin-right: 90px;
 }
 
-.favorites__form__label-checked {
-    font-weight: 700;
-}
 
 .favorites__inner {
     padding-right: 40px;
