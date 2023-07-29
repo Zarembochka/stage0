@@ -194,10 +194,11 @@ body {
 
 .about__carousel {
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
     padding: 5px;
     cursor: pointer;
     gap: 10px;
+    width: fit-content;
 }
 
 .about__carousel__cirkle {
@@ -365,6 +366,10 @@ body {
     border: 1px solid #BB945F;
     background: #BB945F;
     transition: 0.2s all linear;
+}
+
+.btn:disabled:hover {
+    cursor: not-allowed;
 }
 
 .favorites__book__btn {
