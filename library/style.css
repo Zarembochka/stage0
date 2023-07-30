@@ -73,10 +73,11 @@ body {
 .link {
     color: #ffffff;
     text-decoration: none;
+    display: flex;
 }
 
 .link:hover {
-    opacity: 0.7;
+    transform: scale(1.05);
     text-decoration: underline;
     transition: 0.2s all linear;
 }
@@ -143,7 +144,7 @@ body {
 
 .section__title {
     color: #0C0C0E;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
     font-size: 40px;
     font-style: normal;
     font-weight: 400;
@@ -217,7 +218,7 @@ body {
 .favorites__text {
     color: #000;
     text-align: left;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -259,7 +260,7 @@ body {
 
 .favorites__form__label {
     color: #000;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -288,7 +289,7 @@ body {
     padding: 14px 20px 15px;
     border: 1px solid #000;
     width: 40.5%;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -304,7 +305,7 @@ body {
 .favorites__book__pick {
     margin: 0;
     color: #000;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
     font-size: 20px;
     line-height: 2;
     letter-spacing: 2px;
@@ -342,7 +343,7 @@ body {
 
 .btn {
     border-radius: 2px;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 700;
     line-height: normal;
@@ -435,7 +436,7 @@ body {
 
 .coffeeshop__menu__title {
     color: #BB945F;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
     font-size: 40px;
     line-height: 1;
     margin: 0;
@@ -468,7 +469,7 @@ body {
 
 .coffeeshop__menu__dish {
     color: #000;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     line-height: 2;
     display: flex;
@@ -498,20 +499,19 @@ body {
 .contacts {
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 2;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-bottom: 36px;
+    margin-bottom: 62px;
 }
 
 .contacts__inner {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 60px;
 }
 
 .contacts__item {
@@ -547,7 +547,6 @@ body {
 
 .contacts__description__title {
     font-weight: 700;
-    /* margin-bottom: 20px; */
 }
 
 .contacts__staff__title {
@@ -580,7 +579,7 @@ body {
 
 .librarycard {
     color: #000;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -618,7 +617,7 @@ body {
 
 .librarycard__card__title {
     margin: 0;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
     font-size: 30px;
     font-weight: 400;
     margin: 17px;
@@ -648,7 +647,7 @@ body {
     margin-bottom: 25px;
     border: none;
     color: #8E8E8E;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -673,7 +672,7 @@ body {
     margin: 0;
     margin-bottom: 35px;
     text-align: right;
-    font-family: Forum;
+    font-family: 'Forum', cursive;
 }
 
 .librarycard__info__text {
@@ -708,7 +707,7 @@ body {
     width: 100%;
     background: #0C0C0E;
     color: #FFF;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -783,4 +782,12 @@ body {
     letter-spacing: 2px;
 }
 
+.footer__bottom__year {
+    width: 15%;
+}
 
+.footer__bottom__github {
+    width: 15%;
+    display: flex;
+    justify-content: right;
+}
