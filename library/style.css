@@ -34,7 +34,7 @@ body {
 
 .header__inner {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     padding: 20px 0;
     width: 100%;
@@ -45,6 +45,7 @@ body {
     font-size: 30px;
     margin: 0;
     letter-spacing: 0.6px;
+    margin-right: auto;
 }
 
 .title {
@@ -60,6 +61,7 @@ body {
     margin: 0;
     margin-right: 40px;
     list-style: none;
+    padding: 0;
 }
 
 .header__nav {
@@ -90,6 +92,17 @@ body {
    border-radius: 28px;
    height: 28px;
    width: 28px;
+}
+
+.burger__menu {
+    display: none;
+    /* display: flex; */
+    margin-left: 40px;
+}
+
+.burger__menu__ico {
+    width: 45px;
+    height: 20px;
 }
 
 /* =====main===== */
@@ -288,7 +301,8 @@ body {
 .favorites__book {
     padding: 14px 20px 15px;
     border: 1px solid #000;
-    width: 40.5%;
+    /* width: 40.5%; */
+    width: 551px;
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-style: normal;
@@ -422,7 +436,8 @@ body {
 }
 
 .coffeeshop__table {
-    width: 31.2%;
+    /* width: 31.2%; */
+    width: 438px;
     border-spacing: 0;
     display: flex;
     flex-direction: column;
@@ -431,7 +446,8 @@ body {
 }
 
 .coffeeshop__table__desserts {
-    width: 34.45%;
+    /* width: 34.45%; */
+    width: 482px;
 }
 
 .coffeeshop__menu__title {
@@ -594,7 +610,8 @@ body {
 }
 
 .librarycard__item {
-    width: 42.857%;
+    /* width: 42.857%; */
+    width: 600px;
     display: flex;
     flex-direction: column;
 }
@@ -612,6 +629,7 @@ body {
     background: #FFF;
     display: flex;
     flex-direction: column;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -665,13 +683,17 @@ body {
 }
 
 .librarycard__info {
-    width: 32.57%;
+    /* width: 32.57%; */
+    width: 456px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 
 .librarycard__info__title {
     margin: 0;
     margin-bottom: 35px;
-    text-align: right;
+    /* text-align: right; */
     font-family: 'Forum', cursive;
 }
 
@@ -727,11 +749,13 @@ body {
 }
 
 .footer__address {
-    width: 16.357%;
+    /* width: 16.357%; */
+    width: 229px;
 }
 
 .footer__open {
-    width: 10.6428%;
+    /* width: 10.6428%; */
+    width: 149px;
     text-align: right;
 }
 
@@ -783,11 +807,58 @@ body {
 }
 
 .footer__bottom__year {
-    width: 15%;
+    /* width: 15%; */
+    width: 75px;
 }
 
 .footer__bottom__github {
-    width: 15%;
+    /* width: 15%; */
+    width: 75px;
     display: flex;
     justify-content: right;
+}
+
+/* =====media===== */
+@media (max-width: 1240px) {
+    .favorites__items-checked {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header__nav {
+        display: none;
+    }
+
+    .burger__menu {
+        display: flex;
+    }
+
+    .coffeeshop__inner {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .coffeeshop__table__desserts {
+        margin-left: auto;
+    }
+
+    .contacts__inner {
+        flex-direction: column;
+    }
+
+    .contacts__item {
+        width: 100%;
+    }
+
+    .librarycard__inner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .librarycard__info {
+        align-items: center;
+    }
+
 }
