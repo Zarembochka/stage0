@@ -54,7 +54,9 @@
                         <img class="header__icon" src="./images/svg/icon_profile.svg" alt="icon profile">
                     </div>
                     <div class="burger__menu">
-                        <img class="burger__menu__ico" src="./images/svg/burger.svg" alt="icon burger menu">
+                        <span class="burger__menu__line"></span>
+                        <span class="burger__menu__line"></span>
+                        <span class="burger__menu__line"></span>
                     </div>
                 </div>
             </div>
@@ -88,16 +90,22 @@
                         The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
                     </p>
                     <div class="about__inner">
+                        <div class="arrow__left">
+                            <img class="arrow__ico" src="./images/svg/Carret_Left.svg" alt="arrow left ico">
+                        </div>
                         <div class="about__item">
                             <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
                         </div>
 
-                        <div class="about__item">
+                        <div class="about__item about__item-second">
                             <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
                         </div>
 
-                        <div class="about__item">
+                        <div class="about__item about__item-third">
                             <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
+                        </div>
+                        <div class="arrow__right">
+                            <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
                         </div>
                     </div>
 
@@ -107,6 +115,10 @@
                         <div class="about__carousel__cirkle">
                         </div>
                         <div class="about__carousel__cirkle">
+                        </div>
+                        <div class="about__carousel__cirkle about__carousel__cirkle-four">
+                        </div>
+                        <div class="about__carousel__cirkle about__carousel__cirkle-five">
                         </div>
                     </div>
                 </div>
@@ -125,14 +137,22 @@
                         Pick favorites of season
                     </p>
                     <form class="favorites__form">
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
-                        <label for="winter" class="favorites__form__label">Winter</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
-                        <label for="spring" class="favorites__form__label">Spring</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
-                        <label for="summer" class="favorites__form__label">Summer</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
-                        <label for="autumn" class="favorites__form__label">Autumn</label>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                            <label for="winter" class="favorites__form__label">Winter</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                            <label for="spring" class="favorites__form__label">Spring</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                            <label for="summer" class="favorites__form__label">Summer</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                            <label for="autumn" class="favorites__form__label">Autumn</label>
+                        </div>    
                     </form>
 
                     <div class="favorites__inner">
