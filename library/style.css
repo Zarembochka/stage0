@@ -94,21 +94,63 @@ body {
    width: 28px;
 }
 
-.burger__menu {
+.burger-btn {
     display: none;
-    /* display: flex; */
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 40px;
-    height: 22px;
+    /* display: block; */
+    position: relative;
+    border: none;
+    background: transparent;
+    color: transparent;
+    outline: none;
+    margin-left: 35px;
+    width: 45px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger-btn::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+}
+
+.burger-btn-close ~ .burger__menu__line-first {
+    display: none;
 }
 
 .burger__menu__line {
+    position: absolute;
     width: 45px;
     height: 2px;
+    top: 0;
+    left: 0;
     background-color: #FFF;
+    transition: 0.5s all linear;
 }
 
+.burger__menu__line-second, .burger__menu__line-third {
+    top: 9px;
+}
+
+.burger__menu__line-fourth {
+    top: 18px;
+}
+
+.header.header-burger .burger__menu__line-first {
+    display: none;
+}
+
+.header.header-burger .burger__menu__line-second  {
+    transform: rotate(45deg);
+}
+
+.header.header-burger .burger__menu__line-third  {
+    transform: rotate(-45deg);
+}
+
+.header.header-burger .burger__menu__line-fourth {
+    display: none;
+}
 
 
 /* =====main===== */
@@ -303,16 +345,16 @@ body {
 
 .favorites__form__season:nth-child(3) {
     /* width: 32%; */
-    width: 210px;
+    width: 205px;
 }
 
 .favorites__form__season:last-of-type {
     /* width: 15.71%; */
-    width: 110px;
+    width: 115px;
 }
 
 .favorites__form__season:hover {
-    /* transform: scale(1.05); */
+    transform: scale(1.05);
     transition: 0.2s all linear;
 }
 
@@ -323,7 +365,14 @@ body {
     accent-color: #000;
     cursor: pointer;
     transition: 0.2s all linear;
+    position: relative;
     /* display: none;  */
+}
+
+.favorites__form__radio::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
 }
 
 .favorites__form__label {
@@ -726,7 +775,7 @@ body {
     padding: 8px 20px;
     margin-bottom: 25px;
     border: none;
-    color: #8E8E8E;
+    color: #BB945F;
     font-family: 'Forum', cursive;
     font-size: 30px;
     font-style: normal;
@@ -959,8 +1008,42 @@ body {
 
 
 @media (max-width: 1024px) {
+    .burger-btn {
+        display: block;
+    }
+
     .header__nav {
-        display: none;
+        width: 332px;
+        height: 480px;
+        position: fixed;
+        top: 90px;
+        right: 0;
+        /* background-color: #0C0C0E; */
+        background-color: rgba(12, 12, 14, 0.90);
+        z-index: 10;
+        transform: translateX(100%);
+        transition: all 0.5s linear;
+    }
+
+    .header.header-burger .header__nav {
+        transform: translateX(0);
+    }
+
+    .header__list {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    .header__list__item {
+        width: 100%;
+    }
+
+    .header__list__item .link {
+        display: block;
+        width: 100%;
+        text-align: center;
     }
 
     .burger__menu {
