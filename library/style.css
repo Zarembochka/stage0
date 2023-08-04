@@ -1022,11 +1022,13 @@ body {
         background-color: rgba(12, 12, 14, 0.90);
         z-index: 10;
         transform: translateX(100%);
-        transition: all 0.5s linear;
+        animation: slide-out 1000ms;
+        /* transition: all 0.5s linear; */
     }
 
     .header.header-burger .header__nav {
         transform: translateX(0);
+        animation: slide-in 1000ms; 
     }
 
     .header__list {
@@ -1086,5 +1088,26 @@ body {
 
     .coffeeshop__text {
         letter-spacing: 1.9px;
+    }
+}
+
+/* =====keyframes===== */
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
     }
 }
