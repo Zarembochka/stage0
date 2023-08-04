@@ -2,6 +2,7 @@ console.log("Общая оценка - 100: \n 1. Верстка валидна�
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    //  работа бургер меню
     const burgerBtn = document.getElementById('burger');
     const header = document.querySelector('.header');
     burgerBtn.addEventListener('click', function() {
@@ -25,4 +26,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         header.classList.remove('header-burger');
     })
+
+    // работа радиобаттона
+    const favoritesForm = document.querySelector('.favorites__form');
+    favoritesForm.addEventListener('click', (event) => {
+        toChangeFavoritesOfSeason(event.currentTarget.querySelector('.favorites__form__radio:checked').value);
+    })
 })
+
+function toChangeFavoritesOfSeason(season) {
+    const oldFavoritesItemsCheked = document.querySelector('.favorites__items-checked');
+    oldFavoritesItemsCheked.classList.remove('favorites__items-checked');
+    const currentFavoritesItemsCheked = document.querySelector('.favorites__items-' + season);
+    currentFavoritesItemsCheked.classList.add('favorites__items-checked');
+}
