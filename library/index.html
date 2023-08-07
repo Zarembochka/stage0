@@ -53,6 +53,12 @@
                     <div class="header__image">
                         <img class="header__icon" src="./images/svg/icon_profile.svg" alt="icon profile">
                     </div>
+                    <button class="burger-btn" id="burger">
+                        <span class="burger__menu__line burger__menu__line-first"></span>
+                        <span class="burger__menu__line burger__menu__line-second"></span>
+                        <span class="burger__menu__line burger__menu__line-third"></span>
+                        <span class="burger__menu__line burger__menu__line-fourth"></span>
+                    </button>
                 </div>
             </div>
         </header>
@@ -85,26 +91,37 @@
                         The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
                     </p>
                     <div class="about__inner">
+                        <button class="arrow arrow-left">
+                            <img class="arrow__ico" src="./images/svg/Carret_Left.svg" alt="arrow left ico">
+                        </button>
+
                         <div class="about__item">
                             <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
                         </div>
 
-                        <div class="about__item">
+                        <div class="about__item about__item-second">
                             <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
                         </div>
 
-                        <div class="about__item">
+                        <div class="about__item about__item-third">
                             <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
                         </div>
+                        <button class="arrow arrow-right">
+                            <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
+                        </button>
                     </div>
 
                     <div class="about__carousel">
-                        <div class="about__carousel__cirkle about__carousel__cirkle-active">
-                        </div>
-                        <div class="about__carousel__cirkle">
-                        </div>
-                        <div class="about__carousel__cirkle">
-                        </div>
+                        <button class="about__carousel__cirkle about__carousel__cirkle-active">
+                        </button>
+                        <button class="about__carousel__cirkle">
+                        </button>
+                        <button class="about__carousel__cirkle">
+                        </button>
+                        <button class="about__carousel__cirkle about__carousel__cirkle-four">
+                        </button>
+                        <button class="about__carousel__cirkle about__carousel__cirkle-five">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -122,14 +139,22 @@
                         Pick favorites of season
                     </p>
                     <form class="favorites__form">
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
-                        <label for="winter" class="favorites__form__label">Winter</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
-                        <label for="spring" class="favorites__form__label">Spring</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
-                        <label for="summer" class="favorites__form__label">Summer</label>
-                        <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
-                        <label for="autumn" class="favorites__form__label">Autumn</label>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                            <label for="winter" class="favorites__form__label">Winter</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                            <label for="spring" class="favorites__form__label">Spring</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                            <label for="summer" class="favorites__form__label">Summer</label>
+                        </div>
+                        <div class="favorites__form__season">
+                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                            <label for="autumn" class="favorites__form__label">Autumn</label>
+                        </div>    
                     </form>
 
                     <div class="favorites__inner">
@@ -465,7 +490,7 @@
                         Coffee shop
                     </h2>
                     <p class="section__text coffeeshop__text">
-                        In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.
+                        In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation.&nbsp; You can get a favorite book and read in coffee shop. our barista to cook you best coffee, and also you can try desserts from bakery.
                     </p>
                     <div class="coffeeshop__inner">
                             <!-- drinks -->
@@ -592,7 +617,10 @@
                             </div>
                         </div>
                         <div class="contacts__item">
-                            <img class="contacts__map" src="./images/contacts/map.jpg" alt="map">
+                            <!-- <div class="contacts__map"> -->
+                                <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.0165251775215!2d-73.99398898615364!3d40.69563369930784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2spl!4v1691141444370!5m2!1sru!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <!-- <img class="contacts__map" src="./images/contacts/map.jpg" alt="map"> -->
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
@@ -700,7 +728,7 @@
                     </div>
                     <div class="footer__bottom__github">
                         <a class="link" target="_blank" href="https://github.com/Zarembochka">
-                            Liubou Hadunova
+                            Liubou
                         </a>
                     </div>
                 </div>
