@@ -1022,8 +1022,8 @@ body {
         position: absolute;
         top: 90px;
         right: 0;
-        /* background-color: #0C0C0E; */
-        background-color: rgba(12, 12, 14, 0.90);
+        background-color: #0C0C0E;
+        /* background-color: rgba(12, 12, 14, 0.90); */
         z-index: 10;
         transform: translateX(100%);
         animation: slide-out 1000ms;
