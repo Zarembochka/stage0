@@ -871,7 +871,7 @@ body {
 }
 
 .footer__bottom {
-    padding: 46px 0;
+    padding: 45px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -982,17 +982,17 @@ body {
     }
 
     .contacts {
-        margin-bottom: 60px;
+        margin-bottom: 59px;
     }
 
     .librarycard {
-        margin-bottom: 38px;
+        margin-bottom: 40px;
     }
 
     .librarycard__inner {
         flex-direction: column;
         align-items: center;
-        row-gap: 21px;
+        row-gap: 20px;
     }
 
     .librarycard__info {
@@ -1022,8 +1022,8 @@ body {
         position: absolute;
         top: 90px;
         right: 0;
-        /* background-color: #0C0C0E; */
-        background-color: rgba(12, 12, 14, 0.90);
+        background-color: #0C0C0E;
+        /* background-color: rgba(12, 12, 14, 0.90); */
         z-index: 10;
         transform: translateX(100%);
         animation: slide-out 1000ms;
@@ -1073,7 +1073,7 @@ body {
     .coffeeshop__inner {
         flex-direction: column;
         align-items: start;
-        margin-bottom: 61px;
+        margin-bottom: 60px;
     }
 
     .coffeeshop__table {
@@ -1082,6 +1082,18 @@ body {
 
     .coffeeshop__table__desserts {
         margin-left: auto;
+    }
+
+    .footer__item {
+        margin-bottom: 9px;
+    }
+
+    .footer__bottom__year {
+        width: fit-content;
+    }
+
+    .footer__bottom__github {
+        width: 113px;
     }
 
 }
