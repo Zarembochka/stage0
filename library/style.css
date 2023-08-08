@@ -1019,7 +1019,7 @@ body {
     .header__nav {
         width: 332px;
         height: 480px;
-        position: absolute;
+        position: fixed;
         top: 90px;
         right: 0;
         background-color: #0C0C0E;
