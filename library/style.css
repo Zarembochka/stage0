@@ -243,7 +243,7 @@ body {
     justify-content: space-between;
     /* align-items: center; */
     /* margin: 0 auto; */
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     width: 100%;
     position: relative;
 }
@@ -283,8 +283,8 @@ body {
 .about__carousel {
     display: flex;
     margin: 0 auto;
-    padding: 5px;
-    cursor: pointer;
+    /* padding: 5px; */
+    /* cursor: pointer; */
     gap: 10px;
     width: fit-content;
 }
@@ -296,6 +296,13 @@ body {
     background: #0C0C0E;
     border: none;
     cursor: pointer;
+    position: relative;
+}
+
+.about__carousel__cirkle::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
 }
 
 .about__carousel__cirkle-active {
@@ -901,6 +908,10 @@ body {
         transition: 0.2s all linear;
     }
 
+    .about__carousel__cirkle:hover {
+        background-color: #BB945F;
+    }
+
     .favorites__form__season:hover {
         transform: scale(1.05);
         transition: 0.2s all linear;
@@ -1066,9 +1077,9 @@ body {
         margin-bottom: 55px;
     }
 
-    .about__inner {
+    /* .about__inner {
         margin-bottom: 17px;
-    }
+    } */
 
     .coffeeshop__inner {
         flex-direction: column;
