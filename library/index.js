@@ -33,9 +33,85 @@ favoritesForm.addEventListener('click', (event) => {
     toChangeFavoritesOfSeason(event.currentTarget.querySelector('.favorites__form__radio:checked').value);
 })
 
+const favoritesItems = document.querySelector('.favorites__inner');
+favoritesItems.addEventListener("animationend", animationFade);
+
+function animationFade(event, element) {
+    console.log(event.animationName);
+    if (event.animationName === 'fade-out') {
+        event.srcElement.classList.remove('favorites__items-fadeout');
+        event.srcElement.classList.remove('favorites__items-checked');
+        element.classList.add('favorites__items-checked');
+        element.classList.add('favorites__items-fade-in');
+        console.log(111);
+        console.log(event.srcElement);
+    }
+
+    if (event.animationName === 'fade-in') {
+        event.srcElement.classList.remove('favorites__items-fadein');
+        console.log(222);
+        console.log(event.srcElement);
+    }
+}
+
+// function animationFadeOut(event) {
+//     console.log(event);
+//     event.srcElement.classList.remove('favorites__items-fadeout');
+//     event.srcElement.classList.remove('favorites__items-checked');
+// }
+
+// function animationFadeIn(event) {
+//     event.target.classList.remove('favorites__items-fadein');
+// }
+
 function toChangeFavoritesOfSeason(season) {
     const oldFavoritesItemsCheked = document.querySelector('.favorites__items-checked');
-    oldFavoritesItemsCheked.classList.remove('favorites__items-checked');
     const currentFavoritesItemsCheked = document.querySelector('.favorites__items-' + season);
+    //fadeOut(oldFavoritesItemsCheked);
+    oldFavoritesItemsCheked.classList.add('favorites__items-fadeout');
+    // oldFavoritesItemsCheked.addEventListener("animationend", animationFadeOut);
+
+    // currentFavoritesItemsCheked.addEventListener("animationend", animationFadeIn);
+    //oldFavoritesItemsCheked.addEventListener("animationend", alert(123));
+    // oldFavoritesItemsCheked.classList.remove('favorites__items-checked');
     currentFavoritesItemsCheked.classList.add('favorites__items-checked');
+    currentFavoritesItemsCheked.classList.add('favorites__items-fadein');
+    // setTimeout(fadeIn, 700, currentFavoritesItemsCheked);
 }
+
+//slider
+const slider = document.querySelector('.about__slider');
+const slides = Array.from(document.querySelectorAll('.about__item'));
+const slideCount = slides.length;
+const pagination = document.querySelector('.about__carousel');
+
+let slideIndex = 0;
+
+function showNextSlide() {
+    slideIndex = (slideIndex + 1) % slideCount;
+    showSlider();
+}
+
+function showPreviousSlide() {
+    slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+    showSlider();
+}
+
+pagination.addEventListener('click', (event) => {
+    showNextSlide();
+});
+
+function showSlider() {
+    const activeSlide = document.querySelector('.about__item-active');
+    activeSlide.classList.remove('about__item-active');
+    slides.forEach((slide, index) => {
+        if (index === slideIndex) {
+            slider.style.left = -slideIndex * 100 + 25 + 'px';
+            slide.classList.add('about__item-active');
+        } else {
+            
+        }
+    })
+}
+
+showSlider();
