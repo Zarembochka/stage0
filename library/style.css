@@ -235,6 +235,11 @@ body {
     margin-bottom: 20px;
 }
 
+.about__container {
+    width: 100%;
+    position: relative;
+}
+
 .about__inner {
     width: 100%;
     overflow-x: hidden;
@@ -252,6 +257,7 @@ body {
     margin-bottom: 40px;
     width: 100%;
     position: relative;
+    transition: margin-left 2s ease-in-out;
 }
 
 .about__item {
@@ -270,6 +276,12 @@ body {
     outline: none;
     top: 50%;
     padding: 0;
+    cursor: pointer;
+}
+
+.arrow:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .arrow-left {
@@ -282,7 +294,6 @@ body {
 
 .arrow__ico {
     padding: 5px;
-    cursor: pointer;
     display: block;
 }
 
@@ -301,8 +312,16 @@ body {
     border-radius: 50%;
     background: #0C0C0E;
     border: none;
-    cursor: pointer;
     position: relative;
+    font-size: 0;
+}
+
+.about__carousel__cirkle:not(:disabled) {
+    cursor: pointer;
+}
+
+.about__carousel__cirkle:disabled {
+    cursor: not-allowed;
 }
 
 .about__carousel__cirkle::after {
@@ -963,11 +982,8 @@ body {
 
 @media (max-width: 1439px) {
     .about__inner {
-        justify-content: center;
-    }
-
-    .about__item-third {
-        display: none;
+        width: 925px;
+        margin: 0 auto;
     }
 
     .arrow {
@@ -987,8 +1003,11 @@ body {
 }
 
 @media (max-width: 1150px) {
-    .about__item-second {
+    /* .about__item-second {
         display: none;
+    } */
+    .about__inner {
+        max-width: 450px;
     }
 
     .about__carousel__cirkle-five {
