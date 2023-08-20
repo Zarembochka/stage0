@@ -154,27 +154,29 @@
                     <h2 class="section__title">
                         Favorites
                     </h2>
-                    <p class="favorites__text">
-                        Pick favorites of season
-                    </p>
-                    <form class="favorites__form">
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
-                            <label for="winter" class="favorites__form__label">Winter</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
-                            <label for="spring" class="favorites__form__label">Spring</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
-                            <label for="summer" class="favorites__form__label">Summer</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
-                            <label for="autumn" class="favorites__form__label">Autumn</label>
-                        </div>
-                    </form>
+                    <div class="favorites__panel">
+                        <p class="favorites__text">
+                            Pick favorites of season
+                        </p>
+                        <form class="favorites__form">
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                                <label for="winter" class="favorites__form__label">Winter</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                                <label for="spring" class="favorites__form__label">Spring</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                                <label for="summer" class="favorites__form__label">Summer</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                                <label for="autumn" class="favorites__form__label">Autumn</label>
+                            </div>
+                        </form>
+                    </div>
 
                     <div class="favorites__inner">
                         <!-- winter -->
@@ -666,7 +668,7 @@
                                 </h3>
                                 <form class="librarycard__form" method="post">
                                     <div class="librarycard__form__inner">
-                                        <input class="librarycard__form__input" name="name" type="text" placeholder="Reader's name">
+                                        <input class="librarycard__form__input" name="user_name" type="text" placeholder="Reader's name">
                                         <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
                                     </div>
                                     <button class="btn librarycard__form__btn" type="submit">Check the card</button>

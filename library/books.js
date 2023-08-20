@@ -116,13 +116,26 @@ const books = [
 // radio
 const favoritesItems = document.querySelector('.favorites__items');
 const favoritesForm = document.querySelector('.favorites__form');
+const favoritesPanel = document.querySelector('.favorites__panel');
 let currentSeason = 'winter';
+let topPositionfavoritesItems = favoritesItems.offsetTop;
 favoritesForm.addEventListener('click', (event) => {
     currentSeason = event.target.value;
     if (currentSeason !== undefined) {
         ChangeFavoriteSeason(currentSeason);
     }
 })
+
+function stickyPanel() {
+    if (window.pageYOffset >= topPositionfavoritesItems) {
+        favoritesPanel.classList.add('favorites__panel-sticky');
+    } else {
+        favoritesPanel.classList.remove('favorites__panel-sticky');
+    }
+}
+
+window.onscroll = stickyPanel();
+
 
 favoritesItems.addEventListener("animationend", animationFade);
 
