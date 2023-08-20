@@ -13,6 +13,9 @@
 </head>
 <body>
     <script src="index.js" defer></script>
+    <script src="slider.js" defer></script>
+    <script src="burger.js" defer></script>
+    <script src="books.js" defer></script>
     <!-- header -->
     <div class="container-full">
         <header class="header">
@@ -91,47 +94,39 @@
                         The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
                     </p>
                     <div class="about__container">
-                        <button class="arrow arrow-left" disabled>
+                        <button class="arrow arrow-left">
                             <img class="arrow__ico" src="./images/svg/Carret_Left.svg" alt="arrow left ico">
                         </button>
-                    <div class="about__inner">
-                        <div class="about__slider">
-                            <!-- <button class="arrow arrow-left">
-                                <img class="arrow__ico" src="./images/svg/Carret_Left.svg" alt="arrow left ico">
-                            </button> -->
+                        <div class="about__inner">
+                            <div class="about__slider">
+                                <div class="about__item about__item-active">
+                                    <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
+                                </div>
 
-                            <div class="about__item about__item-active">
-                                <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
+                                <div class="about__item about__item-second">
+                                    <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
+                                </div>
+
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
+                                </div>
+
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_4.jpg" alt="image 4">
+                                </div>
+
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_5.jpg" alt="image 5">
+                                </div>
                             </div>
-
-                            <div class="about__item about__item-second">
-                                <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
-                            </div>
-
-                            <div class="about__item about__item-third">
-                                <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
-                            </div>
-
-                            <div class="about__item about__item-third">
-                                <img class="about__item__image" src="./images/about/about_4.jpg" alt="image 4">
-                            </div>
-
-                            <div class="about__item about__item-third">
-                                <img class="about__item__image" src="./images/about/about_5.jpg" alt="image 5">
-                            </div>
-
-                            <!-- <button class="arrow arrow-right">
-                                <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
-                            </button> -->
                         </div>
-                    </div>
-                    <button class="arrow arrow-right">
-                        <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
-                    </button>
+                        <button class="arrow arrow-right">
+                            <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
+                        </button>
                     </div>
 
                     <div class="about__carousel">
-                        <button class="about__carousel__cirkle about__carousel__cirkle-active" disabled>
+                        <button class="about__carousel__cirkle about__carousel__cirkle-active">
                             0
                         </button>
                         <button class="about__carousel__cirkle">
@@ -178,12 +173,12 @@
                         <div class="favorites__form__season">
                             <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
                             <label for="autumn" class="favorites__form__label">Autumn</label>
-                        </div>    
+                        </div>
                     </form>
 
                     <div class="favorites__inner">
                         <!-- winter -->
-                        <div class="favorites__items favorites__items-winter favorites__items-checked">
+                        <div class="favorites__items">
                             <div class="favorites__book">
                                 <p class="favorites__book__pick">
                                     Staff Picks
@@ -254,8 +249,8 @@
                                 <div class="favorites__book__description">
                                     A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                                 </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
-                                    Own
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
                                 </button>
                                 <img class="favorites__book__image" src="./images/favorites/winter/book_4.jpg" alt="The Last Queen">
                             </div>
@@ -263,7 +258,7 @@
                         <!-- /winter -->
 
                         <!-- spring -->
-                        <div class="favorites__items favorites__items-spring">
+                        <!-- <div class="favorites__items favorites__items-spring favorites__items-nonvisible">
                             <div class="favorites__book">
                                 <p class="favorites__book__pick">
                                     Staff Picks
@@ -333,16 +328,17 @@
                                 </h3>
                                 <div class="favorites__book__description">
                                     A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
-                                </div>                                    <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
+                                </div>
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
                                     Own
                                 </button>
                                 <img class="favorites__book__image" src="./images/favorites/spring/book_4.jpg" alt="Dominicana">
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /spring -->
 
                         <!-- summer -->
-                        <div class="favorites__items favorites__items-summer">
+                        <!-- <div class="favorites__items favorites__items-summer favorites__items-nonvisible">
                             <div class="favorites__book">
                                 <p class="favorites__book__pick">
                                     Staff Picks
@@ -418,11 +414,11 @@
                                 </button>
                                 <img class="favorites__book__image" src="./images/favorites/summer/book_4.jpg" alt="Shark Dialogues: A Novel">
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /summer -->
 
                         <!-- autumn -->
-                        <div class="favorites__items favorites__items-autumn">
+                        <!-- <div class="favorites__items favorites__items-autumn favorites__items-nonvisible">
                             <div class="favorites__book">
                                 <p class="favorites__book__pick">
                                     Staff Picks
@@ -498,7 +494,7 @@
                                 </button>
                                 <img class="favorites__book__image" src="./images/favorites/autumn/book_4.jpg" alt="Slug: And Other Stories">
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /autumn -->
                     </div>
                 </div>
