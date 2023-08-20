@@ -38,6 +38,7 @@ body {
     align-items: center;
     padding: 20px 0;
     width: 100%;
+    /* position: relative; */
 }
 
 .header__title {
@@ -78,14 +79,70 @@ body {
     display: flex;
 }
 
-.header__image {
-    padding-top: 2px;
+.profile {
+    position: relative;
+}
+
+.header__profile {
+    padding: 11px 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.profile__card {
+    height: 0; 
+    overflow: hidden;
+    background-color: #FFF;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 5;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.33333;
+    text-align: center;
 }
 
 .header__icon {
    border-radius: 28px;
    height: 28px;
    width: 28px;
+}
+
+.profile__card-visible {
+    height: 115px; 
+    animation: profile-in 500ms ease-in;
+}
+
+.profile__card__title {
+    margin: 5px 0;
+    font-size: inherit;
+    font-weight: 700;
+}
+
+.profile__card__title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 5px;
+    border-bottom: 1px solid #BB945F;
+    margin: 0 auto;
+}
+
+.profile__list {
+    list-style: none;
+    margin: 0;
+    padding: 15px 11px 20px 10px;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+
+.profile__link {
+    text-decoration: none;
+    color: #000;
 }
 
 .burger-btn {
@@ -280,7 +337,7 @@ body {
 }
 
 .arrow:disabled {
-    cursor: not-allowed;
+    pointer-events: none;
     opacity: 0.6;
 }
 
@@ -321,7 +378,7 @@ body {
 }
 
 .about__carousel__cirkle:disabled {
-    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .about__carousel__cirkle::after {
@@ -431,12 +488,12 @@ body {
 }
 
 .favorites__items-fadein {
-    animation: fade-in 1s ease-in-out;
-    animation-delay: 1s;
+    animation: fade-in 0.25s ease-in-out;
+    animation-delay: 0.25s;
 }
 
 .favorites__items-fadeout {
-    animation: fade-out 1s ease-in-out; 
+    animation: fade-out 0.25s ease-in-out; 
 }
 
 
@@ -943,6 +1000,11 @@ body {
         transition: 0.2s all linear;
     }
 
+    .profile__link:hover {
+        color: #BB945F;
+        transition: color 0.2s linear;
+    }
+
     .about__carousel__cirkle:hover {
         background-color: #BB945F;
     }
@@ -1085,7 +1147,7 @@ body {
 
     .header.header-burger .header__nav {
         transform: translateX(0);
-        animation: slide-in 1000ms; 
+        animation: slide-in 1000ms;
     }
 
     .header__list {
@@ -1199,6 +1261,16 @@ body {
 
     to {
         opacity: 0;
+    }
+}
+
+@keyframes profile-in {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 115px;
     }
 }
 

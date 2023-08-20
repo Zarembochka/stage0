@@ -1,6 +1,18 @@
 //  burger menu
-const burgerBtn = document.getElementById('burger');
+const burgerBtn = document.querySelector('.burger-btn');
 const header = document.querySelector('.header');
+
+const profileButton = document.querySelector('.header__profile');
+const profileCard = document.querySelector('.profile__card');
+
+profileButton.addEventListener('click', function() {
+    profileCard.classList.toggle('profile__card-visible');
+});
+
+profileButton.addEventListener('click', (event) => {
+    event._isClickOnTheProfile = true;
+})
+
 burgerBtn.addEventListener('click', function() {
     header.classList.toggle('header-burger');
 });
@@ -19,7 +31,12 @@ burgerBtn.addEventListener('click', (event) => {
 
 document.body.addEventListener('click', (event) => {
     if (event._isClickOnTheMenu) {
+        profileCard.classList.remove('profile__card-visible');
         return;
     }
     header.classList.remove('header-burger');
+    if (event._isClickOnTheProfile) {
+        return;
+    }
+    profileCard.classList.remove('profile__card-visible');
 });
