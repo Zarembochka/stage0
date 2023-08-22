@@ -134,7 +134,7 @@ function stickyPanel() {
     }
 }
 
-window.onscroll = stickyPanel();
+window.addEventListener('scroll', stickyPanel);
 
 
 favoritesItems.addEventListener("animationend", animationFade);
