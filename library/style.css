@@ -1026,10 +1026,11 @@ body {
     background-color: #FFF;
 }
 
-.register {
+.modal {
     width: 250px;
     padding: 20px 25px;
     position: relative;
+    margin: 0;
 }
 
 .modals__close {
@@ -1100,7 +1101,15 @@ body {
 
 .register__form__input {
     border: 1px solid #BB945F;
-    padding: 1px 2px 2px;
+    padding: 1px 2px 2px 5px;
+}
+
+.register__form__input-valid {
+    border: 1px solid #198754;
+}
+
+.register__form__input-notvalid {
+    border: 1px solid #dc3545;
 }
 
 .register__form__input:focus {

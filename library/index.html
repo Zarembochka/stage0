@@ -12,10 +12,11 @@
     <title>Brooklin Public Library</title>
 </head>
 <body>
-    <script src="index.js" defer></script>
-    <script src="slider.js" defer></script>
-    <script src="burger.js" defer></script>
-    <script src="books.js" defer></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/slider.js" defer></script>
+    <script src="./js/burger.js" defer></script>
+    <script src="./js/books.js" defer></script>
+    <script src="./js/modals.js" defer></script>
     <!-- header -->
     <div class="container-full">
         <header class="header">
@@ -454,12 +455,12 @@
                                 <h3 class="librarycard__card__title">
                                     Brooklyn Public Library
                                 </h3>
-                                <form class="librarycard__form" method="post">
+                                <form class="librarycard__form">
                                     <div class="librarycard__form__inner">
                                         <input class="librarycard__form__input" name="user_name" type="text" placeholder="Reader's name">
                                         <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
                                     </div>
-                                    <button class="btn librarycard__form__btn" type="submit">Check the card</button>
+                                    <button class="btn librarycard__form__btn btn-checkCard" type="submit">Check the card</button>
                                 </form>
                             </div>
                         </div>
@@ -550,16 +551,16 @@
 
     <!-- modals -->
     <!-- register -->
-    <div class="modal__background">
+    <div class="modal__background modal__register">
         <div class="modal register">
             <h3 class="modals__title">
                 Register
             </h3>
-            <button class="modals__close">
+            <button class="modals__close register__close">
                 <span class="modals__close__line"></span>
                 <span class="modals__close__line"></span>
             </button>
-            <form class="register__form">
+            <form class="register__form" action="#" novalidate>
                 <div class="register__form__item">
                     <label class="register__form__label" for="firstname">
                         First name
@@ -585,7 +586,7 @@
                     <label class="register__form__label" for="password">
                         Password
                     </label>
-                    <input class="register__form__input" type="text" name="password" id="password">
+                    <input class="register__form__input" type="password" name="password" id="password" minlength="8">
                     <div class="register__form__message"></div>
                 </div>
                 <button class="btn librarycard__info__btn" type="submit">Sign Up</button>
@@ -599,6 +600,43 @@
         </div>
     </div>
     <!-- /register -->
+
+    <!-- login -->
+    <div class="modal__background modal__login">
+        <div class="modal login">
+            <h3 class="modals__title">
+                Login
+            </h3>
+            <button class="modals__close login__close">
+                <span class="modals__close__line"></span>
+                <span class="modals__close__line"></span>
+            </button>
+            <form class="register__form">
+                <div class="register__form__item">
+                    <label class="register__form__label" for="login_user">
+                        E-mail or readers card
+                    </label>
+                    <input class="register__form__input" type="text" name="login_user" id="login_user">
+                    <div class="register__form__message"></div>
+                </div>
+                <div class="register__form__item">
+                    <label class="register__form__label" for="password">
+                        Password
+                    </label>
+                    <input class="register__form__input" type="text" name="login_password" id="login_password">
+                    <div class="register__form__message"></div>
+                </div>
+                <button class="btn librarycard__info__btn" type="submit">Log In</button>
+            </form>
+            <p class="register__form__text">
+                Don’t have an account?&nbsp;&nbsp;&nbsp;
+                <a class="register__form__link" href="#">
+                    Register
+                </a>
+            </p>
+        </div>
+    </div>
+    <!-- /login -->
     <!-- /modals -->
 </body>
 </html>
