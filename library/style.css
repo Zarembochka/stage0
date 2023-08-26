@@ -88,6 +88,7 @@ body {
     cursor: pointer;
     background-color: transparent;
     border: none;
+    position: relative;
 }
 
 .profile__card {
@@ -107,9 +108,30 @@ body {
 }
 
 .header__icon {
+   /* display: none; */
    border-radius: 28px;
    height: 28px;
    width: 28px;
+}
+
+.user__initials {
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    position: absolute;
+    left: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.33333;
+    color: transparent;
+    padding: 4px 0;
+    background-color: transparent;
+}
+
+.user__initials-active {
+    background-color: #FFF;
+    color: #BB945F;
+    animation: initials-in 500ms ease-in;
 }
 
 .profile__card-visible {
@@ -1430,6 +1452,18 @@ body {
 
     to {
         height: 0px;
+    }
+}
+
+@keyframes initials-in {
+    from {
+        background-color: transparent;
+        color: transparent;
+    }
+
+    to {
+        background-color: #FFF;
+        color: #BB945F;
     }
 }
 

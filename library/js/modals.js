@@ -23,7 +23,11 @@ function showModal(form) {
 
 function checkClick(form) {
     form.addEventListener('click', (event) => {
+        if (event.target.type === 'submit') {
+            form._isClickOnModalForm = false;
+        } else {
         form._isClickOnModalForm = true;
+        }
     })
 }
 

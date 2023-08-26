@@ -51,7 +51,7 @@ function checkCkickOnModalForm(event) {
     if (event._isClickOnModalForm) {
         return true;
     }
-    hideModal(event.target);
+    hideModal(event.target.closest('.modal__background'));
 }
 
 document.body.addEventListener('click', (event) => {
@@ -61,7 +61,7 @@ document.body.addEventListener('click', (event) => {
     if (checkCkickOnProfileMenu(event)) {
         return;
     }
-    if (checkCkickOnModalForm(event)) {
-        return;
-    }
+    // if (checkCkickOnModalForm(event)) {
+    //     return;
+    // }
 });
