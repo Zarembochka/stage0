@@ -887,12 +887,59 @@ body {
     width: 100%;
 }
 
+.librarycard__form__input:focus {
+    outline: none;
+}
+
 .librarycard__form__btn {
     padding: 9px 39px;
     margin: 0 auto;
     border: 1px solid #0C0C0E;
     color: #0C0C0E;
     font-size: 20px;
+}
+
+.btn-checkCard-nonactive {
+    display: none;
+}
+
+.librarycard__user__info {
+    display: none;
+    opacity: 0;
+    list-style: none;
+    /* display: flex; */
+    margin: 0;
+    padding: 0;
+    column-gap: 35px;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    line-height: 2;
+    letter-spacing: 0.2px;
+    font-size: 10px;
+}
+
+.librarycard__user__info-active {
+    display: flex;
+    opacity: 1;
+    animation: fade-in 0.5s ease-in;
+}
+
+.librarycard__user__info__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.librarycard__user__info__title {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.libraryCard__user__info__details {
+    margin: 0;
 }
 
 .librarycard__info {
@@ -1084,7 +1131,7 @@ body {
     transform: rotate(-45deg);
 }
 
-.register__form {
+.modal__form {
     display: flex;
     flex-direction: column;
     row-gap: 10px;

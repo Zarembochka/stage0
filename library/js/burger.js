@@ -11,7 +11,15 @@ profileButton.addEventListener('click', function() {
 
 profileButton.addEventListener('click', (event) => {
     event._isClickOnTheProfile = true;
-})
+});
+
+profileCard.addEventListener('click', function() {
+    profileCard.classList.toggle('profile__card-visible');
+});
+
+profileCard.addEventListener('click', (event) => {
+    event._isClickOnTheProfile = true;
+});
 
 burgerBtn.addEventListener('click', function() {
     header.classList.toggle('header-burger');
@@ -48,9 +56,15 @@ function checkCkickOnProfileMenu(event) {
 }
 
 function checkCkickOnModalForm(event) {
+    if (event._isClickOnTheButtonSubmit) {
+        hideModal(event.target.closest('.modal__background'));
+        return false;
+    }
     if (event._isClickOnModalForm) {
         return true;
     }
+    clearForm(modalRegister, '.register__form__input', 'register__form__input');
+    // clearForm(modalLogin);
     hideModal(event.target.closest('.modal__background'));
 }
 
@@ -61,7 +75,7 @@ document.body.addEventListener('click', (event) => {
     if (checkCkickOnProfileMenu(event)) {
         return;
     }
-    // if (checkCkickOnModalForm(event)) {
-    //     return;
-    // }
+    if (checkCkickOnModalForm(event)) {
+        return;
+    }
 });

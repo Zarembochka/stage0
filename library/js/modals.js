@@ -1,9 +1,10 @@
-const registerBtn = document.querySelector('.profile__btn-registration');
-const signinBtn = document.querySelector('.btn-signin');
 const modalRegister = document.querySelector('.modal__register');
 const modalRegisterClose = document.querySelector('.register__close');
 
-const loginBtn = document.querySelector('.profile__btn-login');
+const signinBtn = document.querySelectorAll('.btn-signin');
+const loginBtn = document.querySelectorAll('.btn-login');
+const buyBtn = document.querySelectorAll('.favorites__book__btn-buy');
+
 const modalLogin = document.querySelector('.modal__login');
 const modalLoginClose = document.querySelector('.login__close');
 
@@ -23,40 +24,53 @@ function showModal(form) {
 
 function checkClick(form) {
     form.addEventListener('click', (event) => {
-        if (event.target.type === 'submit') {
-            form._isClickOnModalForm = false;
-        } else {
-        form._isClickOnModalForm = true;
-        }
+        event._isClickOnModalForm = true;
     })
 }
 
 modalsForms.forEach((element) => checkClick(element));
 
 function hideModal(form) {
-    if (form !== undefined) {
+    if (form !== undefined && form !== null) {
         form.classList.remove('modal__background-active');
     }
     document.body.style.paddingRight = '';
     document.body.classList.remove('modal-actile');
 }
 
-registerBtn.addEventListener('click', function() {
-    showModal(modalRegister);
-});
-
-signinBtn.addEventListener('click', function() {
-    showModal(modalRegister);
+signinBtn.forEach((element) => {
+    element.addEventListener('click', function() {
+        showModal(modalRegister);
+    });
+    element.addEventListener('click', (event) => {
+        event._isClickOnTheProfile = true;
+    });
 });
 
 modalRegisterClose.addEventListener('click', function() {
+    clearForm(modalRegister, '.register__form__input', 'register__form__input');
     hideModal(modalRegister);
 });
 
-loginBtn.addEventListener('click', function() {
-    showModal(modalLogin);
+loginBtn.forEach((element) => {
+    element.addEventListener('click', function() {
+        showModal(modalLogin);
+    });
+    element.addEventListener('click', (event) => {
+        event._isClickOnTheProfile = true;
+    });
+});
+
+buyBtn.forEach((element) => {
+    element.addEventListener('click', function() {
+        showModal(modalLogin);
+    });
+    element.addEventListener('click', (event) => {
+        event._isClickOnTheProfile = true;
+    });
 });
 
 modalLoginClose.addEventListener('click', function() {
+    clearForm(modalLogin, '.register__form__input', 'register__form__input');
     hideModal(modalLogin);
 });

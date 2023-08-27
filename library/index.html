@@ -66,12 +66,12 @@
                             </h3>
                             <ul class="profile__list">
                                 <li class="profile__item">
-                                    <button class="profile__btn profile__btn-login">
+                                    <button class="profile__btn profile__btn-login btn-login">
                                         Log In
                                     </button>
                                 </li>
                                 <li class="profile__item">
-                                    <button class="profile__btn profile__btn-registration">
+                                    <button class="profile__btn profile__btn-registration btn-signin">
                                         Register
                                     </button>
                                 </li>
@@ -459,10 +459,33 @@
                                 </h3>
                                 <form class="librarycard__form">
                                     <div class="librarycard__form__inner">
-                                        <input class="librarycard__form__input" name="user_name" type="text" placeholder="Reader's name">
-                                        <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
+                                        <input class="librarycard__form__input" name="user_name" type="text" placeholder="Reader's name" id="user_name">
+                                        <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number" id="card_number">
                                     </div>
                                     <button class="btn librarycard__form__btn btn-checkCard" type="submit">Check the card</button>
+                                    <ul class="librarycard__user__info">
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                visits
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/Union.svg" alt="visits ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                bonuses
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/Star 1.svg" alt="bonuses ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                Books
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/book.svg" alt="books ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                    </ul>
                                 </form>
                             </div>
                         </div>
@@ -562,7 +585,7 @@
                 <span class="modals__close__line"></span>
                 <span class="modals__close__line"></span>
             </button>
-            <form class="register__form" novalidate>
+            <form class="modal__form register__form" novalidate>
                 <div class="register__form__item">
                     <label class="register__form__label" for="firstname">
                         First name
@@ -591,7 +614,7 @@
                     <input class="register__form__input" type="password" name="password" id="password" minlength="8">
                     <div class="register__form__message"></div>
                 </div>
-                <button class="btn librarycard__info__btn btn-register" type="submit">Sign Up</button>
+                <button class="btn librarycard__info__btn btn-submit-register" type="submit">Sign Up</button>
             </form>
             <p class="register__form__text">
                 Already have an account?&nbsp;&nbsp;&nbsp;
@@ -613,7 +636,7 @@
                 <span class="modals__close__line"></span>
                 <span class="modals__close__line"></span>
             </button>
-            <form class="register__form">
+            <form class="modal__form login__form" novalidate>
                 <div class="register__form__item">
                     <label class="register__form__label" for="login_user">
                         E-mail or readers card
@@ -625,10 +648,10 @@
                     <label class="register__form__label" for="password">
                         Password
                     </label>
-                    <input class="register__form__input" type="text" name="login_password" id="login_password">
+                    <input class="register__form__input" type="password" name="login_password" id="login_password" minlength="8">
                     <div class="register__form__message"></div>
                 </div>
-                <button class="btn librarycard__info__btn" type="submit">Log In</button>
+                <button class="btn librarycard__info__btn btn-submit-login" type="submit">Log In</button>
             </form>
             <p class="register__form__text">
                 Don’t have an account?&nbsp;&nbsp;&nbsp;

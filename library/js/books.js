@@ -117,8 +117,10 @@ const books = [
 const favoritesItems = document.querySelector('.favorites__items');
 const favoritesForm = document.querySelector('.favorites__form');
 const favoritesPanel = document.querySelector('.favorites__panel');
+
 let currentSeason = 'winter';
 let topPositionfavoritesItems = favoritesItems.offsetTop;
+
 favoritesForm.addEventListener('click', (event) => {
     currentSeason = event.target.value;
     if (currentSeason !== undefined) {
