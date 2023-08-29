@@ -13,6 +13,7 @@ loginForm.addEventListener('focusout', checkValidation);
 loginForm.addEventListener('focusin', focusValidation);
 
 let currentUser;
+let isCurrentUser;
 
 function checkText(input) {
     const value = input.value.trim();
@@ -127,6 +128,10 @@ function saveInfoToLocalStorage(itemName, item) {
     localStorage.setItem(itemName, JSON.stringify(itemLocalStorage));
 }
 
+function addVisitToUser(user) {
+    user.visitsCount += 1;
+}
+
 function saveActiveUser(user) {
     localStorage.setItem('activeUser', user.userId);
 }
@@ -196,10 +201,13 @@ function clearForm(form, nameElements, nameClass) {
 
 function activateUser(user) {
     currentUser = user;
+    isCurrentUser = true;
     changeInitials(user);
     changeTitleForProfile(user);
     saveActiveUser(user);
+    addVisitToUser(user);
     changeProfileCard(user);
+    changeLibraryCardSection(user);
 }
 
 registerSignInBtn.addEventListener('click', (event) => {

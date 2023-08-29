@@ -42,6 +42,34 @@ function changeProfileCard(user) {
     changeButtonsName();
 }
 
+function changeLibraryCardInfoSection() {
+    const title = document.querySelector('.librarycard__info__title');
+    title.innerText = 'Visit your profile';
+
+    const text = document.querySelector('.librarycard__info__text');
+    text.innerText = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+
+    const btns = document.querySelectorAll('.librarycard__info__btn');
+    btns.forEach((element) => element.classList.add('btn-notvisible'));
+
+    const btnMyprofile = document.querySelector('.btn-profile');
+    btnMyprofile.classList.remove('btn-notvisible');
+    btnMyprofile.classList.add('btn-visible');
+}
+
+function changeLibraryCardSection(user) {
+    const title = document.querySelector('.librarycard__title');
+    title.innerText = 'Your Library card';
+
+    const username = `${user.firstName} ${user.lastName}`;
+    this.user_name.value = username;
+    this.card_number.value = user.cardNumber;
+    
+    hideButton(checkCardBtn);
+    showUserInfo(user);
+    changeLibraryCardInfoSection();
+}
+
 function hideButton(button) {
     button.classList.add('btn-checkCard-nonactive');
 }
