@@ -12,8 +12,9 @@ registerForm.addEventListener('focusin', focusValidation);
 loginForm.addEventListener('focusout', checkValidation);
 loginForm.addEventListener('focusin', focusValidation);
 
+const logoutBtn = document.querySelector('.btn-logout');
+
 let currentUser;
-let isCurrentUser;
 
 function checkText(input) {
     const value = input.value.trim();
@@ -136,6 +137,10 @@ function saveActiveUser(user) {
     localStorage.setItem('activeUser', user.userId);
 }
 
+function deleteActiveUser() {
+    localStorage.removeItem('activeUser');
+}
+
 function saveEmailToken(token) {
     saveInfoToLocalStorage('emailToken', token);
 }
@@ -202,12 +207,22 @@ function clearForm(form, nameElements, nameClass) {
 function activateUser(user) {
     currentUser = user;
     isCurrentUser = true;
-    changeInitials(user);
-    changeTitleForProfile(user);
+    changeInitialsForLogin(user);
+    // changeTitleForProfileLogin(user);
     saveActiveUser(user);
     addVisitToUser(user);
-    changeProfileCard(user);
-    changeLibraryCardSection(user);
+    changeProfileCardForLogin(user);
+    changeLibraryCardSectionForLogin(user);
+}
+
+function logout() {
+    currentUser = undefined;
+    isCurrentUser = false;
+    changeInitialsForLogout();
+    // changeTitleForProfileLogout();
+    deleteActiveUser();
+    changeProfileCardForLogout();
+    changeLibraryCardSectionForLogout();
 }
 
 registerSignInBtn.addEventListener('click', (event) => {
@@ -232,5 +247,11 @@ registerLoginBtn.addEventListener('click', (event) => {
             hideModal(modalLogin);
         }
     }
+});
+
+logoutBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    event._isClickOnTheProfile = true;
+    logout();
 });
 

@@ -1,6 +1,5 @@
 console.log("Общая оценка - 50: \n 1. Вёрстка соответствует макету. Ширина экрана 768px - 26; \n 1.1 блок <header> - 2 \n 1.2 секция Welcome - 2 \n 1.3 секция About - 4 \n 1.4 секция Favorites - 2 \n 1.5 cделать кнопку own, вместо buy для последней книги - 2 \n 1.6 секция CoffeShop - 4 \n 1.7 секция Contacts - 4 \n 1.8 секция LibraryCard - 4 \n 1.9 блок <footer> - 2 \n 2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется - 12: \n 2.1 нет полосы прокрутки при ширине страницы от 1440рх до 640рх - 4 \n 2.2 элементы не выходят за пределы окна браузера при ширине страницы от 1440рх до 640рх - 4 \n 2.3 элементы не наезжают друг на друга при ширине страницы от 1440рх до 640рх - 4 \n 3. На ширине экрана 768рх реализовано адаптивное меню - 12: \n 3.1 Если иконка юзера не прыгает (не меняет позиции при открытии меню), независимо от величины отступа - 2 \n 3.2 при нажатии на бургер-иконку плавно появляется адаптивное меню - 4 \n 3.3 при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран - 2 \n 3.4 ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается - 2 \n 3.5 размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect - 2");
 
-const userInitials = document.querySelector('.user__initials');
 const checkCardBtn = document.querySelector('.btn-checkCard');
 const libraryCard = document.querySelector('.librarycard__form');
 
@@ -10,15 +9,30 @@ function getUserInitials(user) {
     return firstInitial + lastInitial;
 }
 
-function changeInitials(user) {
+function getUserUsername(user) {
+    const username = `${user.firstName} ${user.lastName}`;
+    return username;
+}
+
+function changeInitialsForLogin(user) {
+    const userInitials = document.querySelector('.user__initials');
     userInitials.textContent = getUserInitials(user);
     userInitials.classList.add('user__initials-active');
 }
 
-function changeTitleForProfile(user) {
-    const username = `${user.firstName} ${user.lastName}`;
-    profileButton.setAttribute('title', username);
+function changeInitialsForLogout() {
+    const userInitials = document.querySelector('.user__initials');
+    userInitials.textContent = '';
+    userInitials.classList.remove('user__initials-active');
 }
+
+// function changeTitleForProfileLogin(user) {
+//     profileButton.setAttribute('title', getUserUsername(user));
+// }
+
+// function changeTitleForProfileLogout() {
+//     profileButton.setAttribute('title', 'Profile');
+// }
 
 function changeProfileTitleForCardNumber(user) {
     const profileTitle = document.querySelector('.profile__card__title');
@@ -26,48 +40,114 @@ function changeProfileTitleForCardNumber(user) {
     profileTitle.textContent = user.cardNumber;
 }
 
-function changeButtonsName() {
+function changeProfileCardNumberForTitle() {
+    const profileTitle = document.querySelector('.profile__card__title');
+    profileTitle.classList.remove('profile__card__title-login');
+    profileTitle.textContent = 'Profile';
+}
+
+function changeButtonsForLogin() {
     const loginBtn = document.querySelector('.profile__btn-login');
-    loginBtn.innerText = 'My profile';
+    loginBtn.parentElement.classList.add('btn-notvisible');
 
     const registerBtn = document.querySelector('.profile__btn-registration');
-    registerBtn.innerText = 'Log Out';
+    registerBtn.parentElement.classList.add('btn-notvisible');
+
+    const myprofileBtn = document.querySelector('.btn-myprofile');
+    myprofileBtn.parentElement.classList.remove('btn-notvisible');
+
+    const logoutBtn = document.querySelector('.btn-logout');
+    logoutBtn.parentElement.classList.remove('btn-notvisible');
 
     const profileList = document.querySelector('.profile__list');
     profileList.classList.add('profile__list-login');
 }
 
-function changeProfileCard(user) {
-    changeProfileTitleForCardNumber(user);
-    changeButtonsName();
+function changeButtonsForLogout() {
+    const loginBtn = document.querySelector('.profile__btn-login');
+    loginBtn.parentElement.classList.remove('btn-notvisible');
+
+    const registerBtn = document.querySelector('.profile__btn-registration');
+    registerBtn.parentElement.classList.remove('btn-notvisible');
+
+    const myprofileBtn = document.querySelector('.btn-myprofile');
+    myprofileBtn.parentElement.classList.add('btn-notvisible');
+
+    const logoutBtn = document.querySelector('.btn-logout');
+    logoutBtn.parentElement.classList.add('btn-notvisible');
+
+    const profileList = document.querySelector('.profile__list');
+    profileList.classList.remove('profile__list-login');
 }
 
-function changeLibraryCardInfoSection() {
-    const title = document.querySelector('.librarycard__info__title');
+function changeProfileCardForLogin(user) {
+    changeProfileTitleForCardNumber(user);
+    changeButtonsForLogin();
+}
+
+function changeProfileCardForLogout() {
+    changeProfileCardNumberForTitle();
+    changeButtonsForLogout();
+}
+
+function changeLibraryCardInfoSectionForLogin(section) {
+    const title = section.querySelector('.librarycard__info__title');
     title.innerText = 'Visit your profile';
 
-    const text = document.querySelector('.librarycard__info__text');
+    const text = section.querySelector('.librarycard__info__text');
     text.innerText = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
 
-    const btns = document.querySelectorAll('.librarycard__info__btn');
+    const btns = section.querySelectorAll('.librarycard__info__btn');
     btns.forEach((element) => element.classList.add('btn-notvisible'));
 
-    const btnMyprofile = document.querySelector('.btn-profile');
+    const btnMyprofile = section.querySelector('.btn-myprofile');
     btnMyprofile.classList.remove('btn-notvisible');
     btnMyprofile.classList.add('btn-visible');
 }
 
-function changeLibraryCardSection(user) {
-    const title = document.querySelector('.librarycard__title');
+function changeLibraryCardInfoSectionForLogout(section) {
+    const title = section.querySelector('.librarycard__info__title');
+    title.innerText = 'Get a reader card';
+
+    const text = section.querySelector('.librarycard__info__text');
+    text.innerText = 'You will be able to see a reader card after logging into account or you can register a new account';
+
+    const btns = section.querySelectorAll('.librarycard__info__btn');
+    btns.forEach((element) => element.classList.remove('btn-notvisible'));
+
+    const btnMyprofile = section.querySelector('.btn-myprofile');
+    btnMyprofile.classList.remove('btn-visible');
+    btnMyprofile.classList.add('btn-notvisible');
+}
+
+function changeLibraryCardSectionForLogin(user) {
+    const libraryCard = document.querySelector('.librarycard');
+    const title = libraryCard.querySelector('.librarycard__title');
     title.innerText = 'Your Library card';
 
-    const username = `${user.firstName} ${user.lastName}`;
+    const username = getUserUsername(user);
     this.user_name.value = username;
+    this.user_name.setAttribute('readonly', true);
     this.card_number.value = user.cardNumber;
-    
+    this.card_number.setAttribute('readonly', true);
+
     hideButton(checkCardBtn);
     showUserInfo(user);
-    changeLibraryCardInfoSection();
+
+    changeLibraryCardInfoSectionForLogin(libraryCard);
+}
+
+function changeLibraryCardSectionForLogout() {
+    const libraryCard = document.querySelector('.librarycard');
+    const title = libraryCard.querySelector('.librarycard__title');
+    title.innerText = 'Find your Library card';
+
+    this.user_name.removeAttribute('readonly');
+    this.card_number.removeAttribute('readonly');
+    showButton(checkCardBtn);
+    hideUserInfo();
+
+    changeLibraryCardInfoSectionForLogout(libraryCard);
 }
 
 function hideButton(button) {
@@ -82,7 +162,6 @@ function hideUserInfo() {
     const userInfo = document.querySelector('.librarycard__user__info');
     userInfo.classList.remove('librarycard__user__info-active');
     clearForm(libraryCard, '.librarycard__form__input', '');
-    showButton(checkCardBtn);
 }
 
 function showUserInfo(user) {
@@ -192,3 +271,19 @@ checkCardBtn.addEventListener('click', (event) => {
     event.preventDefault();
     checkLibraryCard();
 });
+
+function prepareMyprofileForm(form, user) {
+    const initials = form.querySelector('.myprofile__aside__initials');
+    initials.innerText = getUserInitials(user);
+
+    const username = form.querySelector('.myprofile__aside__username');
+    username.innerText = getUserUsername(user);
+
+    const userInfo = form.querySelectorAll('.myprofile__user__info__details');
+    userInfo[0].textContent = user.visitsCount;
+    userInfo[1].textContent = user.bonusesCount;
+    userInfo[2].textContent = user.userBooks.length;
+
+    const cardNumber = form.querySelector('.myprofile__cardnumber__number');
+    cardNumber.innerText = user.cardNumber;
+}

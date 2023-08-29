@@ -104,14 +104,7 @@ body {
     font-style: normal;
     line-height: 1.33333;
     text-align: center;
-    animation: profile-out 500ms ease-in;
-}
-
-.header__icon {
-   /* display: none; */
-   border-radius: 28px;
-   height: 28px;
-   width: 28px;
+    /* animation: profile-out 500ms ease-in; */
 }
 
 .user__initials {
@@ -164,12 +157,19 @@ body {
     padding: 15px 11px 20px 10px;
     display: flex;
     flex-wrap: nowrap;
-    row-gap: 10px;
     flex-direction: column;
 }
 
 .profile__list-login {
     padding: 15px 5px 20px;
+}
+
+.profile__item {
+    margin-bottom: 10px;
+}
+
+.profile__item:nth-child(2n) {
+    margin-bottom: 0;
 }
 
 .profile__link {
@@ -838,7 +838,8 @@ body {
 
 .librarycard__item {
     /* width: 42.857%; */
-    max-width: 600px;
+    width: 600px;
+    /* max-width: 600px; */
     display: flex;
     flex-direction: column;
 }
@@ -882,6 +883,10 @@ body {
     background: #BB945F;
     padding: 0 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    width: 100%;
 }
 
 .librarycard__form__input {
@@ -889,7 +894,7 @@ body {
     background: #FFF;
     margin: 0;
     padding: 8px 20px;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
     border: none;
     color: #BB945F;
     font-family: 'Forum', cursive;
@@ -899,6 +904,10 @@ body {
     line-height: 1.66667;
     letter-spacing: 0.6px;
     width: 100%;
+}
+
+.librarycard__form__item:last-of-type {
+    margin-bottom: 25px;
 }
 
 .librarycard__form__input:focus {
@@ -1119,14 +1128,24 @@ body {
     display: block;
 }
 
-.modal {
+.register {
     width: 250px;
     padding: 20px 25px;
     margin: 0;
     position: absolute;
+    background-color: #FFF;
     left: calc(50% - 125px);
     top: calc(50% - 191px);
+}
+
+.login {
+    width: 250px;
+    padding: 20px 25px;
+    margin: 0;
+    position: absolute;
     background-color: #FFF;
+    left: calc(50% - 125px);
+    top: calc(50% - 131px);
 }
 
 .modals__close {
@@ -1393,6 +1412,11 @@ body {
         transition: 0.2s all linear;
     }
 
+    .header__profile:hover .header__icon {
+        fill: #BB945F;
+        transition: fill 0.2s linear;
+    }
+
     .profile__btn:hover {
         color: #BB945F;
         transition: color 0.2s linear;
@@ -1435,6 +1459,10 @@ body {
     }
 
     .modals__close:hover .modals__close__line {
+        background-color: #bb945f;
+    }
+
+    .myprofile__close:hover .modals__close__line {
         background-color: #bb945f;
     }
 

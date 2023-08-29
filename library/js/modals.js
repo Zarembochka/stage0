@@ -10,6 +10,11 @@ const modalLoginClose = document.querySelector('.login__close');
 
 const modalsForms = document.querySelectorAll('.modal');
 
+const myprofileBtn = document.querySelectorAll('.btn-myprofile');
+const modalMyprofileClose = document.querySelector('.myprofile__close');
+
+let isCurrentUser = false;
+
 function calcRightPadding() {
     return window.innerWidth - document.body.clientWidth + 'px';
 }
@@ -53,8 +58,9 @@ modalRegisterClose.addEventListener('click', function() {
 });
 
 loginBtn.forEach((element) => {
+    const modalForm = document.querySelector('.modal__login');
     element.addEventListener('click', function() {
-        showModal(modalLogin);
+        showModal(modalForm);
     });
     element.addEventListener('click', (event) => {
         event._isClickOnTheProfile = true;
@@ -70,7 +76,23 @@ buyBtn.forEach((element) => {
     });
 });
 
+myprofileBtn.forEach((element) => {
+    const modalMyprofile = document.querySelector('.modal__myprofile');
+    element.addEventListener('click', function() {
+        prepareMyprofileForm(modalMyprofile, currentUser);
+        showModal(modalMyprofile);
+    });
+    element.addEventListener('click', (event) => {
+        event._isClickOnTheProfile = true;
+    });
+});
+
 modalLoginClose.addEventListener('click', function() {
     clearForm(modalLogin, '.register__form__input', 'register__form__input');
     hideModal(modalLogin);
+});
+
+modalMyprofileClose.addEventListener('click', function() {
+    const modalMyprofile = document.querySelector('.modal__myprofile');
+    hideModal(modalMyprofile);
 });
