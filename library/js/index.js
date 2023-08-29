@@ -15,6 +15,33 @@ function changeInitials(user) {
     userInitials.classList.add('user__initials-active');
 }
 
+function changeTitleForProfile(user) {
+    const username = `${user.firstName} ${user.lastName}`;
+    profileButton.setAttribute('title', username);
+}
+
+function changeProfileTitleForCardNumber(user) {
+    const profileTitle = document.querySelector('.profile__card__title');
+    profileTitle.classList.add('profile__card__title-login');
+    profileTitle.textContent = user.cardNumber;
+}
+
+function changeButtonsName() {
+    const loginBtn = document.querySelector('.profile__btn-login');
+    loginBtn.innerText = 'My profile';
+
+    const registerBtn = document.querySelector('.profile__btn-registration');
+    registerBtn.innerText = 'Log Out';
+
+    const profileList = document.querySelector('.profile__list');
+    profileList.classList.add('profile__list-login');
+}
+
+function changeProfileCard(user) {
+    changeProfileTitleForCardNumber(user);
+    changeButtonsName();
+}
+
 function hideButton(button) {
     button.classList.add('btn-checkCard-nonactive');
 }

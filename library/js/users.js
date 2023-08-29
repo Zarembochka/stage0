@@ -12,6 +12,8 @@ registerForm.addEventListener('focusin', focusValidation);
 loginForm.addEventListener('focusout', checkValidation);
 loginForm.addEventListener('focusin', focusValidation);
 
+let currentUser;
+
 function checkText(input) {
     const value = input.value.trim();
     if (value.length === 0) {
@@ -193,8 +195,11 @@ function clearForm(form, nameElements, nameClass) {
 }
 
 function activateUser(user) {
+    currentUser = user;
     changeInitials(user);
+    changeTitleForProfile(user);
     saveActiveUser(user);
+    changeProfileCard(user);
 }
 
 registerSignInBtn.addEventListener('click', (event) => {
