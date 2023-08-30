@@ -119,7 +119,7 @@ function createCardNumberToken(cardNumber, userId) {
 }
 
 function saveInfoToLocalStorage(itemName, item) {
-    let itemLocalStorage = JSON.parse(localStorage.getItem(itemName));
+    const itemLocalStorage = JSON.parse(localStorage.getItem(itemName));
     if (!itemLocalStorage) {
         //first user
         localStorage.setItem(itemName, JSON.stringify([item]));
@@ -130,25 +130,28 @@ function saveInfoToLocalStorage(itemName, item) {
 }
 
 function addVisitToUser(user) {
-    user.visitsCount += 1;
+    //user.visitsCount += 1;
+    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
+    userInLocalStorage.visitsCount += 1;
+    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
 }
 
-function saveActiveUser(user) {
-    localStorage.setItem('activeUser', user.userId);
-}
-
-function deleteActiveUser() {
-    localStorage.removeItem('activeUser');
+function saveActiveUser(user, value) {
+    const users = JSON.parse(localStorage.getItem('user'));
+    const userInLocalStorage = users.find((element) => element.userId === user.userId);
+    userInLocalStorage.isActive = value;
+    localStorage.setItem('user', JSON.stringify(users));
 }
 
 function saveEmailToken(token) {
     saveInfoToLocalStorage('emailToken', token);
 }
 
-function createEmailToken(email, userId) {
+function createEmailToken(email, cardnumber) {
     const newEmailToken = new Object;
     newEmailToken.email = email;
-    newEmailToken.userId = userId;
+    newEmailToken.cardnumber = cardnumber;
     saveEmailToken(newEmailToken);
 }
 
@@ -156,37 +159,43 @@ function saveUserInfo(user) {
     saveInfoToLocalStorage('user', user);
 }
 
-function getUserNextId() {
-    let userId = localStorage.getItem('usersId');
-    if (!userId) {
-        //first user
-        localStorage.setItem('usersId', 1);
-        return 1;
-    }
-    localStorage.setItem('usersId', ++userId);
-    return userId;
+// function getUserNextId() {
+//     let userId = localStorage.getItem('usersId');
+//     if (!userId) {
+//         //first user
+//         localStorage.setItem('usersId', 1);
+//         return 1;
+//     }
+//     localStorage.setItem('usersId', ++userId);
+//     return userId;
+// }
+
+function getUserFromLocalStorage(user) {
+    const users = JSON.parse(localStorage.getItem('user'));
+    return users.find((element) => element.userId === user.userId);
 }
 
 function createUser() {
     const newUser = new Object;
-    newUser.userId = getUserNextId();
+    newUser.userId = createCardNumber();
     newUser.firstName = registerFormInputs[0].value.trim();
     newUser.lastName = registerFormInputs[1].value.trim();
     newUser.email = registerFormInputs[2].value.trim();
     newUser.password = registerFormInputs[3].value.trim();
-    newUser.cardNumber = createCardNumber();
+    newUser.cardNumber = newUser.userId;
     newUser.visitsCount = 0;
     newUser.bonusesCount = 240;
     newUser.userBooks = [];
     newUser.isActive = true;
+    newUser.isLibraryCard = false;
     return newUser;
 }
 
 function createNewUser() {
     const newUser = createUser();
     saveUserInfo(newUser);
-    createEmailToken(newUser.email, newUser.userId);
-    createCardNumberToken(newUser.cardNumber, newUser.userId);
+    createEmailToken(newUser.email, newUser.cardNumber);
+    //createCardNumberToken(newUser.cardNumber, newUser.userId);
     return newUser;
 }
 
@@ -208,19 +217,19 @@ function activateUser(user) {
     currentUser = user;
     isCurrentUser = true;
     changeInitialsForLogin(user);
-    // changeTitleForProfileLogin(user);
-    saveActiveUser(user);
+    changeTitleForProfileLogin(user);
+    saveActiveUser(user, true);
     addVisitToUser(user);
     changeProfileCardForLogin(user);
     changeLibraryCardSectionForLogin(user);
 }
 
 function logout() {
+    saveActiveUser(currentUser, false);
     currentUser = undefined;
     isCurrentUser = false;
     changeInitialsForLogout();
-    // changeTitleForProfileLogout();
-    deleteActiveUser();
+    changeTitleForProfileLogout();
     changeProfileCardForLogout();
     changeLibraryCardSectionForLogout();
 }

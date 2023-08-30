@@ -748,6 +748,82 @@
         </div>
     </div>
     <!-- /my profile -->
+
+    <!-- buy librarycard -->
+    <div class="modal__background modal__buycard">
+        <div class="modal buycard">
+            <header class="buycard__header">
+                <h2 class="buycard__title">
+                    Buy a library card
+                </h2>
+                <button class="buycard__close login__close">
+                    <span class="buycard__close__line"></span>
+                    <span class="buycard__close__line"></span>
+                </button>
+            </header>
+            <main class="buycard__main">
+                <div class="buycard__bankcard">
+                    <form class="modal__form buycard__form" novalidate>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_number">
+                                Bank card number
+                            </label>
+                            <input class="register__form__input" type="text" name="bankcard_number" id="bankcard_number">
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_code">
+                                Expiration code
+                            </label>
+                            <div class="register__form__bankcardcode">
+                                <input class="register__form__input" type="text" name="bankcard_code1" id="bankcard_code1" minlength="2" maxlength="2">
+                                <input class="register__form__input" type="text" name="bankcard_code2" id="bankcard_code2" minlength="2" maxlength="2">
+                            </div>
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_cvc">
+                                CVC
+                            </label>
+                            <input class="register__form__input register__form__cvc" type="text" name="bankcard_cvc" id="bankcard_cvc">
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_username">
+                                Cardholder name
+                            </label>
+                            <input class="register__form__input" type="text" name="bankcard_username" id="bankcard_username">
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_postalcode">
+                                Postal code
+                            </label>
+                            <input class="register__form__input" type="text" name="bankcard_postalcode" id="bankcard_postalcode">
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="register__form__item">
+                            <label class="register__form__label" for="bankcard_city">
+                                City / Town
+                            </label>
+                            <input class="register__form__input" type="text" name="bankcard_city" id="bankcard_city">
+                            <div class="register__form__message"></div>
+                        </div>
+                        <div class="buycard__form__footer">
+                            <button class="btn favorites__book__btn favorites__book__btn-buy" type="submit">
+                                Buy
+                            </button>
+                            <span class="buycard__form__price">$ 25.00</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="buycard__description">
+                    If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- /buy librarycard -->
     <!-- /modals -->
 </body>
 </html>

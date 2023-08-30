@@ -13,6 +13,8 @@ const modalsForms = document.querySelectorAll('.modal');
 const myprofileBtn = document.querySelectorAll('.btn-myprofile');
 const modalMyprofileClose = document.querySelector('.myprofile__close');
 
+const copyBtn = document.querySelector('.myprofile__btn-copy');
+
 let isCurrentUser = false;
 
 function calcRightPadding() {
@@ -96,3 +98,8 @@ modalMyprofileClose.addEventListener('click', function() {
     const modalMyprofile = document.querySelector('.modal__myprofile');
     hideModal(modalMyprofile);
 });
+
+copyBtn.addEventListener('click', function() {
+    const cardnumber = document.querySelector('.myprofile__cardnumber__number').textContent;
+    navigator.clipboard.writeText(cardnumber);
+})

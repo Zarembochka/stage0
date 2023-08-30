@@ -1402,6 +1402,114 @@ body {
     border: none;
 }
 
+/* =====buy librarycard===== */
+.buycard {
+    width: 640px;
+    height: 540px;
+    margin: 0;
+    position: absolute;
+    left: calc(50% - 320px);
+    top: calc(50% - 270px);
+    display: flex;
+    flex-direction: column;
+}
+
+.buycard__header {
+    padding: 20px 0;
+    background-color: #0C0C0E;
+}
+
+.buycard__title {
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Forum', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 0.5;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.buycard__close {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.buycard__close__line {
+    position: absolute;
+    left: 3px;
+    top: 10px;
+    width: 21px;
+    height: 3px;
+    background-color: #FFF;
+}
+
+.buycard__close__line:first-of-type {
+    transform: rotate(45deg);
+}
+
+.buycard__close__line:last-of-type {
+    transform: rotate(-45deg);
+}
+
+.buycard__main {
+    padding: 30px 35px 40px;
+    background-color: #FFF;
+    display: flex;
+    column-gap: 40px;
+}
+
+.buycard__form {
+    width: 200px;
+}
+
+.register__form__bankcardcode {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 10px;
+}
+
+.register__form__cvc {
+    width: 45px;
+}
+
+.register__form__bankcardcode > .register__form__input {
+    width: 45px;
+}
+
+.buycard__form__footer {
+    margin-top: 10px;
+    display: flex;
+    column-gap: 25px;
+    align-items: flex-end;
+}
+
+.buycard__form__price {
+    color: #0C0C0E;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
+
+.buycard__description {
+    color: #8E8E8E;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.33333;
+    letter-spacing: 2px;
+}
 
 /* =====media===== */
 @media (hover: hover) {
@@ -1466,6 +1574,10 @@ body {
         background-color: #bb945f;
     }
 
+    .buycard__close:hover .buycard__close__line {
+        background-color: #bb945f;
+    }
+
     .myprofile__btn-copy:hover .myprofile__copy__ico {
         fill: #BB945F;
     }
@@ -1489,6 +1601,7 @@ body {
 @media (max-width: 1240px) {
     .favorites__panel-sticky {
         position: sticky;
+        padding-bottom: 10px;
         /* background-color: #f5d7ae; */
         background-color: rgba(187, 148, 95, 0.25);
         top: 0;

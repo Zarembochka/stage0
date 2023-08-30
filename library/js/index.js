@@ -26,13 +26,13 @@ function changeInitialsForLogout() {
     userInitials.classList.remove('user__initials-active');
 }
 
-// function changeTitleForProfileLogin(user) {
-//     profileButton.setAttribute('title', getUserUsername(user));
-// }
+function changeTitleForProfileLogin(user) {
+    profileButton.setAttribute('title', getUserUsername(user));
+}
 
-// function changeTitleForProfileLogout() {
-//     profileButton.setAttribute('title', 'Profile');
-// }
+function changeTitleForProfileLogout() {
+    profileButton.removeAttribute('title');
+}
 
 function changeProfileTitleForCardNumber(user) {
     const profileTitle = document.querySelector('.profile__card__title');
@@ -167,9 +167,10 @@ function hideUserInfo() {
 function showUserInfo(user) {
     const userInfo = document.querySelector('.librarycard__user__info');
     const userInfoTexts = userInfo.querySelectorAll('.libraryCard__user__info__details');
-    userInfoTexts[0].textContent = user.visitsCount;
-    userInfoTexts[1].textContent = user.bonusesCount;
-    userInfoTexts[2].textContent = user.userBooks.length;
+    const userFromLocalStorage = getUserFromLocalStorage(user);
+    userInfoTexts[0].textContent = userFromLocalStorage.visitsCount;
+    userInfoTexts[1].textContent = userFromLocalStorage.bonusesCount;
+    userInfoTexts[2].textContent = userFromLocalStorage.userBooks.length;
     userInfo.classList.add('librarycard__user__info-active');
 }
 
@@ -192,12 +193,12 @@ function showIncorrectMessage() {
 }
 
 function findUserByLibraryCard(cardNumber) {
-    const arrayLibraryCards = JSON.parse(localStorage.getItem('cardNumberToken'));
+    const arrayLibraryCards = JSON.parse(localStorage.getItem('emailToken'));
     if (arrayLibraryCards) {
-        const userId = arrayLibraryCards.find((element) => element.cardNumber === cardNumber);
+        const userId = arrayLibraryCards.find((element) => element.cardnumber === cardNumber);
         if (userId) {
             const arrayUsers = JSON.parse(localStorage.getItem('user'));
-            const userByUserId = arrayUsers.find((element) => element.userId === userId.userId);
+            const userByUserId = arrayUsers.find((element) => element.userId === userId.cardnumber);
             return userByUserId;
         }
     }
@@ -209,7 +210,7 @@ function findUserByEmail(email) {
         const userId = arrayEmails.find((element) => element.email.toUpperCase() === email);
         if (userId) {
             const arrayUsers = JSON.parse(localStorage.getItem('user'));
-            const userByUserId = arrayUsers.find((element) => element.userId === userId.userId);
+            const userByUserId = arrayUsers.find((element) => element.userId === userId.cardnumber);
             return userByUserId;
         }
     }
@@ -241,7 +242,7 @@ function loginUserByEmail(email, password) {
     if (userByEmail) {
         const userPasswordByEmail = userByEmail.password;
         if (userPasswordByEmail === password) {
-            return userPasswordByEmail;
+            return userByEmail;
         }
     }
     showIncorrectMessage();
@@ -280,9 +281,10 @@ function prepareMyprofileForm(form, user) {
     username.innerText = getUserUsername(user);
 
     const userInfo = form.querySelectorAll('.myprofile__user__info__details');
-    userInfo[0].textContent = user.visitsCount;
-    userInfo[1].textContent = user.bonusesCount;
-    userInfo[2].textContent = user.userBooks.length;
+    const userFromLocalStorage = getUserFromLocalStorage(user);
+    userInfo[0].textContent = userFromLocalStorage.visitsCount;
+    userInfo[1].textContent = userFromLocalStorage.bonusesCount;
+    userInfo[2].textContent = userFromLocalStorage.userBooks.length;
 
     const cardNumber = form.querySelector('.myprofile__cardnumber__number');
     cardNumber.innerText = user.cardNumber;
