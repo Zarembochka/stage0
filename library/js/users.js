@@ -217,7 +217,6 @@ function activateUser(user) {
     changeInitialsForLogin(user);
     changeTitleForProfileLogin(user);
     saveActiveUser(user, true);
-    addVisitToUser(user);
     changeProfileCardForLogin(user);
     changeLibraryCardSectionForLogin(user);
 }
@@ -238,6 +237,7 @@ registerSignInBtn.addEventListener('click', (event) => {
         event._isClickOnTheButtonSubmit = true;
         const activeUser = createNewUser();
         activateUser(activeUser);
+        addVisitToUser(activeUser);
         clearForm(modalRegister, '.register__form__input', 'register__form__input');
         hideModal(modalRegister);
     }
@@ -250,6 +250,7 @@ registerLoginBtn.addEventListener('click', (event) => {
         if (activeUser) {
             event._isClickOnTheButtonSubmit = true;
             activateUser(activeUser);
+            addVisitToUser(activeUser);
             clearForm(modalLogin, '.register__form__input', 'register__form__input');
             hideModal(modalLogin);
         }
@@ -262,4 +263,12 @@ logoutBtn.addEventListener('click', (event) => {
     logout();
 });
 
+function findActiveUser() {
+    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const userInLocalStorage = itemLocalStorage.find((element) => element.isActive === true);
+    if (userInLocalStorage) {
+        activateUser(userInLocalStorage);
+    }
+}
 
+findActiveUser();
