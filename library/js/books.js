@@ -191,3 +191,7 @@ function ChangeFavoriteSeason(season) {
     favoritesItems.classList.add('favorites__items-fadeout');
     favoritesItems.classList.add('favorites__items-fadein');
 };
+
+function addBookToUser() {
+    console.log(111);
+}

@@ -1478,11 +1478,13 @@ body {
     column-gap: 10px;
 }
 
-.register__form__cvc {
+.register__form__bankcardcode__item {
+    display: flex;
+    flex-direction: column;
     width: 45px;
 }
 
-.register__form__bankcardcode > .register__form__input {
+.register__form__cvc {
     width: 45px;
 }
 
@@ -1509,6 +1511,12 @@ body {
     font-size: 15px;
     line-height: 1.33333;
     letter-spacing: 2px;
+}
+
+.btn-submit-buycard {
+    padding: 7px 27px 8px;
+    border: 1px solid #0C0C0E;
+    color: #0C0C0E;
 }
 
 /* =====media===== */
@@ -1547,7 +1555,7 @@ body {
     }
 
     .btn:disabled:hover {
-        cursor: not-allowed;
+        pointer-events: none;
     }
 
     .contacts__link:hover {

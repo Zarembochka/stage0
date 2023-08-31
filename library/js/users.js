@@ -84,12 +84,13 @@ function checkValidationElement(element) {
 
 function checkValidationForm(form, inputs) {
     const formInputs = form.querySelectorAll(inputs);
+    let validForm = true;
     for (let i = 0; i < formInputs.length; i++) {
         if (!checkValidationElement(formInputs[i])) {
-            return false;
+            validForm = false;
         }
     }
-    return true;
+    return validForm;
 }
 
 function focusValidation(event) {
@@ -130,10 +131,18 @@ function saveInfoToLocalStorage(itemName, item) {
 }
 
 function addVisitToUser(user) {
-    //user.visitsCount += 1;
     const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
     userInLocalStorage.visitsCount += 1;
+    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+}
+
+function addLibraryCardToUser(user) {
+    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
+    userInLocalStorage.bonusesCount += 350;
+    userInLocalStorage.isLibraryCard = true;
+    currentUser = userInLocalStorage;
     localStorage.setItem('user', JSON.stringify(itemLocalStorage));
 }
 
@@ -158,17 +167,6 @@ function createEmailToken(email, cardnumber) {
 function saveUserInfo(user) {
     saveInfoToLocalStorage('user', user);
 }
-
-// function getUserNextId() {
-//     let userId = localStorage.getItem('usersId');
-//     if (!userId) {
-//         //first user
-//         localStorage.setItem('usersId', 1);
-//         return 1;
-//     }
-//     localStorage.setItem('usersId', ++userId);
-//     return userId;
-// }
 
 function getUserFromLocalStorage(user) {
     const users = JSON.parse(localStorage.getItem('user'));
@@ -263,4 +261,5 @@ logoutBtn.addEventListener('click', (event) => {
     event._isClickOnTheProfile = true;
     logout();
 });
+
 

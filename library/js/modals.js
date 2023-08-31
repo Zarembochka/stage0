@@ -13,6 +13,7 @@ const modalsForms = document.querySelectorAll('.modal');
 const myprofileBtn = document.querySelectorAll('.btn-myprofile');
 const modalMyprofileClose = document.querySelector('.myprofile__close');
 
+const modalBuyLibraryCardClose = document.querySelector('.buycard__close');
 const copyBtn = document.querySelector('.myprofile__btn-copy');
 
 let isCurrentUser = false;
@@ -69,13 +70,25 @@ loginBtn.forEach((element) => {
     });
 });
 
+function checkButtonsBuy(event) {
+    if (currentUser && currentUser.isLibraryCard) {
+        console.log(event.target.offsetParent);
+        addBookToUser();
+        return;
+    }
+    if (currentUser) {
+        const modalBuyLibraryCard = document.querySelector('.modal__buycard');
+        showModal(modalBuyLibraryCard);
+        return;
+    }
+    showModal(modalLogin);
+}
+
 buyBtn.forEach((element) => {
-    element.addEventListener('click', function() {
-        showModal(modalLogin);
-    });
-    element.addEventListener('click', (event) => {
-        event._isClickOnTheProfile = true;
-    });
+    element.addEventListener('click', checkButtonsBuy);
+    // element.addEventListener('click', (event) => {
+    //     event._isClickOnTheProfile = true;
+    // });
 });
 
 myprofileBtn.forEach((element) => {
@@ -97,6 +110,11 @@ modalLoginClose.addEventListener('click', function() {
 modalMyprofileClose.addEventListener('click', function() {
     const modalMyprofile = document.querySelector('.modal__myprofile');
     hideModal(modalMyprofile);
+});
+
+modalBuyLibraryCardClose.addEventListener('click', function() {
+    const modalBuyLibraryCard = document.querySelector('.modal__buycard');
+    hideModal(modalBuyLibraryCard);
 });
 
 copyBtn.addEventListener('click', function() {

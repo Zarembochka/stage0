@@ -18,6 +18,7 @@
     <script src="./js/books.js" defer></script>
     <script src="./js/modals.js" defer></script>
     <script src="./js/users.js" defer></script>
+    <script src="./js/buycard.js" defer></script>
     <!-- header -->
     <div class="container-full">
         <header class="header">
@@ -772,12 +773,18 @@
                             <div class="register__form__message"></div>
                         </div>
                         <div class="register__form__item">
-                            <label class="register__form__label" for="bankcard_code">
+                            <label class="register__form__label">
                                 Expiration code
                             </label>
                             <div class="register__form__bankcardcode">
-                                <input class="register__form__input" type="text" name="bankcard_code1" id="bankcard_code1" minlength="2" maxlength="2">
-                                <input class="register__form__input" type="text" name="bankcard_code2" id="bankcard_code2" minlength="2" maxlength="2">
+                                <div class="register__form__bankcardcode__item">
+                                    <input class="register__form__input" type="text" name="bankcard_code1" id="bankcard_code1" minlength="2" maxlength="2">
+                                    <div class="register__form__message"></div>
+                                </div>
+                                <div class="register__form__bankcardcode__item">
+                                    <input class="register__form__input" type="text" name="bankcard_code2" id="bankcard_code2" minlength="2" maxlength="2">
+                                    <div class="register__form__message"></div>
+                                </div>
                             </div>
                             <div class="register__form__message"></div>
                         </div>
@@ -785,7 +792,7 @@
                             <label class="register__form__label" for="bankcard_cvc">
                                 CVC
                             </label>
-                            <input class="register__form__input register__form__cvc" type="text" name="bankcard_cvc" id="bankcard_cvc">
+                            <input class="register__form__input register__form__cvc" type="text"name="bankcard_cvc" id="bankcard_cvc" minlength="3" maxlength="3">
                             <div class="register__form__message"></div>
                         </div>
                         <div class="register__form__item">
@@ -810,7 +817,7 @@
                             <div class="register__form__message"></div>
                         </div>
                         <div class="buycard__form__footer">
-                            <button class="btn favorites__book__btn favorites__book__btn-buy" type="submit">
+                            <button class="btn btn-submit-buycard" type="submit">
                                 Buy
                             </button>
                             <span class="buycard__form__price">$ 25.00</span>
