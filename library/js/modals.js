@@ -86,9 +86,9 @@ function checkButtonsBuy(event) {
 
 buyBtn.forEach((element) => {
     element.addEventListener('click', checkButtonsBuy);
-    // element.addEventListener('click', (event) => {
-    //     event._isClickOnTheProfile = true;
-    // });
+    element.addEventListener('click', (event) => {
+        event._isClickOnTheProfile = true;
+    });
 });
 
 myprofileBtn.forEach((element) => {
