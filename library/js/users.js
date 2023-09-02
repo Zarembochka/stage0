@@ -226,11 +226,11 @@ function activateUser(user) {
 function logout() {
     saveActiveUser(currentUser, false);
     currentUser = undefined;
-    isCurrentUser = false;
     changeInitialsForLogout();
     changeTitleForProfileLogout();
     changeProfileCardForLogout();
     changeLibraryCardSectionForLogout();
+    loadBooks(currentSeason);
 }
 
 registerSignInBtn.addEventListener('click', (event) => {
@@ -255,6 +255,7 @@ registerLoginBtn.addEventListener('click', (event) => {
             addVisitToUser(activeUser);
             clearForm(modalLogin, '.register__form__input', 'register__form__input');
             hideModal(modalLogin);
+            loadBooks(currentSeason);
         }
     }
 });
@@ -276,3 +277,4 @@ function findActiveUser() {
 }
 
 findActiveUser();
+loadBooks(currentSeason);

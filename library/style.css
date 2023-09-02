@@ -1375,9 +1375,7 @@ body {
 
 .myprofile__close {
     position: absolute;
-    /* top: -18px; */
     top: 20px;
-    /* right: -23px; */
     right: 22px;
     width: 25px;
     height: 25px;

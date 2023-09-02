@@ -154,7 +154,6 @@ function stickyPanel() {
 
 window.addEventListener('scroll', stickyPanel);
 
-
 favoritesItems.addEventListener("animationend", animationFade);
 
 function animationFade(event) {
@@ -195,12 +194,39 @@ function loadBookImage(card, book) {
     bookImage.src = `./images/favorites/${book.season}/${book.image}.jpg`;
 }
 
+function changeButtonBuyToOwn(button) {
+    button.classList.remove('favorites__book__btn-buy');
+    button.classList.add('favorites__book__btn-own');
+    button.innerText = 'own';
+    button.setAttribute('disabled', true);
+}
+
+function changeButtonOwnToBuy(button) {
+    button.classList.add('favorites__book__btn-buy');
+    button.classList.remove('favorites__book__btn-own');
+    button.innerText = 'buy';
+    button.removeAttribute('disabled');
+}
+
+function checkAvialabityButton(card, book, arrayBooks) {
+    const btn = card.querySelector('.favorites__book__btn');
+    if (currentUser) {
+        const isBook = currentUser.userBooks.find((element) => +element.id === book.id);
+        if (isBook) {
+            changeButtonBuyToOwn(btn);
+            return;
+        }
+    }
+    changeButtonOwnToBuy(btn);
+}
+
 function loadBookCard(card, book) {
     loadBookId(card, book);
     loadBookTitle(card, book);
     loadBookAuthor(card, book);
     loadBookDescription(card, book);
     loadBookImage(card, book);
+    checkAvialabityButton(card, book);
 }
 
 function loadBooks(season) {
@@ -227,7 +253,6 @@ function getBook(item) {
 
 function addBookToUser(item) {
     const newBook = getBook(item);
-    
     const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === currentUser.userId);
     userInLocalStorage.bonusesCount += 325;

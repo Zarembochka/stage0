@@ -94,6 +94,7 @@ loginBtn.forEach((element) => {
 function checkButtonsBuy(event) {
     if (currentUser && currentUser.isLibraryCard) {
         addBookToUser(event.target.offsetParent);
+        changeButtonBuyToOwn(event.target);
         return;
     }
     if (currentUser) {
