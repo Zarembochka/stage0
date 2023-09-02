@@ -559,6 +559,10 @@ body {
     flex-direction: column;
 }
 
+.favorites__book__id {
+    display: none;
+}
+
 .favorites__book__pick {
     margin: 0;
     color: #000;
@@ -1261,18 +1265,38 @@ body {
     color: red;
 }
 
-.register__form__text {
-    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+.register__form__footer {
+    display: flex;
+    align-items: baseline;
     font-family: 'Inter', sans-serif;
     font-size: 10px;
+    column-gap: 5px;
+}
+
+.register__form__text {
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+    font-family: inherit;
+    font-size: inherit;
     margin: 0;
 }
 
-.register__form__link {
+.footer__btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
     color: #0C0C0E;
     font-weight: 700;
     letter-spacing: 1px;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
 }
+
+/* .register__form__link {
+    color: #0C0C0E;
+    font-weight: 700;
+    letter-spacing: 1px;
+} */
 
 /* =====modal myprofile===== */
 .myprofile {
@@ -1295,10 +1319,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 0 25px;
     text-align: center;
     text-transform: capitalize;
+}
+
+.myprofile__aside__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.myprofile__aside__item:first-of-type {
+    height: 58.5%;
 }
 
 .myprofile__aside__initials {
@@ -1317,8 +1350,14 @@ body {
 }
 
 .myprofile__main {
-    padding: 39px 60px 40px 20px;
+    padding: 39px 58px 40px 20px;
+    display: flex;
+    flex-direction: column;
     position: relative;
+}
+
+.myprofile__main-scroll {
+    padding-right: 51px;
 }
 
 .myprofile__title {
@@ -1336,8 +1375,10 @@ body {
 
 .myprofile__close {
     position: absolute;
+    /* top: -18px; */
     top: 20px;
-    right: 23px;
+    /* right: -23px; */
+    right: 22px;
     width: 25px;
     height: 25px;
     padding: 5px;
@@ -1388,23 +1429,51 @@ body {
     margin-bottom: 30px;
 }
 
+.myprofile__books__window {
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.myprofile__books__window-scroll {
+    overflow-y: scroll;
+}
+
+.myprofile__books__window-scroll::-webkit-scrollbar {
+    width: 7px;
+    height: 5px;
+    background-color: rgba(187, 148, 95, 0.15);
+}
+
+.myprofile__books__window-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(187, 148, 95, 0.55);
+    border-radius: 5px;
+}
+
 .myprofile__books__list {
     width: 352px;
     margin: 0;
-    margin-bottom: 40px;
-    padding-left: 30px;
+    padding-left: 10px;
+    list-style-position: inside;
 }
 
 .myprofile__books__list__item {
+    width: 322px;
     margin-bottom: 10px;
     letter-spacing: 2px;
     text-transform: capitalize;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.myprofile__books__list__item::marker {
+    content: "•  ";
 }
 
 .myprofile__cardnumber {
     color: #0C0C0E;
     display: flex;
-    align-items: baseline;
+    /* align-items: baseline; */
 }
 
 .myprofile__cardnumber__text {
@@ -1418,7 +1487,7 @@ body {
 
 .myprofile__btn-copy {
     background-color: transparent;
-    padding: 5px;
+    /* padding: 5px; */
     cursor: pointer;
     border: none;
 }

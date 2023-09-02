@@ -273,6 +273,43 @@ checkCardBtn.addEventListener('click', (event) => {
     checkLibraryCard();
 });
 
+function prepareBookList(form, user) {
+    //delete all items except first
+    const liItems = form.querySelectorAll('.myprofile__books__list__item');
+    const bookWindow = form.querySelector('.myprofile__books__window');
+    const bookList = form.querySelector('.myprofile__books__list');
+    const myprofeleMain = form.querySelector('.myprofile__main');
+
+    for (let i = 1; i < liItems.length; i++) {
+        liItems[i].remove();
+    }
+
+    const liItem = liItems[0];
+    liItem.innerText = "You don't have any books";
+    bookWindow.classList.remove('myprofile__books__window-scroll');
+    myprofeleMain.classList.remove('myprofile__main-scroll');
+
+    //books
+    const arrayUserBooks = user.userBooks;
+
+    for (let i = arrayUserBooks.length; i > 0; i--) {
+        const newLiItem = liItem.cloneNode(false);
+        const bookTitle = `${arrayUserBooks[i - 1].title}, ${arrayUserBooks[i - 1].author}`;
+        newLiItem.innerText = bookTitle;
+        // newLiItem.innerText = `${arrayUserBooks[i - 1].title}, ${arrayUserBooks[i - 1].author}`;
+        liItem.before(newLiItem);
+    }
+
+    if (arrayUserBooks.length > 0) {
+        liItem.remove();
+    }
+
+    if (bookList.clientHeight > 70) {
+        bookWindow.classList.add('myprofile__books__window-scroll');
+        myprofeleMain.classList.add('myprofile__main-scroll');
+    }
+}
+
 function prepareMyprofileForm(form, user) {
     const initials = form.querySelector('.myprofile__aside__initials');
     initials.innerText = getUserInitials(user);
@@ -281,10 +318,12 @@ function prepareMyprofileForm(form, user) {
     username.innerText = getUserUsername(user);
 
     const userInfo = form.querySelectorAll('.myprofile__user__info__details');
-    const userFromLocalStorage = getUserFromLocalStorage(user);
-    userInfo[0].textContent = userFromLocalStorage.visitsCount;
-    userInfo[1].textContent = userFromLocalStorage.bonusesCount;
-    userInfo[2].textContent = userFromLocalStorage.userBooks.length;
+    // const userFromLocalStorage = getUserFromLocalStorage(user);
+    userInfo[0].textContent = user.visitsCount;
+    userInfo[1].textContent = user.bonusesCount;
+    userInfo[2].textContent = user.userBooks.length;
+
+    prepareBookList(form, user);
 
     const cardNumber = form.querySelector('.myprofile__cardnumber__number');
     cardNumber.innerText = user.cardNumber;

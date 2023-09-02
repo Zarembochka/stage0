@@ -218,6 +218,9 @@
                         <!-- winter -->
                         <div class="favorites__items">
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    1
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -237,6 +240,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    2
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -256,6 +262,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    3
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -275,6 +284,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    4
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -638,12 +650,14 @@
                     </div>
                     <button class="btn librarycard__info__btn btn-submit-register" type="submit">Sign Up</button>
                 </form>
-                <p class="register__form__text">
-                    Already have an account?&nbsp;&nbsp;&nbsp;
-                    <a class="register__form__link" href="#">
+                <footer class="register__form__footer">
+                    <p class="register__form__text">
+                        Already have an account?
+                    </p>
+                    <button class="footer__btn footer__btn-login">
                         Login
-                    </a>
-                </p>
+                    </button>
+                </footer>
             </div>
         </div>
     </div>
@@ -677,12 +691,14 @@
                     </div>
                     <button class="btn librarycard__info__btn btn-submit-login" type="submit">Log In</button>
                 </form>
-                <p class="register__form__text">
-                    Don’t have an account?&nbsp;&nbsp;&nbsp;
-                    <a class="register__form__link" href="#">
+                <footer class="register__form__footer">
+                    <p class="register__form__text">
+                        Don’t have an account?
+                    </p>
+                    <button class="footer__btn footer__btn-register">
                         Register
-                    </a>
-                </p>
+                    </button>
+                </footer>
             </div>
         </div>
     </div>
@@ -693,9 +709,13 @@
         <div class="modal">
             <div class="modal__content myprofile">
                 <aside class="myprofile__aside">
-                    <div class="myprofile__aside__initials">
+                    <div class="myprofile__aside__item">
+                        <div class="myprofile__aside__initials">
+                        </div>
                     </div>
-                    <div class="myprofile__aside__username">
+                    <div class="myprofile__aside__item">
+                        <div class="myprofile__aside__username">
+                        </div>
                     </div>
                 </aside>
                 <main class="myprofile__main">
@@ -732,11 +752,13 @@
                     <p class="myprofile__books">
                         Rented books
                     </p>
-                    <ul class="myprofile__books__list">
-                        <li class="myprofile__books__list__item">
-                            You don't have any books yet
-                        </li>
-                    </ul>
+                    <div class="myprofile__books__window">
+                        <ul class="myprofile__books__list">
+                            <li class="myprofile__books__list__item">
+                                You don't have any books
+                            </li>
+                        </ul>
+                    </div>
                     <div class="myprofile__cardnumber">
                         <span class="myprofile__cardnumber__text">
                             Card number

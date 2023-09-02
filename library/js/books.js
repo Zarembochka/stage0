@@ -1,5 +1,6 @@
 const books = [
     {
+        id: 1,
         season: 'winter',
         title: 'The Book Eaters',
         author: 'By Sunyi Dean',
@@ -7,6 +8,7 @@ const books = [
         image: 'book_1'
     },
     {
+        id: 2,
         season: 'winter',
         title: 'Cackle',
         author: 'By Rachel Harrison',
@@ -14,6 +16,7 @@ const books = [
         image: 'book_2'
     },
     {
+        id: 3,
         season: 'winter',
         title: 'Dante: Poet of the Secular World',
         author: 'By Erich Auerbach',
@@ -21,6 +24,7 @@ const books = [
         image: 'book_3'
     },
     {
+        id: 4,
         season: 'winter',
         title: 'The Last Queen',
         author: 'By Clive Irving',
@@ -28,6 +32,7 @@ const books = [
         image: 'book_4'
     },
     {
+        id: 5,
         season: 'spring',
         title: 'The Body',
         author: 'By Stephen King',
@@ -35,6 +40,7 @@ const books = [
         image: 'book_1'
     },
     {
+        id: 6,
         season: 'spring',
         title: 'Carry: A Memoir of Survival on Stolen Land',
         author: 'By Toni Jenson',
@@ -42,6 +48,7 @@ const books = [
         image: 'book_2'
     },
     {
+        id: 7,
         season: 'spring',
         title: 'Days of Distraction',
         author: 'By Alexandra Chang',
@@ -49,6 +56,7 @@ const books = [
         image: 'book_3'
     },
     {
+        id: 8,
         season: 'spring',
         title: 'Dominicana',
         author: 'By Angie Cruz',
@@ -56,6 +64,7 @@ const books = [
         image: 'book_4'
     },
     {
+        id: 9,
         season: 'summer',
         title: 'Crude: A Memoir',
         author: 'By Pablo Fajardo & ​​Sophie Tardy-Joubert',
@@ -63,6 +72,7 @@ const books = [
         image: 'book_1'
     },
     {
+        id: 10,
         season: 'summer',
         title: 'Let My People Go Surfing',
         author: 'By Yvon Chouinard',
@@ -70,6 +80,7 @@ const books = [
         image: 'book_2'
     },
     {
+        id: 11,
         season: 'summer',
         title: 'The Octopus Museum: Poems',
         author: 'By Brenda Shaughnessy',
@@ -77,6 +88,7 @@ const books = [
         image: 'book_3'
     },
     {
+        id: 12,
         season: 'summer',
         title: 'Shark Dialogues: A Novel',
         author: 'By Kiana Davenport',
@@ -84,6 +96,7 @@ const books = [
         image: 'book_4'
     },
     {
+        id: 13,
         season: 'autumn',
         title: 'Casual Conversation',
         author: 'By Renia White',
@@ -91,6 +104,7 @@ const books = [
         image: 'book_1'
     },
     {
+        id: 14,
         season: 'autumn',
         title: 'The Great Fire',
         author: 'By Lou Ureneck',
@@ -98,6 +112,7 @@ const books = [
         image: 'book_2'
     },
     {
+        id: 15,
         season: 'autumn',
         title: 'Rickey: The Life and Legend',
         author: 'By Howard Bryant',
@@ -105,6 +120,7 @@ const books = [
         image: 'book_3'
     },
     {
+        id: 16,
         season: 'autumn',
         title: 'Slug: And Other Stories',
         author: 'By Megan Milks',
@@ -154,6 +170,11 @@ function animationFade(event) {
     }
 }
 
+function loadBookId(card, book) {
+    const bookId  = card.querySelector('.favorites__book__id');
+    bookId.textContent = book.id;
+}
+
 function loadBookTitle(card, book) {
     const bookTitle  = card.querySelector('.favorites__book__title');
     bookTitle.textContent = book.title;
@@ -175,6 +196,7 @@ function loadBookImage(card, book) {
 }
 
 function loadBookCard(card, book) {
+    loadBookId(card, book);
     loadBookTitle(card, book);
     loadBookAuthor(card, book);
     loadBookDescription(card, book);
@@ -192,6 +214,24 @@ function ChangeFavoriteSeason(season) {
     favoritesItems.classList.add('favorites__items-fadein');
 };
 
-function addBookToUser() {
-    console.log(111);
+function getBook(item) {
+    const title = item.querySelector('.favorites__book__title');
+    const author = item.querySelector('.favorites__book__author');
+    const id = item.querySelector('.favorites__book__id');
+    const newBook = new Object;
+    newBook.id = id.textContent.trim();
+    newBook.title = title.textContent.trim();
+    newBook.author = author.textContent.trim().slice(3);
+    return newBook;
+}
+
+function addBookToUser(item) {
+    const newBook = getBook(item);
+    
+    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const userInLocalStorage = itemLocalStorage.find((element) => element.userId === currentUser.userId);
+    userInLocalStorage.bonusesCount += 325;
+    userInLocalStorage.userBooks.push(newBook);
+    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+    currentUser = userInLocalStorage;
 }

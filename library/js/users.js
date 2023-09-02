@@ -102,10 +102,11 @@ function focusValidation(event) {
 }
 
 function createCardNumber() {
-    const min = 4294967296;
+    // const min = 4294967296;
+    const min = 1;
     const max = 68719476735;
     const cardNumber = Math.floor(Math.random() * (max - min)) + min;
-    return cardNumber.toString(16).toLocaleUpperCase();
+    return cardNumber.toString(16).toLocaleUpperCase().padStart(9, "0");
 }
 
 function saveCardNumberToken(token) {
@@ -135,6 +136,7 @@ function addVisitToUser(user) {
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
     userInLocalStorage.visitsCount += 1;
     localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+    currentUser = userInLocalStorage;
 }
 
 function addLibraryCardToUser(user) {
@@ -265,9 +267,11 @@ logoutBtn.addEventListener('click', (event) => {
 
 function findActiveUser() {
     const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
-    const userInLocalStorage = itemLocalStorage.find((element) => element.isActive === true);
-    if (userInLocalStorage) {
-        activateUser(userInLocalStorage);
+    if (itemLocalStorage) {
+        const userInLocalStorage = itemLocalStorage.find((element) => element.isActive === true);
+        if (userInLocalStorage) {
+            activateUser(userInLocalStorage);
+        }
     }
 }
 

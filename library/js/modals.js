@@ -16,6 +16,9 @@ const modalMyprofileClose = document.querySelector('.myprofile__close');
 const modalBuyLibraryCardClose = document.querySelector('.buycard__close');
 const copyBtn = document.querySelector('.myprofile__btn-copy');
 
+const footerLoginBtn = document.querySelector('.footer__btn-login');
+const footerRegisterBtn = document.querySelector('.footer__btn-register');
+
 let isCurrentUser = false;
 
 function calcRightPadding() {
@@ -60,6 +63,24 @@ modalRegisterClose.addEventListener('click', function() {
     hideModal(modalRegister);
 });
 
+footerLoginBtn.addEventListener('click', function(event) {
+    const modalRegister = document.querySelector('.modal__register');
+    clearForm(modalRegister, '.register__form__input', 'register__form__input');
+    hideModal(modalRegister);
+    const modalForm = document.querySelector('.modal__login');
+    showModal(modalForm);
+    event._isClickOnTheProfile = true;
+});
+
+footerRegisterBtn.addEventListener('click', function(event) {
+    const modalForm = document.querySelector('.modal__login');
+    clearForm(modalForm, '.register__form__input', 'register__form__input');
+    hideModal(modalForm);
+    const modalRegister = document.querySelector('.modal__register');
+    showModal(modalRegister);
+    event._isClickOnTheProfile = true;
+});
+
 loginBtn.forEach((element) => {
     const modalForm = document.querySelector('.modal__login');
     element.addEventListener('click', function() {
@@ -72,8 +93,7 @@ loginBtn.forEach((element) => {
 
 function checkButtonsBuy(event) {
     if (currentUser && currentUser.isLibraryCard) {
-        console.log(event.target.offsetParent);
-        addBookToUser();
+        addBookToUser(event.target.offsetParent);
         return;
     }
     if (currentUser) {
