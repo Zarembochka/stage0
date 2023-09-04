@@ -12,7 +12,13 @@
     <title>Brooklin Public Library</title>
 </head>
 <body>
-    <script src="index.js" defer></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/slider.js" defer></script>
+    <script src="./js/burger.js" defer></script>
+    <script src="./js/books.js" defer></script>
+    <script src="./js/modals.js" defer></script>
+    <script src="./js/users.js" defer></script>
+    <script src="./js/buycard.js" defer></script>
     <!-- header -->
     <div class="container-full">
         <header class="header">
@@ -50,10 +56,42 @@
                             </li>
                         </ul>
                     </nav>
-                    <div class="header__image">
-                        <img class="header__icon" src="./images/svg/icon_profile.svg" alt="icon profile">
+                    <div class="profile">
+                        <button class="header__profile">
+                            <svg class="header__icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="white">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z"/>
+                            </svg>
+                            <span class="user__initials"></span>
+                        </button>
+                        <div class="profile__card">
+                            <h3 class="profile__card__title">
+                                Profile
+                            </h3>
+                            <ul class="profile__list">
+                                <li class="profile__item">
+                                    <button class="profile__btn profile__btn-login btn-login">
+                                        Log In
+                                    </button>
+                                </li>
+                                <li class="profile__item">
+                                    <button class="profile__btn profile__btn-registration btn-signin">
+                                        Register
+                                    </button>
+                                </li>
+                                <li class="profile__item btn-notvisible">
+                                    <button class="profile__btn btn-myprofile">
+                                        My profile
+                                    </button>
+                                </li>
+                                <li class="profile__item btn-notvisible">
+                                    <button class="profile__btn btn-logout">
+                                        Log Out
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <button class="burger-btn" id="burger">
+                    <button class="burger-btn">
                         <span class="burger__menu__line burger__menu__line-first"></span>
                         <span class="burger__menu__line burger__menu__line-second"></span>
                         <span class="burger__menu__line burger__menu__line-third"></span>
@@ -90,21 +128,32 @@
                     <p class="section__text">
                         The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside
                     </p>
-                    <div class="about__inner">
+                    <div class="about__container">
                         <button class="arrow arrow-left">
                             <img class="arrow__ico" src="./images/svg/Carret_Left.svg" alt="arrow left ico">
                         </button>
+                        <div class="about__inner">
+                            <div class="about__slider">
+                                <div class="about__item about__item-active">
+                                    <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
+                                </div>
 
-                        <div class="about__item">
-                            <img class="about__item__image" src="./images/about/about_1.jpg" alt="image 1">
-                        </div>
+                                <div class="about__item about__item-second">
+                                    <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
+                                </div>
 
-                        <div class="about__item about__item-second">
-                            <img class="about__item__image" src="./images/about/about_2.jpg" alt="image 2">
-                        </div>
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
+                                </div>
 
-                        <div class="about__item about__item-third">
-                            <img class="about__item__image" src="./images/about/about_3.jpg" alt="image 3">
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_4.jpg" alt="image 4">
+                                </div>
+
+                                <div class="about__item about__item-third">
+                                    <img class="about__item__image" src="./images/about/about_5.jpg" alt="image 5">
+                                </div>
+                            </div>
                         </div>
                         <button class="arrow arrow-right">
                             <img class="arrow__ico" src="./images/svg/Carret_Right.svg" alt="arrow right ico">
@@ -113,14 +162,19 @@
 
                     <div class="about__carousel">
                         <button class="about__carousel__cirkle about__carousel__cirkle-active">
+                            0
                         </button>
                         <button class="about__carousel__cirkle">
+                            1
                         </button>
                         <button class="about__carousel__cirkle">
+                            2
                         </button>
                         <button class="about__carousel__cirkle about__carousel__cirkle-four">
+                            3
                         </button>
                         <button class="about__carousel__cirkle about__carousel__cirkle-five">
+                            4
                         </button>
                     </div>
                 </div>
@@ -135,32 +189,37 @@
                     <h2 class="section__title">
                         Favorites
                     </h2>
-                    <p class="favorites__text">
-                        Pick favorites of season
-                    </p>
-                    <form class="favorites__form">
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
-                            <label for="winter" class="favorites__form__label">Winter</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
-                            <label for="spring" class="favorites__form__label">Spring</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
-                            <label for="summer" class="favorites__form__label">Summer</label>
-                        </div>
-                        <div class="favorites__form__season">
-                            <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
-                            <label for="autumn" class="favorites__form__label">Autumn</label>
-                        </div>    
-                    </form>
+                    <div class="favorites__panel">
+                        <p class="favorites__text">
+                            Pick favorites of season
+                        </p>
+                        <form class="favorites__form">
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="winter" value="winter" checked>
+                                <label for="winter" class="favorites__form__label">Winter</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="spring" value="spring">
+                                <label for="spring" class="favorites__form__label">Spring</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="summer" value="summer">
+                                <label for="summer" class="favorites__form__label">Summer</label>
+                            </div>
+                            <div class="favorites__form__season">
+                                <input class="favorites__form__radio" type="radio" name="user__favorite__season" id="autumn" value="autumn">
+                                <label for="autumn" class="favorites__form__label">Autumn</label>
+                            </div>
+                        </form>
+                    </div>
 
                     <div class="favorites__inner">
                         <!-- winter -->
-                        <div class="favorites__items favorites__items-winter favorites__items-checked">
+                        <div class="favorites__items">
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    1
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -180,6 +239,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    2
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -199,6 +261,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    3
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -218,6 +283,9 @@
                             </div>
 
                             <div class="favorites__book">
+                                <span class="favorites__book__id">
+                                    4
+                                </span>
                                 <p class="favorites__book__pick">
                                     Staff Picks
                                 </p>
@@ -230,8 +298,8 @@
                                 <div class="favorites__book__description">
                                     A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                                 </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
-                                    Own
+                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
+                                    Buy
                                 </button>
                                 <img class="favorites__book__image" src="./images/favorites/winter/book_4.jpg" alt="The Last Queen">
                             </div>
@@ -239,242 +307,12 @@
                         <!-- /winter -->
 
                         <!-- spring -->
-                        <div class="favorites__items favorites__items-spring">
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    The Body
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Stephen King
-                                </h3>
-                                <div class="favorites__book__description">
-                                    Powerful novel that takes you back to a nostalgic time, exploring both the beauty and danger and loss of innocence that is youth.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/spring/book_1.jpg" alt="The Body">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Carry: A Memoir of Survival on Stolen Land
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Toni Jenson
-                                </h3>
-                                <div class="favorites__book__description">
-                                    This memoir about the author's relationship with gun violence feels both expansive and intimate, resulting in a lyrical indictment of the way things are.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/spring/book_2.jpg" alt="Carry: A Memoir of Survival on Stolen Land">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Days of Distraction
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Alexandra Chang
-                                </h3>
-                                <div class="favorites__book__description">
-                                    A sardonic view of Silicon Valley culture, a meditation on race, and a journal of displacement and belonging, all in one form-defying package of spare prose.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/spring/book_3.jpg" alt="Days of Distraction">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Dominicana
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Angie Cruz
-                                </h3>
-                                <div class="favorites__book__description">
-                                    A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
-                                </div>                                    <button type="button" class="btn favorites__book__btn favorites__book__btn-own" disabled="disabled">
-                                    Own
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/spring/book_4.jpg" alt="Dominicana">
-                            </div>
-                        </div>
                         <!-- /spring -->
 
                         <!-- summer -->
-                        <div class="favorites__items favorites__items-summer">
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Crude: A Memoir
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Pablo Fajardo & ​​Sophie Tardy-Joubert
-                                </h3>
-                                <div class="favorites__book__description">
-                                    Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/summer/book_1.jpg" alt="Crude: A Memoir">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Let My People Go Surfing
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Yvon Chouinard
-                                </h3>
-                                <div class="favorites__book__description">
-                                    Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/summer/book_2.jpg" alt="Let My People Go Surfing">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    The Octopus Museum: Poems
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Brenda Shaughnessy
-                                </h3>
-                                <div class="favorites__book__description">
-                                    This collection of bold and scathingly beautiful feminist poems imagines what comes after our current age of environmental destruction, racism, sexism, and divisive politics.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/summer/book_3.jpg" alt="The Octopus Museum: Poems">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Shark Dialogues: A Novel
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Kiana Davenport
-                                </h3>
-                                <div class="favorites__book__description">
-                                    An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/summer/book_4.jpg" alt="Shark Dialogues: A Novel">
-                            </div>
-                        </div>
                         <!-- /summer -->
 
                         <!-- autumn -->
-                        <div class="favorites__items favorites__items-autumn">
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Casual Conversation
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Renia White
-                                </h3>
-                                <div class="favorites__book__description">
-                                    White's impressive debut collection takes readers through and beyond the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/autumn/book_1.jpg" alt="Casual Conversation">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    The Great Fire
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Lou Ureneck
-                                </h3>
-                                <div class="favorites__book__description">
-                                    The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/autumn/book_2.jpg" alt="The Great Fire">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Rickey: The Life and Legend
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Howard Bryant
-                                </h3>
-                                <div class="favorites__book__description">
-                                    With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/autumn/book_3.jpg" alt="Rickey: The Life and Legend">
-                            </div>
-
-                            <div class="favorites__book">
-                                <p class="favorites__book__pick">
-                                    Staff Picks
-                                </p>
-                                <h3 class="favorites__book__title">
-                                    Slug: And Other Stories
-                                </h3>
-                                <h3 class="favorites__book__author">
-                                    By Megan Milks
-                                </h3>
-                                <div class="favorites__book__description">
-                                    Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.
-                                </div>
-                                <button type="button" class="btn favorites__book__btn favorites__book__btn-buy">
-                                    Buy
-                                </button>
-                                <img class="favorites__book__image" src="./images/favorites/autumn/book_4.jpg" alt="Slug: And Other Stories">
-                            </div>
-                        </div>
                         <!-- /autumn -->
                     </div>
                 </div>
@@ -617,10 +455,7 @@
                             </div>
                         </div>
                         <div class="contacts__item">
-                            <!-- <div class="contacts__map"> -->
-                                <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.0165251775215!2d-73.99398898615364!3d40.69563369930784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2spl!4v1691141444370!5m2!1sru!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                <!-- <img class="contacts__map" src="./images/contacts/map.jpg" alt="map"> -->
-                            <!-- </div> -->
+                            <iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.0165251775215!2d-73.99398898615364!3d40.69563369930784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2spl!4v1691141444370!5m2!1sru!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
@@ -644,12 +479,41 @@
                                 <h3 class="librarycard__card__title">
                                     Brooklyn Public Library
                                 </h3>
-                                <form class="librarycard__form" method="post">
+                                <form class="librarycard__form">
                                     <div class="librarycard__form__inner">
-                                        <input class="librarycard__form__input" name="name" type="text" placeholder="Reader's name">
-                                        <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number">
+                                        <div class="librarycard__form__item">
+                                            <input class="librarycard__form__input" name="user_name" type="text" placeholder="Reader's name" id="user_name">
+                                            <div class="register__form__message"></div>
+                                        </div>
+                                        <div class="librarycard__form__item">
+                                            <input class="librarycard__form__input" name="card_number" type="text" placeholder="Card number" id="card_number" minlength="9" maxlength="9">
+                                            <div class="register__form__message"></div>
+                                        </div>
                                     </div>
-                                    <button class="btn librarycard__form__btn" type="submit">Check the card</button>
+                                    <button class="btn librarycard__form__btn btn-checkCard" type="submit">Check the card</button>
+                                    <ul class="librarycard__user__info">
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                visits
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/Union.svg" alt="visits ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                bonuses
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/Star 1.svg" alt="bonuses ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                        <li class="librarycard__user__info__item">
+                                            <h6 class="librarycard__user__info__title">
+                                                Books
+                                            </h6>
+                                            <img class="librarycard__user__info__ico" src="./images/library_card/book.svg" alt="books ico" width="20px" height="21px">
+                                            <p class="libraryCard__user__info__details"></p>
+                                        </li>
+                                    </ul>
                                 </form>
                             </div>
                         </div>
@@ -661,8 +525,9 @@
                                 You will be able to see a reader card after logging into account or you can register a new account
                             </p>
                             <div class="librarycard__info__buttons">
-                                <button class="btn librarycard__info__btn">Sign Up</button>
-                                <button class="btn librarycard__info__btn">Log in</button>
+                                <button class="btn librarycard__info__btn btn-myprofile btn-notvisible">Profile</button>
+                                <button class="btn librarycard__info__btn btn-signin">Sign Up</button>
+                                <button class="btn librarycard__info__btn btn-login">Log in</button>
                             </div>
                         </div>
                     </div>
@@ -737,5 +602,261 @@
     </footer>
     <!-- /footer -->
     </div>
+
+    <!-- modals -->
+    <!-- register -->
+    <div class="modal__background modal__register">
+        <div class="modal">
+            <div class="modal__content register">
+                <h3 class="modals__title">
+                    Register
+                </h3>
+                <button class="modals__close register__close">
+                    <span class="modals__close__line"></span>
+                    <span class="modals__close__line"></span>
+                </button>
+                <form class="modal__form register__form" novalidate>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="firstname">
+                            First name
+                        </label>
+                        <input class="register__form__input" type="text" name="firstname" id="firstname">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="lastname">
+                            Last name
+                        </label>
+                        <input class="register__form__input" type="text" name="lastname" id="lastname">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="email">
+                            E-mail
+                        </label>
+                        <input class="register__form__input" type="email" name="email" id="email">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="password">
+                            Password
+                        </label>
+                        <input class="register__form__input" type="password" name="password" id="password" minlength="8">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <button class="btn librarycard__info__btn btn-submit-register" type="submit">Sign Up</button>
+                </form>
+                <footer class="register__form__footer">
+                    <p class="register__form__text">
+                        Already have an account?
+                    </p>
+                    <button class="footer__btn footer__btn-login">
+                        Login
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- /register -->
+
+    <!-- login -->
+    <div class="modal__background modal__login">
+        <div class="modal">
+            <div class="modal__content login">
+                <h3 class="modals__title">
+                    Login
+                </h3>
+                <button class="modals__close login__close">
+                    <span class="modals__close__line"></span>
+                    <span class="modals__close__line"></span>
+                </button>
+                <form class="modal__form login__form" novalidate>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="login_user">
+                            E-mail or readers card
+                        </label>
+                        <input class="register__form__input" type="text" name="login_user" id="login_user">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <div class="register__form__item">
+                        <label class="register__form__label" for="password">
+                            Password
+                        </label>
+                        <input class="register__form__input" type="password" name="login_password" id="login_password" minlength="8">
+                        <div class="register__form__message"></div>
+                    </div>
+                    <button class="btn librarycard__info__btn btn-submit-login" type="submit">Log In</button>
+                </form>
+                <footer class="register__form__footer">
+                    <p class="register__form__text">
+                        Don’t have an account?
+                    </p>
+                    <button class="footer__btn footer__btn-register">
+                        Register
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- /login -->
+
+    <!-- my profile -->
+    <div class="modal__background modal__myprofile">
+        <div class="modal">
+            <div class="modal__content myprofile">
+                <aside class="myprofile__aside">
+                    <div class="myprofile__aside__item">
+                        <div class="myprofile__aside__initials">
+                        </div>
+                    </div>
+                    <div class="myprofile__aside__item">
+                        <div class="myprofile__aside__username">
+                        </div>
+                    </div>
+                </aside>
+                <main class="myprofile__main">
+                    <h2 class="myprofile__title">
+                        My profile
+                    </h2>
+                    <button class="myprofile__close">
+                        <span class="modals__close__line"></span>
+                        <span class="modals__close__line"></span>
+                    </button>
+                    <ul class="myprofile__user__info">
+                        <li class="myprofile__user__info__item">
+                            <h3 class="myprofile__user__info__title">
+                                visits
+                            </h3>
+                            <img class="librarycard__user__info__ico" src="./images/library_card/Union.svg" alt="visits ico" width="20px" height="21px">
+                            <p class="myprofile__user__info__details"></p>
+                        </li>
+                        <li class="myprofile__user__info__item">
+                            <h3 class="myprofile__user__info__title">
+                                bonuses
+                            </h3>
+                            <img class="librarycard__user__info__ico" src="./images/library_card/Star 1.svg" alt="bonuses ico" width="20px" height="21px">
+                            <p class="myprofile__user__info__details"></p>
+                        </li>
+                        <li class="myprofile__user__info__item">
+                            <h3 class="myprofile__user__info__title">
+                                Books
+                            </h3>
+                            <img class="librarycard__user__info__ico" src="./images/library_card/book.svg" alt="books ico" width="20px" height="21px">
+                            <p class="myprofile__user__info__details"></p>
+                        </li>
+                    </ul>
+                    <p class="myprofile__books">
+                        Rented books
+                    </p>
+                    <div class="myprofile__books__window">
+                        <ul class="myprofile__books__list">
+                            <li class="myprofile__books__list__item">
+                                You don't have any books
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="myprofile__cardnumber">
+                        <span class="myprofile__cardnumber__text">
+                            Card number
+                        </span>
+                        <span class="myprofile__cardnumber__number">
+                        </span>
+                        <button class="myprofile__btn-copy">
+                            <svg class="myprofile__copy__ico" xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
+                                <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
+                                <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <!-- /my profile -->
+
+    <!-- buy librarycard -->
+    <div class="modal__background modal__buycard">
+        <div class="modal">
+            <div class="modal__content buycard">
+                <header class="buycard__header">
+                    <h2 class="buycard__title">
+                        Buy a library card
+                    </h2>
+                    <button class="buycard__close login__close">
+                        <span class="buycard__close__line"></span>
+                        <span class="buycard__close__line"></span>
+                    </button>
+                </header>
+                <main class="buycard__main">
+                    <div class="buycard__bankcard">
+                        <form class="modal__form buycard__form" novalidate>
+                            <div class="register__form__item">
+                                <label class="register__form__label" for="bankcard_number">
+                                    Bank card number
+                                </label>
+                                <input class="register__form__input" type="text" name="bankcard_number" id="bankcard_number">
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="register__form__item">
+                                <label class="register__form__label">
+                                    Expiration code
+                                </label>
+                                <div class="register__form__bankcardcode">
+                                    <div class="register__form__bankcardcode__item">
+                                        <input class="register__form__input" type="text" name="bankcard_code1" id="bankcard_code1" minlength="2" maxlength="2">
+                                        <div class="register__form__message"></div>
+                                    </div>
+                                    <div class="register__form__bankcardcode__item">
+                                        <input class="register__form__input" type="text" name="bankcard_code2" id="bankcard_code2" minlength="2" maxlength="2">
+                                        <div class="register__form__message"></div>
+                                    </div>
+                                </div>
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="register__form__item">
+                                <label class="register__form__label" for="bankcard_cvc">
+                                    CVC
+                                </label>
+                                <input class="register__form__input register__form__cvc" type="text"name="bankcard_cvc" id="bankcard_cvc" minlength="3" maxlength="3">
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="register__form__item">
+                                <label class="register__form__label" for="bankcard_username">
+                                    Cardholder name
+                                </label>
+                                <input class="register__form__input" type="text" name="bankcard_username" id="bankcard_username">
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="register__form__item">
+                                <label class="register__form__label" for="bankcard_postalcode">
+                                    Postal code
+                                </label>
+                                <input class="register__form__input" type="text" name="bankcard_postalcode" id="bankcard_postalcode">
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="register__form__item">
+                                <label class="register__form__label" for="bankcard_city">
+                                    City / Town
+                                </label>
+                                <input class="register__form__input" type="text" name="bankcard_city" id="bankcard_city">
+                                <div class="register__form__message"></div>
+                            </div>
+                            <div class="buycard__form__footer">
+                                <button class="btn btn-submit-buycard" type="submit">
+                                    Buy
+                                </button>
+                                <span class="buycard__form__price">$ 25.00</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="buycard__description">
+                        If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <!-- /buy librarycard -->
+    <!-- /modals -->
 </body>
 </html>
