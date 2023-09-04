@@ -253,10 +253,10 @@ function getBook(item) {
 
 function addBookToUser(item) {
     const newBook = getBook(item);
-    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const itemLocalStorage = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === currentUser.userId);
     userInLocalStorage.bonusesCount += 325;
     userInLocalStorage.userBooks.push(newBook);
-    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+    localStorage.setItem('LHuser', JSON.stringify(itemLocalStorage));
     currentUser = userInLocalStorage;
 }

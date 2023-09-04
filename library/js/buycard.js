@@ -108,7 +108,7 @@ function formatBankcardCode(element) {
 }
 
 function formatBankcardCvc(element) {
-    element.value = element.value.replace(/(\D)/g, '');
+    element.value = element.value.replace(/\D/g, '');
 }
 
 function formatBuycardElement(element) {

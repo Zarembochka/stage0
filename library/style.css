@@ -1455,7 +1455,7 @@ body {
 }
 
 .myprofile__books__list__item {
-    width: 322px;
+    width: 342px;
     margin-bottom: 10px;
     letter-spacing: 2px;
     text-transform: capitalize;
@@ -1616,6 +1616,11 @@ body {
     .header__profile:hover .header__icon {
         fill: #BB945F;
         transition: fill 0.2s linear;
+    }
+
+    .burger-btn:hover .burger__menu__line {
+        background-color: #BB945F;
+        transition: background-color 0.2s linear;
     }
 
     .profile__btn:hover {

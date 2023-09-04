@@ -3,6 +3,8 @@ console.log("Общая оценка - 50: \n 1. Вёрстка соответс
 const checkCardBtn = document.querySelector('.btn-checkCard');
 const libraryCard = document.querySelector('.librarycard__form');
 
+libraryCard.addEventListener('input', formatLibrarycard);
+
 function getUserInitials(user) {
     const firstInitial = user.firstName[0].toUpperCase();
     const lastInitial = user.lastName[0].toUpperCase();
@@ -162,6 +164,7 @@ function hideUserInfo() {
     const userInfo = document.querySelector('.librarycard__user__info');
     userInfo.classList.remove('librarycard__user__info-active');
     clearForm(libraryCard, '.librarycard__form__input', '');
+    showButton(checkCardBtn);
 }
 
 function showUserInfo(user) {
@@ -193,11 +196,11 @@ function showIncorrectMessage() {
 }
 
 function findUserByLibraryCard(cardNumber) {
-    const arrayLibraryCards = JSON.parse(localStorage.getItem('emailToken'));
+    const arrayLibraryCards = JSON.parse(localStorage.getItem('LHemailToken'));
     if (arrayLibraryCards) {
         const userId = arrayLibraryCards.find((element) => element.cardnumber === cardNumber);
         if (userId) {
-            const arrayUsers = JSON.parse(localStorage.getItem('user'));
+            const arrayUsers = JSON.parse(localStorage.getItem('LHuser'));
             const userByUserId = arrayUsers.find((element) => element.userId === userId.cardnumber);
             return userByUserId;
         }
@@ -205,11 +208,11 @@ function findUserByLibraryCard(cardNumber) {
 }
 
 function findUserByEmail(email) {
-    const arrayEmails = JSON.parse(localStorage.getItem('emailToken'));
+    const arrayEmails = JSON.parse(localStorage.getItem('LHemailToken'));
     if (arrayEmails) {
         const userId = arrayEmails.find((element) => element.email.toUpperCase() === email);
         if (userId) {
-            const arrayUsers = JSON.parse(localStorage.getItem('user'));
+            const arrayUsers = JSON.parse(localStorage.getItem('LHuser'));
             const userByUserId = arrayUsers.find((element) => element.userId === userId.cardnumber);
             return userByUserId;
         }
@@ -296,7 +299,6 @@ function prepareBookList(form, user) {
         const newLiItem = liItem.cloneNode(false);
         const bookTitle = `${arrayUserBooks[i - 1].title}, ${arrayUserBooks[i - 1].author}`;
         newLiItem.innerText = bookTitle;
-        // newLiItem.innerText = `${arrayUserBooks[i - 1].title}, ${arrayUserBooks[i - 1].author}`;
         liItem.before(newLiItem);
     }
 
@@ -318,7 +320,6 @@ function prepareMyprofileForm(form, user) {
     username.innerText = getUserUsername(user);
 
     const userInfo = form.querySelectorAll('.myprofile__user__info__details');
-    // const userFromLocalStorage = getUserFromLocalStorage(user);
     userInfo[0].textContent = user.visitsCount;
     userInfo[1].textContent = user.bonusesCount;
     userInfo[2].textContent = user.userBooks.length;
@@ -328,3 +329,28 @@ function prepareMyprofileForm(form, user) {
     const cardNumber = form.querySelector('.myprofile__cardnumber__number');
     cardNumber.innerText = user.cardNumber;
 }
+
+function formatLibrarycardUsername(element) {
+    element.value = element.value.replace(/[^0-9a-zA-Z- ]/g, '');
+}
+
+function formatLibrarycardCardnumber(element) {
+    element.value = element.value.replace(/[^0-9a-zA-Z]/g, '');
+    element.value = element.value.toUpperCase();
+}
+
+function formatLibrarycardElement(element) {
+    if (element.name === 'user_name') {
+        return formatLibrarycardUsername(element);
+    }
+
+    if (element.name === 'card_number') {
+        return formatLibrarycardCardnumber(element);
+    }
+};
+
+
+function formatLibrarycard(event) {
+    const element = event.target;
+    formatLibrarycardElement(element);
+};

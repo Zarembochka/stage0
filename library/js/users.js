@@ -132,31 +132,31 @@ function saveInfoToLocalStorage(itemName, item) {
 }
 
 function addVisitToUser(user) {
-    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const itemLocalStorage = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
     userInLocalStorage.visitsCount += 1;
-    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+    localStorage.setItem('LHuser', JSON.stringify(itemLocalStorage));
     currentUser = userInLocalStorage;
 }
 
 function addLibraryCardToUser(user) {
-    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const itemLocalStorage = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
     userInLocalStorage.bonusesCount += 350;
     userInLocalStorage.isLibraryCard = true;
     currentUser = userInLocalStorage;
-    localStorage.setItem('user', JSON.stringify(itemLocalStorage));
+    localStorage.setItem('LHuser', JSON.stringify(itemLocalStorage));
 }
 
 function saveActiveUser(user, value) {
-    const users = JSON.parse(localStorage.getItem('user'));
+    const users = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = users.find((element) => element.userId === user.userId);
     userInLocalStorage.isActive = value;
-    localStorage.setItem('user', JSON.stringify(users));
+    localStorage.setItem('LHuser', JSON.stringify(users));
 }
 
 function saveEmailToken(token) {
-    saveInfoToLocalStorage('emailToken', token);
+    saveInfoToLocalStorage('LHemailToken', token);
 }
 
 function createEmailToken(email, cardnumber) {
@@ -167,11 +167,11 @@ function createEmailToken(email, cardnumber) {
 }
 
 function saveUserInfo(user) {
-    saveInfoToLocalStorage('user', user);
+    saveInfoToLocalStorage('LHuser', user);
 }
 
 function getUserFromLocalStorage(user) {
-    const users = JSON.parse(localStorage.getItem('user'));
+    const users = JSON.parse(localStorage.getItem('LHuser'));
     return users.find((element) => element.userId === user.userId);
 }
 
@@ -195,7 +195,6 @@ function createNewUser() {
     const newUser = createUser();
     saveUserInfo(newUser);
     createEmailToken(newUser.email, newUser.cardNumber);
-    //createCardNumberToken(newUser.cardNumber, newUser.userId);
     return newUser;
 }
 
@@ -267,7 +266,7 @@ logoutBtn.addEventListener('click', (event) => {
 });
 
 function findActiveUser() {
-    const itemLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const itemLocalStorage = JSON.parse(localStorage.getItem('LHuser'));
     if (itemLocalStorage) {
         const userInLocalStorage = itemLocalStorage.find((element) => element.isActive === true);
         if (userInLocalStorage) {
