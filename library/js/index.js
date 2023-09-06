@@ -3,6 +3,8 @@ console.log("Общая оценка - 50: \n 1. Вёрстка соответс
 const checkCardBtn = document.querySelector('.btn-checkCard');
 const libraryCard = document.querySelector('.librarycard__form');
 
+let timeout;
+
 libraryCard.addEventListener('input', formatLibrarycard);
 
 function getUserInitials(user) {
@@ -228,9 +230,14 @@ function checkLibraryCard() {
         if (userNameByLibraryCard === username) {
             hideButton(checkCardBtn);
             showUserInfo(userByLibraryCard);
-            window.setTimeout(hideUserInfo, 10000);
+            timeout = window.setTimeout(hideUserInfo, 10000);
         }
     }
+}
+
+function clearLibrarycardTimeout() {
+    clearTimeout(timeout);
+    hideUserInfo();
 }
 
 function checkEmailToLogin(login) {
