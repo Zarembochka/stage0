@@ -19,8 +19,6 @@ const copyBtn = document.querySelector('.myprofile__btn-copy');
 const footerLoginBtn = document.querySelector('.footer__btn-login');
 const footerRegisterBtn = document.querySelector('.footer__btn-register');
 
-let isCurrentUser = false;
-
 function calcRightPadding() {
     return window.innerWidth - document.body.clientWidth + 'px';
 }
@@ -51,6 +49,7 @@ function hideModal(form) {
 
 signinBtn.forEach((element) => {
     element.addEventListener('click', function() {
+        clearLibrarycardTimeout();
         showModal(modalRegister);
     });
     element.addEventListener('click', (event) => {
@@ -84,6 +83,7 @@ footerRegisterBtn.addEventListener('click', function(event) {
 loginBtn.forEach((element) => {
     const modalForm = document.querySelector('.modal__login');
     element.addEventListener('click', function() {
+        clearLibrarycardTimeout();
         showModal(modalForm);
     });
     element.addEventListener('click', (event) => {
