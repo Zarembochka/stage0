@@ -214,7 +214,6 @@ function clearForm(form, nameElements, nameClass) {
 
 function activateUser(user) {
     currentUser = user;
-    isCurrentUser = true;
     changeInitialsForLogin(user);
     changeTitleForProfileLogin(user);
     saveActiveUser(user, true);
