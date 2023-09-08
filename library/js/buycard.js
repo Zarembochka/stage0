@@ -125,9 +125,28 @@ function formatBuycardElement(element) {
     }
 };
 
+function checkLengthOfInputs(form, inputs) {
+    const formInputs = buycardForm.querySelectorAll(inputs);
+    for (let i = 0; i < formInputs.length; i++) {
+        if (formInputs[i].value.length === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkAvailabilityButtonBuy() {
+    if (checkLengthOfInputs(buycardForm, '.register__form__input')) {
+        buycardBtn.removeAttribute('disabled');
+    } else {
+        buycardBtn.setAttribute('disabled', true);
+    }
+}
+
 function formatBuycard(event) {
     const element = event.target;
     formatBuycardElement(element);
+    checkAvailabilityButtonBuy();
 };
 
 buycardBtn.addEventListener('click', (event) => {
