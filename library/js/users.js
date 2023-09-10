@@ -135,6 +135,7 @@ function addVisitToUser(user) {
     const itemLocalStorage = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = itemLocalStorage.find((element) => element.userId === user.userId);
     userInLocalStorage.visitsCount += 1;
+    user.visitsCount += 1;
     localStorage.setItem('LHuser', JSON.stringify(itemLocalStorage));
     currentUser = userInLocalStorage;
 }
@@ -152,6 +153,7 @@ function saveActiveUser(user, value) {
     const users = JSON.parse(localStorage.getItem('LHuser'));
     const userInLocalStorage = users.find((element) => element.userId === user.userId);
     userInLocalStorage.isActive = value;
+    userInLocalStorage.visitsCount = user.visitsCount;
     localStorage.setItem('LHuser', JSON.stringify(users));
 }
 
@@ -236,8 +238,8 @@ registerSignInBtn.addEventListener('click', (event) => {
     if (checkValidationForm(modalRegister, '.register__form__input')) {
         event._isClickOnTheButtonSubmit = true;
         const activeUser = createNewUser();
-        activateUser(activeUser);
         addVisitToUser(activeUser);
+        activateUser(activeUser);
         clearForm(modalRegister, '.register__form__input', 'register__form__input');
         hideModal(modalRegister);
     }
@@ -249,8 +251,8 @@ registerLoginBtn.addEventListener('click', (event) => {
         const activeUser = loginUser();
         if (activeUser) {
             event._isClickOnTheButtonSubmit = true;
-            activateUser(activeUser);
             addVisitToUser(activeUser);
+            activateUser(activeUser);
             clearForm(modalLogin, '.register__form__input', 'register__form__input');
             hideModal(modalLogin);
             loadBooks(currentSeason);

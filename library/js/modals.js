@@ -95,6 +95,7 @@ function checkButtonsBuy(event) {
     if (currentUser && currentUser.isLibraryCard) {
         addBookToUser(event.target.offsetParent);
         changeButtonBuyToOwn(event.target);
+        showUserInfo(currentUser);
         return;
     }
     if (currentUser) {
