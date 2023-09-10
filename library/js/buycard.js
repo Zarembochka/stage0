@@ -154,6 +154,7 @@ buycardBtn.addEventListener('click', (event) => {
     if (checkValidationBuycardForm(buycardForm, '.register__form__input')) {
         event._isClickOnTheButtonSubmit = true;
         addLibraryCardToUser(currentUser);
+        showUserInfo(currentUser);
         clearForm(buycardForm, '.register__form__input', 'register__form__input');
         hideModal(buycardForm);
     }
