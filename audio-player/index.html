@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Audio-player</title>
 </head>
@@ -17,17 +20,50 @@
                     </div>
                 </aside>
                 <main class="main">
+                    <div class="main__controls">
+                        <span>Управление</span>
+                        <div class="main__controls__inner">
+                            <button class="main__controls__btn btn-previous">
+                                <img src="./images/prev.png" alt="previous track logo">
+                            </button>
+                            <button class="main__controls__btn btn-play">
+                                <img src="./images/play.png" alt="play track logo">
+                            </button>
+                            <button class="main__controls__btn btn-next">
+                                <img src="./images/next.png" alt="next track logo">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="main__properties">
+                        <div class="main__properties__item">
+                            <label for="volume">Громкость</label>
+                            <input class="property volume" type="range" id="volume" value="30" min="0" max="100" step="1">
+                        </div>
+                        <div class="main__properties__item">
+                            <label for="volume">Яркость</label>
+                            <input class="property brightness" type="range" value="0" min="-50" max="50" step="1">
+                        </div>
+                    </div>
+                    <div class="main__speaker">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
                     <div class="main__power">
                         <button class="main__power__btn">
                             <span class="main__power__onoff">
                             </span>
                         </button>
                     </div>
-                    <footer class="footer">
-
-                    </footer>
                 </main>
             </div>
+            <footer class="footer">
+
+            </footer>
         </div>
     </div>
 </body>
