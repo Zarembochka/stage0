@@ -32,6 +32,12 @@ const btnPlayPause = document.querySelector('.btn-play');
 const tvScreenPart = document.querySelectorAll('.tv__screen__part');
 const tvScreenImage = document.querySelector('.tv__screen__image');
 
+const description = document.querySelector('.tv__screen__description');
+const title = document.querySelector('.track__title');
+const singer = document.querySelector('.track__singer');
+const author = document.querySelector('.track__author');
+const composer = document.querySelector('.track__composer');
+
 const audio = new Audio();
 
 let isPower = false;
@@ -119,10 +125,27 @@ function removeCountToImage() {
     }
 }
 
+function changeImageDescription() {
+    title.textContent = audioItems[activeImage].title;
+    singer.textContent = audioItems[activeImage].singer;
+    author.textContent = audioItems[activeImage].author;
+    composer.textContent = audioItems[activeImage].composer;
+}
+
+function hideDescription() {
+    description.classList.remove('tv__screen__description-show');
+}
+
+function showDescription() {
+    description.classList.add('tv__screen__description-show');
+}
+
 function showNextImage() {
-    imageRemoveFadeOut() ;
+    imageRemoveFadeOut();
     tvScreenImage.src = audioItems[activeImage].image;
     tvScreenImage.classList.add('tv__screen__image-fadein');
+    changeImageDescription();
+    showDescription();
     playNextTrack();
 }
 
@@ -155,11 +178,17 @@ function imageFadeOut() {
 function nextTrack() {
     addCountToImage();
     imageFadeOut();
+    hideDescription();
 }
 
 function previousTrack() {
     removeCountToImage();
     imageFadeOut();
+    hideDescription();
+}
+
+function changeScreen() {
+    tvScreenImage.src = "https://cdn.ebaumsworld.com/mediaFiles/picture/566750/85829554.gif";
 }
 
 function powerOn() {
@@ -178,6 +207,8 @@ function powerOff() {
     tvScreenImage.classList.remove('tv__screen__image-hide');
     window.clearTimeout(timeOutWhiteFade);
     stopPlay();
+    hideDescription();
+    changeScreen();
 }
 
 function powerOnOff() {
