@@ -11,12 +11,15 @@
     <title>Audio-player</title>
 </head>
 <body>
+    <script src="index.js" defer></script>
     <div class="container">
         <div class="tvbox">
             <div class="tv">
                 <aside class="tv__box">
                     <div class="tv__screen">
-
+                        <img class="tv__screen__image" src="https://cdn.ebaumsworld.com/mediaFiles/picture/566750/85829554.gif" alt="not working tv image">
+                        <div class="tv__screen__part tv__screen__part1"></div>
+                        <div class="tv__screen__part tv__screen__part2"></div>
                     </div>
                 </aside>
                 <main class="main">
@@ -24,17 +27,21 @@
                         <span>Управление</span>
                         <div class="main__controls__inner">
                             <button class="main__controls__btn btn-previous">
-                                <img src="./images/prev.png" alt="previous track logo">
+                                <img class="main__controls__ico" src="./images/prev.png" alt="previous track logo">
                             </button>
                             <button class="main__controls__btn btn-play">
-                                <img src="./images/play.png" alt="play track logo">
+                                <img class="main__controls__ico" src="./images/play.png" alt="play track logo">
                             </button>
                             <button class="main__controls__btn btn-next">
-                                <img src="./images/next.png" alt="next track logo">
+                                <img class="main__controls__ico" src="./images/next.png" alt="next track logo">
                             </button>
                         </div>
                     </div>
                     <div class="main__properties">
+                        <div class="main__properties__item">
+                            <label for="length">Перемотка</label>
+                            <input class="property length" type="range" id="length" value="0" min="0" max="100" step="1">
+                        </div>
                         <div class="main__properties__item">
                             <label for="volume">Громкость</label>
                             <input class="property volume" type="range" id="volume" value="30" min="0" max="100" step="1">
@@ -50,7 +57,7 @@
                             <li></li>
                             <li></li>
                             <li></li>
-                            <li></li>
+                            <!-- <li></li> -->
                         </ul>
                     </div>
                     <div class="main__power">
