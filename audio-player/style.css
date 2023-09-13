@@ -142,6 +142,13 @@ body {
     padding: 0;
     box-shadow: 1px 2px 8px 1px rgba(66, 68, 90, 1);
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.main__controls__btn-pause {
+    background-color: rgb(191, 33, 44);
+    border: 2px solid rgb(153, 32, 40);
+    box-shadow: 1px 2px 8px 1px rgb(192, 60, 60);
 }
 
 .main__controls__ico {
@@ -169,6 +176,7 @@ body {
     height: 10px;
     border-radius: 5px;
     outline: none;
+    appearance: none;
     -webkit-appearance: none;
 }
 

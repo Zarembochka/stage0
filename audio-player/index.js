@@ -11,7 +11,7 @@ const audioItems = [
     title: 'Марш высотников',
     author: 'Владимир Котов',
     composer: 'Родион Щедрин',
-    src: '',
+    src: 'https://3fc4ed44-3fbc-419a-97a1-a29742511391.selcdn.net/coub_storage/coub/simple/cw_looped_audio_med/610ef0b73ba/bb2c503b79e0bd1a5dcdc/1690396593_mp3-med.mp3',
     image: 'https://i1.sndcdn.com/artworks-vZXnIRoMFS4t2MHk-wU576Q-t500x500.jpg',
     },
 
@@ -19,7 +19,7 @@ const audioItems = [
     title: 'Ghostbusters',
     author: 'Рей Паркер-младший',
     composer: 'Рей Паркер-младший',
-    src: '',
+    src: 'https://3fc4ed44-3fbc-419a-97a1-a29742511391.selcdn.net/coub_storage/coub/simple/cw_looped_audio_med/d4e2dbaf219/c8b04bbc72151aafd1c50/1689772258_mp3-med.mp3',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJ9xa8zEKPmTp-qefv2pLfLPUzDW_hz09Kg&usqp=CAU',
     },
 ]
@@ -44,10 +44,41 @@ let timeOutWhiteFade;
 let activeImage;
 
 
+function changeIcoForPause() {
+    const ico = btnPlayPause.firstElementChild;
+    ico.src = './images/pause.png';
+    ico.alt = 'pause track logo';
+}
+
+function changeIcoForPlay() {
+    const ico = btnPlayPause.firstElementChild;
+    ico.src = './images/play.png';
+    ico.alt = 'play track logo';
+}
+
+function changeBtnForPause() {
+    btnPlayPause.classList.add('main__controls__btn-pause');
+}
+
+function changeBtnForPlay() {
+    btnPlayPause.classList.remove('main__controls__btn-pause');
+}
+
 function pause() {
     audio.pause();
     currentTime = audio.currentTime;
     isPlayed = false;
+    changeBtnForPause();
+    changeIcoForPause();
+}
+
+function playAudio() {
+    audio.src = audioItems[activeImage].src;
+    audio.currentTime = currentTime || 0;
+    audio.play();
+    isPlayed = true;
+    changeBtnForPlay();
+    changeIcoForPlay();
 }
 
 function play() {
@@ -55,10 +86,23 @@ function play() {
         pause();
         return;
     }
-    audio.src = audioItems[activeImage].src;
-    audio.currentTime = currentTime || 0;
-    audio.play();
-    isPlayed = true;
+    playAudio();
+}
+
+function playNextTrack() {
+    currentTime = 0;
+    playAudio();
+}
+
+function stopPlay() {
+    if (isPlayed) {
+        audio.pause();
+        currentTime = 0;
+        isPlayed = false;
+        return;
+    }
+    changeBtnForPlay();
+    changeIcoForPlay();
 }
 
 function addCountToImage() {
@@ -79,8 +123,7 @@ function showNextImage() {
     imageRemoveFadeOut() ;
     tvScreenImage.src = audioItems[activeImage].image;
     tvScreenImage.classList.add('tv__screen__image-fadein');
-    play();
-    isPlayed = true;
+    playNextTrack();
 }
 
 function checkAnimation(event) {
@@ -134,6 +177,7 @@ function powerOff() {
     });
     tvScreenImage.classList.remove('tv__screen__image-hide');
     window.clearTimeout(timeOutWhiteFade);
+    stopPlay();
 }
 
 function powerOnOff() {
