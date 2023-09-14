@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Audio-player</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <title>Retro TV</title>
 </head>
 <body>
     <script src="index.js" defer></script>
@@ -60,6 +61,8 @@
                             <div class="main__properties__item">
                                 <label for="length">Перемотка</label>
                                 <input class="property length" type="range" id="length" value="0" min="0" max="100" step="1">
+                                <span class="track__currentTime"></span>
+                                <span class="track__length"></span>
                             </div>
                             <div class="main__properties__item">
                                 <label for="volume">Громкость</label>
@@ -70,34 +73,29 @@
                                 <input class="property brightness" type="range" value="0" min="-50" max="50" step="1">
                             </div>
                         </div>
-                        <div class="main__speaker">
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <!-- <li></li> -->
-                            </ul>
-                        </div>
                         <div class="main__power">
                             <button class="main__power__btn">
                                 <span class="main__power__onoff">
                                 </span>
                             </button>
                         </div>
+                        <footer class="footer">
+                            <div class="footer__item">
+                                <a class="footer__link" href="https://rs.school/js-stage0/" target="_blank">
+                                    <img class="footer__logo" src="./images/rs_school_js.svg" alt="RS school logo">
+                                </a>
+                            </div>
+                            <div class="footer__item">
+                                2023
+                            </div>
+                            <div class="footer__item">
+                                <a class="footer__link" href="https://github.com/Zarembochka" target="_blank">
+                                    <img class="github__logo" src="./images/github.svg" alt="github logo">
+                                </a>
+                            </div>
+                        </footer>
                     </main>
                 </div>
-                <footer class="footer">
-                    <div class="footer__item">
-                        <img class="footer__logo" src="./images/rs_school_js.svg" alt="RS school logo">
-                    </div>
-                    <div class="footer__item">
-                        
-                    </div>
-                    <div class="footer__item">
-                        
-                    </div>
-                </footer>
             </div>
         </div>
     </div>

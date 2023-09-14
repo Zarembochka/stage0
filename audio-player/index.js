@@ -38,6 +38,11 @@ const singer = document.querySelector('.track__singer');
 const author = document.querySelector('.track__author');
 const composer = document.querySelector('.track__composer');
 
+const trackLength = document.querySelector('.track__length');
+const trackCurrentTime = document.querySelector('.track__currentTime');
+
+const rangeLength = document.querySelector('.length');
+
 const audio = new Audio();
 
 let isPower = false;
@@ -46,6 +51,7 @@ let isPlayed = false;
 let currentTime;
 
 let timeOutWhiteFade;
+let timeOutCurrentTime;
 // let timeOutWhiteHide;
 let activeImage;
 
@@ -90,6 +96,7 @@ function playAudio() {
     audio.src = audioItems[activeImage].src;
     audio.currentTime = currentTime || 0;
     audio.play();
+    console.log();
     isPlayed = true;
     changeBtnForPlay();
     changeIcoForPlay();
@@ -113,6 +120,7 @@ function stopPlay() {
         audio.pause();
         currentTime = 0;
         isPlayed = false;
+        activeImage = undefined;
         return;
     }
     changeBtnForPlay();
@@ -184,15 +192,20 @@ function imageFadeOut() {
 }
 
 function nextTrack() {
-    addCountToImage();
-    imageFadeOut();
-    hideDescription();
+    if (isPower) {
+        addCountToImage();
+        imageFadeOut();
+        hideDescription();
+        clearInterval(timeOutCurrentTime);
+    }
 }
 
 function previousTrack() {
-    removeCountToImage();
-    imageFadeOut();
-    hideDescription();
+    if (isPower) {
+        removeCountToImage();
+        imageFadeOut();
+        hideDescription();
+    }
 }
 
 function changeScreen() {
@@ -207,16 +220,23 @@ function powerOn() {
     timeOutWhiteFade = window.setTimeout(imageFadeOut, 1000);
 }
 
+function clearIntervals() {
+    clearTimeout(timeOutWhiteFade);
+    clearInterval(timeOutCurrentTime);
+}
+
 function powerOff() {
     changeBtnPowerForOff();
     tvScreenPart.forEach(element => {
         element.classList.remove('tv__screen__part-on');
     });
     tvScreenImage.classList.remove('tv__screen__image-hide');
-    window.clearTimeout(timeOutWhiteFade);
+    clearIntervals();
     stopPlay();
     hideDescription();
     changeScreen();
+    clearTrackLenth();
+    clearTrackCurrentTime();
 }
 
 function powerOnOff() {
@@ -238,3 +258,50 @@ btnNext.addEventListener('click', nextTrack);
 btnPrevious.addEventListener('click', previousTrack);
 
 btnPlayPause.addEventListener('click', play);
+
+audio.addEventListener('loadeddata', getTrackLength);
+
+audio.addEventListener('ended', nextTrack);
+
+audio.addEventListener('play', getCurrentTimeTrack);
+
+function getTrackLength() {
+   changeTrackLength(audio.duration);
+   startTrackCurrentTime();
+}
+
+function getCurrentTimeTrack() {
+    timeOutCurrentTime = setInterval(changeTrackCurrentTime, 500);
+}
+
+function changeTrackLength(length) {
+    trackLength.textContent = returnLengthInFormat(length);
+}
+
+function startTrackCurrentTime() {
+    trackCurrentTime.textContent = '0:00';
+}
+
+function changeTrackCurrentTime() {
+    trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
+    rangeLength.value = getRangeLength(audio.currentTime);
+}
+
+function getRangeLength(length) {
+    return Math.round(length / audio.duration * 100);
+}
+
+function returnLengthInFormat(length) {
+    const minutes = Math.floor(length / 60);
+    const seconds = (Math.round(length % 60)).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+}
+
+function clearTrackLenth() {
+    trackLength.textContent = '';
+}
+
+function clearTrackCurrentTime() {
+    trackCurrentTime.textContent = '';
+    rangeLength.value = 0;
+}
