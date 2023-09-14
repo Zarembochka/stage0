@@ -70,6 +70,14 @@ function changeBtnForPlay() {
     btnPlayPause.classList.remove('main__controls__btn-pause');
 }
 
+function changeBtnPowerForOn() {
+    btnPower.classList.add('main__power-on');
+}
+
+function changeBtnPowerForOff() {
+    btnPower.classList.remove('main__power-on');
+}
+
 function pause() {
     audio.pause();
     currentTime = audio.currentTime;
@@ -192,7 +200,7 @@ function changeScreen() {
 }
 
 function powerOn() {
-    btnPower.classList.add('main__power-on');
+    changeBtnPowerForOn();
     tvScreenPart.forEach(element => {
         element.classList.add('tv__screen__part-on');
     });
@@ -200,7 +208,7 @@ function powerOn() {
 }
 
 function powerOff() {
-    btnPower.classList.remove('main__power-on');
+    changeBtnPowerForOff();
     tvScreenPart.forEach(element => {
         element.classList.remove('tv__screen__part-on');
     });

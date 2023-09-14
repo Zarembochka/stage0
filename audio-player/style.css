@@ -16,25 +16,34 @@ body {
 
 .tvbox {
     width: 100%;
-    height: 700px;
+    height: 800px;
     background: black;
     border: 10px solid rgb(83, 86, 86);
     border-radius: 30px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     margin: 0 auto;
     font-family: 'Marck Script', cursive;
 }
 
 .tv {
     width: 100%;
-    height: 95%;
-    border-radius: 25px 25px 0 0;
+    height: 100%;
+    border-radius: 25px;
     background: rgb(151, 148, 144);
     padding: 20px;
+    /* padding-bottom: 70px; */
     display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.tv__inner {
+    display: flex;
+    flex-direction: row;
     column-gap: 20px;
+    height: 87%;
 }
 
 .tv__box {
@@ -237,7 +246,7 @@ body {
     height: 100px;
     border-radius: 50%;
     background: rgb(167, 167, 165);
-    outline: 3px solid rgb(53, 55, 55);
+    border: 3px solid rgb(53, 55, 55);
     margin: 0 auto;
     padding: 20px;
     cursor: pointer;
@@ -251,14 +260,14 @@ body {
     border: 3px solid rgb(53, 55, 55);
     background: rgb(167, 167, 165);
     position: relative;
-    box-shadow: 1px 8px 24px 3px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 12px 3px rgba(66, 68, 90, 1);
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: box-shadow 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 .main__power.main__power-on .main__power__btn {
     transform: rotate(90deg);
-    /* transition: transform 0.3s ease-in-out; */
 }
 
 .main__power__onoff {
@@ -267,17 +276,61 @@ body {
     top: 50%;
     width: 90%;
     height: 5%;
-    background: #C50F1C;
+    background-color: #C50F1C;
     outline: 3px solid rgb(53, 55, 55);
     transform: rotate(-45deg);
-    box-shadow: 1px 8px 24px 3px rgba(66, 68, 90, 1);
+    box-shadow: 1px 1px 12px 3px rgba(66, 68, 90, 1);
+    transition: box-shadow 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.main__power.main__power-on {
+    border: 3px solid rgb(96, 99, 99);
+}
+
+.main__power.main__power-on .main__power__onoff {
+    background-color: #f30313;
+    box-shadow: 1px 1px 18px 6px rgb(241, 19, 19);
+    outline: 3px solid rgb(96, 99, 99);
+}
+
+.main__power.main__power-on .main__power__btn {
+    box-shadow: 1px 1px 18px 6px rgb(241, 19, 19);
+    border: 3px solid rgb(96, 99, 99);
 }
 
 .footer {
     width: 100%;
-    height: 40px;
-    background-color: rgb(101, 67, 33);
-    border-radius: 0 0 15px 15px;
+    height: 70px;
+    background: #e7ccb5;
+    border: 5px solid rgb(101, 67, 33);
+    outline: 2px solid rgb(43, 28, 13);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.footer__logo {
+    height: 50px;
+    width: 70px;
+}
+
+@media (hover: hover) {
+    .main__power:hover .main__power__btn {
+        background-color: rgb(187, 187, 183);
+    }
+
+    .main__power:hover {
+        background-color: rgb(187, 187, 183);
+    }
+
+    .main__power:active .main__power__btn {
+        border: 3px solid rgb(96, 99, 99);
+    }
+
+    .main__power:active  {
+        box-shadow: 1px 1px 18px 3px rgb(241, 19, 19);
+    }
 }
 
 @keyframes power-on {
