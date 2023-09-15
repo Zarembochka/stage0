@@ -96,7 +96,6 @@ function playAudio() {
     audio.src = audioItems[activeImage].src;
     audio.currentTime = currentTime || 0;
     audio.play();
-    console.log();
     isPlayed = true;
     changeBtnForPlay();
     changeIcoForPlay();
@@ -263,18 +262,20 @@ audio.addEventListener('loadeddata', getTrackLength);
 
 audio.addEventListener('ended', nextTrack);
 
-audio.addEventListener('play', getCurrentTimeTrack);
+audio.addEventListener('play', getTrackCurrentTime);
+
+rangeLength.addEventListener('click', changeTrackCurrentTime);
 
 function getTrackLength() {
-   changeTrackLength(audio.duration);
+   setTrackLength(audio.duration);
    startTrackCurrentTime();
 }
 
-function getCurrentTimeTrack() {
-    timeOutCurrentTime = setInterval(changeTrackCurrentTime, 500);
+function getTrackCurrentTime() {
+    timeOutCurrentTime = setInterval(setTrackCurrentTime, 500);
 }
 
-function changeTrackLength(length) {
+function setTrackLength(length) {
     trackLength.textContent = returnLengthInFormat(length);
 }
 
@@ -282,9 +283,14 @@ function startTrackCurrentTime() {
     trackCurrentTime.textContent = '0:00';
 }
 
-function changeTrackCurrentTime() {
+function setTrackCurrentTime() {
     trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
     rangeLength.value = getRangeLength(audio.currentTime);
+}
+
+function changeTrackCurrentTime() {
+    console.log(audio.volume);
+    audio.currentTime = rangeLength.value * audio.duration / 100;
 }
 
 function getRangeLength(length) {
