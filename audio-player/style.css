@@ -201,23 +201,49 @@ body {
 
 .property {
     width: 100%;
-    background: rgb(198, 202, 202);
-    background: linear-gradient(to right, rgb(198, 202, 202) 0, rgb(53, 55, 55) 100%);
+    /* background: rgb(198, 202, 202); */
+    /* background: linear-gradient(to right, rgb(198, 202, 202) 0, rgb(53, 55, 55) 100%); */
+    background-color: rgb(167, 167, 165);
     border: 2px solid rgb(53, 55, 55);
     height: 10px;
     border-radius: 5px;
     outline: none;
     appearance: none;
     -webkit-appearance: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+}
+
+.progress {
+    background-color: #C50F1C;
+    width: 0%;
+    height: 100%;
+    transition: 0.25s;
+    position: relative;
+}
+
+.progress__thumb {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-color: rgb(124, 133, 133);
+    border: 2px solid rgb(53, 55, 55);
+    border-radius: 3px;
+    right: -10px;
+    top: -12px;
 }
 
 .property::-webkit-slider-thumb {
     width: 10px;
     height: 30px;
-    background: rgb(124, 133, 133);
+    background-color: rgb(124, 133, 133);
     border: 2px solid rgb(53, 55, 55);
     border-radius: 3px;
     -webkit-appearance: none;
+    transition: 0.25s;
+    position: relative;
 }
 
 .track__currentTime {
@@ -302,6 +328,7 @@ body {
     align-items: center;
     justify-content: space-around;
     box-shadow: 1px 1px 8px 1px rgba(66, 68, 90, 1);
+    transition: background-color 0.5s ease-in-out;
 }
 
 .footer__item {
@@ -352,6 +379,10 @@ body {
         background-color: rgb(231, 40, 53);
     }
 
+    .footer:hover {
+        background-color: rgb(187, 187, 183);
+    }
+
     .footer__link:hover .github__logo {
         scale: 1.05;
     }
@@ -359,6 +390,24 @@ body {
     .footer__link:hover .footer__logo {
         scale: 1.1;
     }
+
+    .property:hover {
+        background-color: rgb(187, 187, 183);
+    }
+
+    .property::-webkit-slider-thumb:hover {
+        background-color: rgb(187, 187, 183);
+        box-shadow: 1px 1px 8px 1px rgb(241, 19, 19);
+    }
+
+    .progress__thumb:hover {
+        background-color: rgb(187, 187, 183);
+        box-shadow: 1px 1px 8px 1px rgb(241, 19, 19);
+    }
+
+    /* .progress:hover .progress__thumb {
+        background-color: rgb(71, 11, 209);
+    } */
 }
 
 @keyframes power-on {

@@ -41,13 +41,16 @@ const composer = document.querySelector('.track__composer');
 const trackLength = document.querySelector('.track__length');
 const trackCurrentTime = document.querySelector('.track__currentTime');
 
-const rangeLength = document.querySelector('.length');
+// const rangeLength = document.querySelector('.length');
 const rangeVolume = document.querySelector('.volume');
+const progress = document.querySelector('.progress');
+const rangeLength = document.querySelector('.length');
 
 const audio = new Audio();
 
 let isPower = false;
 let isPlayed = false;
+let isPaused = false;
 
 let currentTime;
 
@@ -55,7 +58,6 @@ let timeOutWhiteFade;
 let timeOutCurrentTime;
 // let timeOutWhiteHide;
 let activeImage;
-
 
 function changeIcoForPause() {
     const ico = btnPlayPause.firstElementChild;
@@ -89,16 +91,23 @@ function pause() {
     audio.pause();
     currentTime = audio.currentTime;
     isPlayed = false;
+    isPaused = true;
     changeBtnForPause();
     changeIcoForPause();
 }
 
 function playAudio() {
-    audio.src = audioItems[activeImage].src;
-    audio.currentTime = currentTime || 0;
+    if (isPaused) {
+        audio.currentTime = currentTime;
+        clearInterval(timeOutCurrentTime);
+    } else {
+        audio.currentTime = currentTime || 0;
+        audio.src = audioItems[activeImage].src;
+    }
     audio.volume = rangeVolume.value / 100;
     audio.play();
     isPlayed = true;
+    isPaused = false;
     changeBtnForPlay();
     changeIcoForPlay();
 }
@@ -227,16 +236,16 @@ function clearIntervals() {
 }
 
 function powerOff() {
+    stopPlay();
+    clearIntervals();
     changeBtnPowerForOff();
     tvScreenPart.forEach(element => {
         element.classList.remove('tv__screen__part-on');
     });
     tvScreenImage.classList.remove('tv__screen__image-hide');
-    clearIntervals();
-    stopPlay();
     hideDescription();
     changeScreen();
-    clearTrackLenth();
+    clearTrackLength();
     clearTrackCurrentTime();
 }
 
@@ -271,8 +280,8 @@ rangeLength.addEventListener('click', changeTrackCurrentTime);
 rangeVolume.addEventListener('click', changeTrackVolume);
 
 function getTrackLength() {
-   setTrackLength(audio.duration);
    startTrackCurrentTime();
+   setTrackLength(audio.duration);
 }
 
 function getTrackCurrentTime() {
@@ -289,11 +298,13 @@ function startTrackCurrentTime() {
 
 function setTrackCurrentTime() {
     trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
-    rangeLength.value = getRangeLength(audio.currentTime);
+    progress.style.width = Math.round(audio.currentTime / audio.duration * 100) + '%'
 }
 
-function changeTrackCurrentTime() {
-    audio.currentTime = rangeLength.value * audio.duration / 100;
+function changeTrackCurrentTime(event) {
+    const inputWidth = parseInt(window.getComputedStyle(rangeLength).width);
+    currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
+    audio.currentTime = currentTime;
 }
 
 function changeTrackVolume() {
@@ -310,11 +321,11 @@ function returnLengthInFormat(length) {
     return `${minutes}:${seconds}`;
 }
 
-function clearTrackLenth() {
+function clearTrackLength() {
     trackLength.textContent = '';
 }
 
 function clearTrackCurrentTime() {
     trackCurrentTime.textContent = '';
-    rangeLength.value = 0;
+    progress.style.width = 0;
 }
