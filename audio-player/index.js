@@ -41,10 +41,10 @@ const composer = document.querySelector('.track__composer');
 const trackLength = document.querySelector('.track__length');
 const trackCurrentTime = document.querySelector('.track__currentTime');
 
-// const rangeLength = document.querySelector('.length');
 const rangeVolume = document.querySelector('.volume');
 const progress = document.querySelector('.progress');
 const rangeLength = document.querySelector('.length');
+const rangeBrightness = document.querySelector('.brightness');
 
 const audio = new Audio();
 
@@ -279,6 +279,8 @@ rangeLength.addEventListener('click', changeTrackCurrentTime);
 
 rangeVolume.addEventListener('click', changeTrackVolume);
 
+rangeBrightness.addEventListener('click', changeBrightness);
+
 function getTrackLength() {
    startTrackCurrentTime();
    setTrackLength(audio.duration);
@@ -309,6 +311,12 @@ function changeTrackCurrentTime(event) {
 
 function changeTrackVolume() {
     audio.volume = rangeVolume.value / 100;
+}
+
+function changeBrightness() {
+    const brightness = `brightness(${rangeBrightness.value}%)`;
+    tvScreenImage.style.filter = brightness;
+    description.style.filter = brightness;
 }
 
 function getRangeLength(length) {
