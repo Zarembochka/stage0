@@ -42,6 +42,7 @@ const trackLength = document.querySelector('.track__length');
 const trackCurrentTime = document.querySelector('.track__currentTime');
 
 const rangeLength = document.querySelector('.length');
+const rangeVolume = document.querySelector('.volume');
 
 const audio = new Audio();
 
@@ -95,6 +96,7 @@ function pause() {
 function playAudio() {
     audio.src = audioItems[activeImage].src;
     audio.currentTime = currentTime || 0;
+    audio.volume = rangeVolume.value / 100;
     audio.play();
     isPlayed = true;
     changeBtnForPlay();
@@ -266,6 +268,8 @@ audio.addEventListener('play', getTrackCurrentTime);
 
 rangeLength.addEventListener('click', changeTrackCurrentTime);
 
+rangeVolume.addEventListener('click', changeTrackVolume);
+
 function getTrackLength() {
    setTrackLength(audio.duration);
    startTrackCurrentTime();
@@ -289,8 +293,11 @@ function setTrackCurrentTime() {
 }
 
 function changeTrackCurrentTime() {
-    console.log(audio.volume);
     audio.currentTime = rangeLength.value * audio.duration / 100;
+}
+
+function changeTrackVolume() {
+    audio.volume = rangeVolume.value / 100;
 }
 
 function getRangeLength(length) {
