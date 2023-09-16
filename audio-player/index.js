@@ -1,26 +1,47 @@
 const audioItems = [
-    {singer: 'Группа Земляне',
+    {singer: 'Земляне',
     title: 'Трава у дома',
-    author: 'Владимир Мигуля',
-    composer: 'Владимир Мигуля',
-    src: 'https://3fc4ed44-3fbc-419a-97a1-a29742511391.selcdn.net/coub_storage/coub/simple/cw_looped_audio_med/c29ea98e878/b8bf70003b626e1e149a1/1691324771_mp3-med.mp3',
+    author: 'В. Мигуля',
+    composer: 'В. Мигуля',
+    src: 'https://drivemusic.club/dl/f3mR5zB6w1UNr3jhTE71zg/1694915148/download_music/2019/05/zemljane-trava-u-doma.mp3',
     image: 'https://illustrators.ru/uploads/illustration/image/1447329/%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82.jpg',
+    alt: '',
     },
 
-    {singer: 'Николай Рыбников',
-    title: 'Марш высотников',
-    author: 'Владимир Котов',
-    composer: 'Родион Щедрин',
-    src: 'https://3fc4ed44-3fbc-419a-97a1-a29742511391.selcdn.net/coub_storage/coub/simple/cw_looped_audio_med/610ef0b73ba/bb2c503b79e0bd1a5dcdc/1690396593_mp3-med.mp3',
+    {singer: 'Кино',
+    title: 'Хочу перемен!',
+    author: 'В. Цой',
+    composer: 'В. Цой',
+    src: 'https://zamona.net/storage/music/75760.mp3',
+    image: 'https://illustrators.ru/uploads/illustration/image/1447329/%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82.jpg',
+    alt: '',
+    },
+
+    {singer: 'Eurythmics',
+    title: 'Sweet Dreams',
+    author: 'A. Lennox.',
+    composer: 'D. A. Stewart',
+    src: 'https://cdn2.sefon.pro/prev/9Fatm8jXvjd_gcWnEx32og/1694917002/133/Eurythmics%20-%20Sweet%20Dreams%20%28192kbps%29.mp3',
+    image: 'https://illustrators.ru/uploads/illustration/image/1447329/%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82.jpg',
+    alt: '',
+    },
+
+    {singer: 'N. A. Haddaway',
+    title: 'What Is Love',
+    author: 'T. Hendrik',
+    composer: 'J. Torello',
+    src: 'https://zamona.net/storage/music/82625.mp3',
     image: 'https://i1.sndcdn.com/artworks-vZXnIRoMFS4t2MHk-wU576Q-t500x500.jpg',
+    alt: '',
     },
 
-    {singer: 'Рей Паркер-младший',
-    title: 'Ghostbusters',
-    author: 'Рей Паркер-младший',
-    composer: 'Рей Паркер-младший',
-    src: 'https://3fc4ed44-3fbc-419a-97a1-a29742511391.selcdn.net/coub_storage/coub/simple/cw_looped_audio_med/d4e2dbaf219/c8b04bbc72151aafd1c50/1689772258_mp3-med.mp3',
+    {singer: 'B. Tyler',
+    title: 'Holding Out for a Hero',
+    author: 'D. Pitchford',
+    composer: 'J. Steinman',
+    src: 'https://cdn3.sefon.pro/prev/fsjP3cfh7-XN21ODFuY8SQ/1694917545/1/Bonnie%20Tyler%20-%20Holding%20Out%20For%20A%20Hero%20%28192kbps%29.mp3',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJ9xa8zEKPmTp-qefv2pLfLPUzDW_hz09Kg&usqp=CAU',
+    alt: '',
     },
 ]
 
@@ -56,7 +77,7 @@ let currentTime;
 
 let timeOutWhiteFade;
 let timeOutCurrentTime;
-// let timeOutWhiteHide;
+
 let activeImage;
 
 function changeIcoForPause() {
@@ -102,7 +123,7 @@ function playAudio() {
         clearInterval(timeOutCurrentTime);
     } else {
         audio.currentTime = currentTime || 0;
-        audio.src = audioItems[activeImage].src;
+        // audio.src = audioItems[activeImage].src;
     }
     audio.volume = rangeVolume.value / 100;
     audio.play();
@@ -113,6 +134,9 @@ function playAudio() {
 }
 
 function play() {
+    if (!isPower) {
+        return;
+    }
     if (isPlayed) {
         pause();
         return;
@@ -122,6 +146,7 @@ function play() {
 
 function playNextTrack() {
     currentTime = 0;
+    audio.src = audioItems[activeImage].src;
     playAudio();
 }
 
@@ -220,14 +245,17 @@ function previousTrack() {
 
 function changeScreen() {
     tvScreenImage.src = "https://cdn.ebaumsworld.com/mediaFiles/picture/566750/85829554.gif";
+    tvScreenImage.classList.add('tv__screen__image-fadein');
 }
 
 function powerOn() {
     changeBtnPowerForOn();
     tvScreenPart.forEach(element => {
+        element.classList.remove('tv__screen__part-off');
         element.classList.add('tv__screen__part-on');
     });
-    timeOutWhiteFade = window.setTimeout(imageFadeOut, 1000);
+    timeOutWhiteFade = setTimeout(imageFadeOut, 1000);
+    currentTime = 0;
 }
 
 function clearIntervals() {
@@ -235,30 +263,34 @@ function clearIntervals() {
     clearInterval(timeOutCurrentTime);
 }
 
+function tvscreenPowerOff() {
+    tvScreenPart.forEach(element => {
+        element.classList.remove('tv__screen__part-on');
+        element.classList.add('tv__screen__part-off');
+    });
+}
+
 function powerOff() {
     stopPlay();
     clearIntervals();
-    changeBtnPowerForOff();
-    tvScreenPart.forEach(element => {
-        element.classList.remove('tv__screen__part-on');
-    });
-    tvScreenImage.classList.remove('tv__screen__image-hide');
     hideDescription();
     changeScreen();
     clearTrackLength();
     clearTrackCurrentTime();
+    timeOutWhiteFade = setTimeout(tvscreenPowerOff, 1000);
+    changeBtnPowerForOff();
 }
 
 function powerOnOff() {
     //power on
     if (!isPower) {
-        powerOn();
         isPower = true;
+        powerOn();
         return;
     }
     //power off
-    powerOff();;
     isPower = false;
+    powerOff();
 }
 
 btnPower.addEventListener('click', powerOnOff);
@@ -277,9 +309,9 @@ audio.addEventListener('play', getTrackCurrentTime);
 
 rangeLength.addEventListener('click', changeTrackCurrentTime);
 
-rangeVolume.addEventListener('click', changeTrackVolume);
+rangeVolume.addEventListener('input', setTrackVolume);
 
-rangeBrightness.addEventListener('click', changeBrightness);
+rangeBrightness.addEventListener('input', changeBrightness);
 
 function getTrackLength() {
    startTrackCurrentTime();
@@ -299,17 +331,21 @@ function startTrackCurrentTime() {
 }
 
 function setTrackCurrentTime() {
-    trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
-    progress.style.width = Math.round(audio.currentTime / audio.duration * 100) + '%'
+    if (isPower) {
+        trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
+        progress.style.width = Math.round(audio.currentTime / audio.duration * 100) + '%'
+    }
 }
 
 function changeTrackCurrentTime(event) {
-    const inputWidth = parseInt(window.getComputedStyle(rangeLength).width);
-    currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
-    audio.currentTime = currentTime;
+    if (isPower) {
+        const inputWidth = parseInt(window.getComputedStyle(rangeLength).width);
+        currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
+        audio.currentTime = currentTime;
+    }
 }
 
-function changeTrackVolume() {
+function setTrackVolume() {
     audio.volume = rangeVolume.value / 100;
 }
 
