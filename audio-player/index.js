@@ -20,7 +20,7 @@ const audioItems = [
     {singer: 'Eurythmics',
     title: 'Sweet Dreams',
     author: 'A. Lennox.',
-    composer: 'D. A. Stewart',
+    composer: 'D. Stewart',
     src: './music/eurythmics-sweet-dreams-are-made-of-this.mp3',
     image: './images/covers/3.jpg',
     alt: '',
@@ -310,8 +310,12 @@ audio.addEventListener('play', getTrackCurrentTime);
 rangeLength.addEventListener('click', changeTrackCurrentTime);
 
 rangeVolume.addEventListener('input', setTrackVolume);
+rangeVolume.addEventListener('wheel', setTrackVolumeByMouse);
 
 rangeBrightness.addEventListener('input', changeBrightness);
+rangeBrightness.addEventListener('wheel', changeBrightnessByMouse);
+
+tvScreenImage.addEventListener('click', play);
 
 function getTrackLength() {
    startTrackCurrentTime();
@@ -349,10 +353,30 @@ function setTrackVolume() {
     audio.volume = rangeVolume.value / 100;
 }
 
+function setTrackVolumeByMouse(event) {
+    const value = event.wheelDelta;
+    if (value > 0) {
+        rangeVolume.value = +rangeVolume.value + 5;
+    } else {
+        rangeVolume.value = +rangeVolume.value - 5;
+    }
+    setTrackVolume();
+}
+
 function changeBrightness() {
     const brightness = `brightness(${rangeBrightness.value}%)`;
     tvScreenImage.style.filter = brightness;
     description.style.filter = brightness;
+}
+
+function changeBrightnessByMouse(event) {
+    const value = event.wheelDelta;
+    if (value > 0) {
+        rangeBrightness.value = +rangeBrightness.value + 5;
+    } else {
+        rangeBrightness.value = +rangeBrightness.value - 5;
+    }
+    changeBrightness();
 }
 
 function getRangeLength(length) {

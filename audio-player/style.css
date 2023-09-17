@@ -70,6 +70,7 @@ body {
     /* max-height: 99%; */
     border-radius: 25% / 17%;
     display: flex;
+    cursor: pointer;
 }
 
 .tv__screen__image-fadeout {
@@ -507,10 +508,6 @@ body {
     .main__power.main__power-on .main__power__onoff {
         box-shadow: 0px px 6px 1px rgb(241, 19, 19);
     }
-
-    /* .main__power.main__power-on {
-        box-shadow: 0px 1px 5px 2px rgb(241, 19, 19);
-    } */
 
     .footer__item {
         font-size: 20px;
