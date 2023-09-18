@@ -28,8 +28,15 @@ body {
     column-gap: 15px;
 }
 
+.header__logo__ico {
+    display: flex;
+}
+
 .header__logo__title {
     margin: 0;
+    font-size: 40px;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
 }
 
 .header__search {
@@ -39,13 +46,19 @@ body {
     column-gap: 5px;
     border: 1px solid rgb(216, 198, 178);
     border-radius: 25px;
-    padding: 10px 5px;
+    padding: 5px 15px;
 }
 
 .header__search__box {
     outline: none;
     border: none;
     width: calc(100% - 25px);
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.header__search__box::-webkit-input-placeholder {
+    color: rgb(224, 158, 83);
 }
 
 .header__search__btn {
@@ -59,7 +72,7 @@ body {
 .line {
     width: 100%;
     height: 5px;
-    background-color: rgb(238, 132, 11);;
+    background-color: rgb(238, 132, 11);
 }
 
 
