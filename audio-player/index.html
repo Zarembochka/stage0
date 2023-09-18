@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <title>Retro TV</title>
+</head>
+<body>
+    <script src="index.js" defer></script>
+    <div class="container">
+        <div class="tvbox">
+            <div class="tv">
+                <div class="tv__inner">
+                    <aside class="tv__box">
+                        <div class="tv__screen">
+                            <img class="tv__screen__image" src="https://cdn.ebaumsworld.com/mediaFiles/picture/566750/85829554.gif" alt="not working tv image">
+                            <div class="tv__screen__part tv__screen__part1"></div>
+                            <div class="tv__screen__part tv__screen__part2"></div>
+                            <div class="tv__screen__description">
+                                <div class="tv__screen__item">
+                                    <span>Песня:&nbsp;</span>
+                                    <span class="track__title">1</span>
+                                </div>
+                                <div class="tv__screen__item">
+                                    <span>Стихи:&nbsp;</span>
+                                    <span class="track__author">3</span>
+                                </div>
+                                <div class="tv__screen__item">
+                                    <span>Поет:&nbsp;</span>
+                                    <span class="track__singer">2</span>
+                                </div>
+                                <div class="tv__screen__item">
+                                    <span>Композитор:&nbsp;</span>
+                                    <span class="track__composer">4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <main class="main">
+                        <div class="main__controls">
+                            <span>Управление</span>
+                            <div class="main__controls__inner">
+                                <button class="main__controls__btn btn-previous">
+                                    <img class="main__controls__ico" src="./images/prev.png" alt="previous track logo">
+                                </button>
+                                <button class="main__controls__btn btn-play">
+                                    <img class="main__controls__ico" src="./images/play.png" alt="play track logo">
+                                </button>
+                                <button class="main__controls__btn btn-next">
+                                    <img class="main__controls__ico" src="./images/next.png" alt="next track logo">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="main__properties">
+                            <div class="main__properties__item">
+                                <label>Перемотка</label>
+                                <!-- <input class="property length" type="range" id="length" value="0" min="0" max="100" step="1"> -->
+                                <div class="property length" id="length">
+                                    <div class="progress">
+                                        <div class="progress__thumb">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="track__currentTime"></span>
+                                <span class="track__length"></span>
+                            </div>
+                            <div class="main__properties__item">
+                                <label for="volume">Громкость</label>
+                                <input class="property volume" type="range" id="volume" value='30' min='0' max='100' step='1'>
+                            </div>
+                            <div class="main__properties__item">
+                                <label for="volume">Яркость</label>
+                                <input class="property brightness" type="range" value="100" min="0" max="150" step="1">
+                            </div>
+                        </div>
+                        <div class="main__power">
+                            <button class="main__power__btn">
+                                <span class="main__power__onoff">
+                                </span>
+                            </button>
+                        </div>
+                        <footer class="footer">
+                            <div class="footer__item">
+                                <a class="footer__link" href="https://rs.school/js-stage0/" target="_blank">
+                                    <img class="footer__logo" src="./images/rs_school_js.svg" alt="RS school logo">
+                                </a>
+                            </div>
+                            <div class="footer__item">
+                                2023
+                            </div>
+                            <div class="footer__item">
+                                <a class="footer__link" href="https://github.com/Zarembochka" target="_blank">
+                                    <img class="github__logo" src="./images/github.svg" alt="github logo">
+                                </a>
+                            </div>
+                        </footer>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
