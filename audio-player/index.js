@@ -397,3 +397,7 @@ function clearTrackCurrentTime() {
     trackCurrentTime.textContent = '';
     progress.style.width = 0;
 }
+
+const message = 'Привет!\nДля того, чтобы послушать музыку нужно просто включить телевизор!\nМышкой можно управлять громкостью и яркостью.\nНажатие на экран телевизора эквивалентно нажатию на play/pause\nПриложение корректно работает при ширине до 768px\nПриятного просмотра!';
+
+console.log(message);
