@@ -15,11 +15,27 @@ body {
 }
 
 .header {
+    background-color: #fff;
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.header__item {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.line {
+    width: 100%;
+    height: 5px;
+    background-color: rgb(238, 132, 11);
 }
 
 .header__logo {
@@ -69,10 +85,28 @@ body {
     padding: 5px;
 }
 
-.line {
+.main {
+    padding: 0 15px;
     width: 100%;
-    height: 5px;
-    background-color: rgb(238, 132, 11);
+    /* height: calc(100vh - 95px); */
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
+
+.image {
+    width: 24%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: scale 0.3s linear;
+    transition: border-radius 0.3s linear;
+}
+
+/* .image:hover {
+    scale: 1.1;
+    border-radius: 20px;
+} */
 
 
