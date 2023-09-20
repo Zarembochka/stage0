@@ -1,6 +1,14 @@
-const url = 'https://api.unsplash.com/search/photos?query=coffee&per_page=24&orientation=landscape&client_id=Bda9lea5mENbVKHC99xZsfmKGipmZ1Z2HmXBNLQlI6M';
+const domen = 'https://api.unsplash.com/search/photos?';
+const perPage = '&per_page=24';
+const landscape = '&orientation=landscape';
+const clientId = '&client_id=Bda9lea5mENbVKHC99xZsfmKGipmZ1Z2HmXBNLQlI6M';
 
+const input = document.querySelector('.header__search__box');
 const main = document.querySelector('.main');
+
+const btnSearch = document.querySelector('.header__search__btn');
+
+let url = 'https://api.unsplash.com/search/photos?query=coffee&per_page=24&orientation=landscape&client_id=Bda9lea5mENbVKHC99xZsfmKGipmZ1Z2HmXBNLQlI6M';
 
 async function getData() {
     const res = await fetch(url);
@@ -27,6 +35,35 @@ function createImg(element) {
 
 function showData(array) {
     array.map((element) => showElement(element));
+}
+
+function createRequest() {
+    let request = '';
+    if (input.value == '') {
+        request = 'query=sea';
+        return request;
+    }
+    const subject = input.value;
+    request = `query=${subject}`;
+    return request;
+}
+
+function createFullRequest() {
+    const request = createRequest();
+    url = `${domen}${request}${perPage}${landscape}${clientId}`;
+}
+
+btnSearch.addEventListener('click', searchImages);
+
+function searchImages() {
+    deleteOldImages();
+    createFullRequest();
+    getData();
+}
+
+function deleteOldImages() {
+    const images = document.querySelectorAll('.image');
+    images.forEach((element) => element.remove());
 }
 
 getData();
