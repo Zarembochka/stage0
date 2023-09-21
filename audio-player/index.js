@@ -349,7 +349,6 @@ function changeTrackCurrentTime(event) {
         clearInterval(timeOutCurrentTime);
         const inputWidth = parseInt(window.getComputedStyle(rangeLength).width);
         //currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
-        console.log(rangeLength.value);
         currentTime = Math.round(rangeLength.value * Math.round(audio.duration) / 100);
         audio.currentTime = currentTime;
         setTrackCurrentTime();
