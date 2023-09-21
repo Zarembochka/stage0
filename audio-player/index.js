@@ -307,7 +307,9 @@ audio.addEventListener('ended', nextTrack);
 
 audio.addEventListener('play', getTrackCurrentTime);
 
-rangeLength.addEventListener('click', changeTrackCurrentTime);
+// rangeLength.addEventListener('click', changeTrackCurrentTime);
+rangeLength.addEventListener('input', changeTrackCurrentTime);
+rangeLength.addEventListener('wheel', changeTrackCurrentTimeByMouse)
 
 rangeVolume.addEventListener('input', setTrackVolume);
 rangeVolume.addEventListener('wheel', setTrackVolumeByMouse);
@@ -337,15 +339,21 @@ function startTrackCurrentTime() {
 function setTrackCurrentTime() {
     if (isPower) {
         trackCurrentTime.textContent = returnLengthInFormat(audio.currentTime);
-        progress.style.width = Math.round(audio.currentTime / audio.duration * 100) + '%'
+        //progress.style.width = Math.round(audio.currentTime / audio.duration * 100) + '%'
+        rangeLength.value = Math.round(audio.currentTime / audio.duration * 100);
     }
 }
 
 function changeTrackCurrentTime(event) {
     if (isPower) {
+        clearInterval(timeOutCurrentTime);
         const inputWidth = parseInt(window.getComputedStyle(rangeLength).width);
-        currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
+        //currentTime = Math.round(event.offsetX * Math.round(audio.duration) / inputWidth);
+        console.log(rangeLength.value);
+        currentTime = Math.round(rangeLength.value * Math.round(audio.duration) / 100);
         audio.currentTime = currentTime;
+        setTrackCurrentTime();
+        getTrackCurrentTime()
     }
 }
 
@@ -379,6 +387,18 @@ function changeBrightnessByMouse(event) {
     changeBrightness();
 }
 
+function changeTrackCurrentTimeByMouse(event) {
+    clearInterval(timeOutCurrentTime);
+    const value = event.wheelDelta;
+    if (value > 0) {
+        audio.currentTime = Math.min(audio.currentTime + 5, audio.duration - 1);
+    } else {
+        audio.currentTime = audio.currentTime - 5;
+    }
+    setTrackCurrentTime();
+    getTrackCurrentTime();
+}
+
 function getRangeLength(length) {
     return Math.round(length / audio.duration * 100);
 }
@@ -395,9 +415,10 @@ function clearTrackLength() {
 
 function clearTrackCurrentTime() {
     trackCurrentTime.textContent = '';
-    progress.style.width = 0;
+    rangeLength.value = 0;
+    //progress.style.width = 0;
 }
 
-const message = 'Привет!\nДля того, чтобы послушать музыку нужно просто включить телевизор!\nМышкой можно управлять громкостью и яркостью.\nНажатие на экран телевизора эквивалентно нажатию на play/pause\nПриложение корректно работает при ширине до 768px\nПриятного просмотра!';
+const message = 'Привет!\nДля того, чтобы послушать музыку нужно просто включить телевизор!\nМышкой можно управлять прокруткой, громкостью и яркостью.\nНажатие на экран телевизора эквивалентно нажатию на play/pause\nПриложение корректно работает при ширине до 768px\nПриятного просмотра!';
 
 console.log(message);
