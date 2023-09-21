@@ -37,14 +37,29 @@ function createImg(element) {
     return img;
 }
 
-function showData(array, flag) {
+function createTextMessage() {
+    const message = document.createElement('p');
+    message.classList.add('message');
+    message.textContent = 'Oops! Try to find other images!';
+    return message;
+}
+
+function showEmptyResult() {
+    const message = createTextMessage();
+    setElement(message);
+}
+
+function showData(array) {
+    if (array.length == 0) {
+        showEmptyResult();
+        return;
+    }
     array.map((element) => showNewElement(element));
-    // unfixHeight();
 }
 
 function createRequest() {
     let request = '';
-    if (input.value == '') {
+    if (input.value.trim() == '') {
         request = 'query=coffee';
         return request;
     }

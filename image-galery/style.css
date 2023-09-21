@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-font-family: 'Lato', sans-serif;
+    --main-blue-color: rgb(20, 145, 228);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -35,7 +40,7 @@ body {
 .line {
     width: 100%;
     height: 5px;
-    background-color: rgb(20, 145, 228);
+    background-color: var(--main-blue-color);
 }
 
 .header__logo {
@@ -51,7 +56,7 @@ body {
 .header__logo__title {
     margin: 0;
     font-size: 40px;
-    font-family: 'Lato', sans-serif;
+    font-family: var(--main-font-family);
     font-weight: normal;
 }
 
@@ -61,7 +66,7 @@ body {
     flex-direction: row-reverse;
     justify-content: space-between;
     column-gap: 5px;
-    border: 1px solid rgb(20, 145, 228);
+    border: 1px solid var(--main-blue-color);
     border-radius: 25px;
     padding: 5px 15px;
 }
@@ -71,7 +76,7 @@ body {
     border: none;
     width: 370px;
     font-size: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: var(--main-font-family);
 }
 
 .header__search__box::-webkit-input-placeholder {
@@ -103,7 +108,7 @@ body {
     position: absolute;
     left: 5px;
     top: 15px;
-    background-color: rgb(20, 145, 228);
+    background-color: var(--main-blue-color);
 }
 
 .close__line:first-of-type {
@@ -167,8 +172,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     transition: all 0.3s;
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
 }
 
 .modal__background-active {
@@ -205,6 +208,12 @@ body {
 
 .modal-active {
     overflow-y: hidden;
+}
+
+.message {
+    font-size: 40px;
+    font-family: var(--main-font-family);
+    font-weight: normal;
 }
 
 @media (hover: hover) {
