@@ -183,7 +183,9 @@ body {
 .modal {
     position: relative;
     width: 75%;
+    height: fit-content;
     max-width: 1440px;
+    max-height: 960px;
     top: calc(105px + 10%);
     visibility: hidden;
     z-index: 2000;
@@ -193,6 +195,7 @@ body {
     opacity: 1;
     transition: transform 0.4s ease-in-out;
     cursor: pointer;
+    display: flex;
 }
 
 .large-image {
