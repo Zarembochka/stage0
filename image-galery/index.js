@@ -70,6 +70,7 @@ modalBackground.addEventListener('click', hideModal);
 
 function createImage(src) {
     const img = document.createElement('img');
+    img.classList.add('large-image');
     img.src = src;
     img.alt = `image`;
     return img;
