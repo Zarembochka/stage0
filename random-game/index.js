@@ -2,28 +2,34 @@ const canvas = document.querySelector('.canvas');
 const ctx = canvas.getContext("2d");
 
 const colors = ['yellow', 'red', 'orange', 'pink', 'blue', 'green', 'purple'];
+// const colors = ['yellow', 'red', 'orange'];
 const lengthColors = colors.length;
 
 let timeForMovement;
 
-let x = canvas.width / 2;
-let y = canvas.height - 10;
+let x;
+let y;
 
 const ballRadius = 10;
 
 let dx;
 let dy;
 
-const circkleRowCount = 7;
-const circkleColumnCount = 30;
+let circkleRowCount = 7;
+const circkleColumnCount = 14;
 
 const circkles = [];
+let startColor = randomColor();
 
 function InitiateCircles() {
-    for (let i = 0; i < circkleColumnCount; i++) {
+    for (let i = 0; i < circkleRowCount; i++) {
         circkles[i] = [];
-        for (let j = 0; j < circkleRowCount; j++) {
-            circkles[i][j] = {x: 10 + 2 * ballRadius * i, y: 11 + 2 * ballRadius * j, color: randomColor(), status: 1}
+        let startPosition = 1 + ballRadius;
+            if (i % 2 != 0) {
+                startPosition = 1 + ballRadius * 2;
+            }
+        for (let j = 0; j < circkleColumnCount; j++) {
+            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: 11 + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1}
         }
     }
 }
@@ -32,9 +38,6 @@ function changePosition() {
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = - dx;
     }
-    // if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-    //     dy = -dy;
-    // }
     x += dx;
     y += dy;
 }
@@ -44,21 +47,72 @@ function clear() {
 }
 
 function checkCollision() {
-    for (let i = 0; i < circkleColumnCount; i++) {
-        for (let j = 0; j < circkleRowCount; j++) {
+    for (let i = 0; i < circkleRowCount; i++) {
+        for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
             if (ball.status == 1) {
-                if (y <= ball.y + 20) {
+                if (isCollision(x, y , ball.x, ball.y)) {
                     clearInterval(timeForMovement);
+                    clear();
+                    drowStartCircles();
+                    addRowToStartCircles();
+                    addCircleToNewRow();
+                    drowStartCircles();
+                    NextCircle();
                 }
             }
         }
     }
 }
 
-function drowStartCircles() {
+function isCollision(x1, y1, x2, y2) {
+    const deltaX = x2 - x1;
+    const deltaY = y2 - y1;
+    const length = Math.sqrt( Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    if (length <= 2.5 * ballRadius) {
+        return true;
+    }
+    return false;
+}
+
+function isPositionToCircle(x1, y1, x2, y2) {
+    const deltaX = x2 - x1;
+    const deltaY = y2 - y1;
+    const length = Math.sqrt( Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    if (length <= ballRadius + 2) {
+        return true;
+    }
+    return false;
+}
+
+function addRowToStartCircles() {
+    circkleRowCount += 1;
+    circkles.push([]);
+    let startPosition = 1 + ballRadius;
+    if (circkleRowCount % 2 == 0) {
+        startPosition = 1 + ballRadius * 2;
+    }
+    const j = circkleRowCount - 1;
     for (let i = 0; i < circkleColumnCount; i++) {
-        for (let j = 0; j < circkleRowCount; j++) {
+        circkles[j][i] = {x: startPosition + 2 * (ballRadius + 1) * i, y: 11 + 2 * (ballRadius + 0.5) * j, color: 0, status: 0}
+    }
+}
+
+function addCircleToNewRow() {
+    const j = circkleRowCount - 1;
+    for (let i = 0; i < circkleColumnCount; i++) {
+        const ball = circkles[j][i];
+        if (isPositionToCircle(x, y, ball.x, ball.y)) {
+            ball.status = 1;
+            ball.color = startColor;
+            return;
+        }
+    }
+}
+
+function drowStartCircles() {
+    for (let i = 0; i < circkleRowCount; i++) {
+        for (let j = 0; j < circkleColumnCount; j++) {
             if (circkles[i][j].status == 1) {
                 drawStartCirckle(circkles[i][j]);
             }
@@ -74,7 +128,7 @@ function drawStartCirckle(element) {
     ctx.closePath();
 }
 
-function drawCircle(color) {
+function drawMainCircle(color) {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, 2 * Math.PI);
     ctx.fillStyle = color;
@@ -82,12 +136,26 @@ function drawCircle(color) {
     ctx.closePath();
 }
 
-function draw(color) {
+function drawMainImage() {
+    const img = createImage();
+    img.onload = () => {
+        ctx.drawImage(img, x - ballRadius, y - ballRadius);
+    }
+}
+
+function draw() {
     clear();
     drowStartCircles();
-    drawCircle(color);
+    drawMainCircle(startColor);
+    // drawMainImage();
     checkCollision();
     changePosition();
+}
+
+function createImage() {
+    const img = new Image();
+    img.src = './images/blue.svg';
+    return img;
 }
 
 function calculateVector(x, y) {
@@ -97,7 +165,7 @@ function calculateVector(x, y) {
 
 function startMovement(event) {
     calculateVector(event.offsetX, event.offsetY);
-    timeForMovement = setInterval(draw, 10, 'red');
+    timeForMovement = setInterval(draw, 10);
 }
 
 function getRandomInt(max) {
@@ -109,9 +177,25 @@ function randomColor() {
     return colors[randomInt]
 }
 
+function startPosition() {
+    x = canvas.width / 2;
+    y = canvas.height - 10;
+    startColor = randomColor();
+}
+
+function startPlay() {
+    InitiateCircles();
+    drowStartCircles();
+    startPosition();
+    drawMainCircle(startColor);
+    // drawMainImage();
+}
+
+function NextCircle() {
+    startPosition();
+    drawMainCircle(startColor);
+}
+
 canvas.addEventListener('click', startMovement);
 
-InitiateCircles();
-drowStartCircles();
-
-drawCircle(randomColor());
+startPlay();
