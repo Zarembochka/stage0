@@ -52,13 +52,7 @@ function checkCollision() {
             const ball = circkles[i][j];
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
-                    clearInterval(timeForMovement);
-                    clear();
-                    drowStartCircles();
-                    addRowToStartCircles();
-                    addCircleToNewRow();
-                    drowStartCircles();
-                    NextCircle();
+                    addCircleToStartCircles();
                 }
             }
         }
@@ -83,6 +77,31 @@ function isPositionToCircle(x1, y1, x2, y2) {
         return true;
     }
     return false;
+}
+
+function findPositionToCollisionCircle() {
+    for (let i = 0; i < circkleRowCount; i++) {
+        for (let j = 0; j < circkleColumnCount; j++) {
+            const ball = circkles[i][j];
+            if (ball.status == 0) {
+                if (isPositionToCircle(x, y, ball.x, ball.y)) {
+                    ball.status = 1;
+                    ball.color = startColor;
+                    return;
+                }
+            }
+        }
+    }
+    addRowToStartCircles();
+    addCircleToNewRow();
+}
+
+function addCircleToStartCircles() {
+    clearInterval(timeForMovement);
+    findPositionToCollisionCircle();
+    clear();
+    drowStartCircles();
+    nextCircle();
 }
 
 function addRowToStartCircles() {
@@ -191,7 +210,7 @@ function startPlay() {
     // drawMainImage();
 }
 
-function NextCircle() {
+function nextCircle() {
     startPosition();
     drawMainCircle(startColor);
 }
