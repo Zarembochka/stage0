@@ -387,15 +387,18 @@ function changeBrightnessByMouse(event) {
 }
 
 function changeTrackCurrentTimeByMouse(event) {
-    clearInterval(timeOutCurrentTime);
-    const value = event.wheelDelta;
-    if (value > 0) {
-        audio.currentTime = Math.min(audio.currentTime + 5, audio.duration - 1);
-    } else {
-        audio.currentTime = audio.currentTime - 5;
+    if (isPower) {
+        clearInterval(timeOutCurrentTime);
+        const value = event.wheelDelta;
+        if (value > 0) {
+            audio.currentTime = Math.min(audio.currentTime + 5, audio.duration - 1);
+        } else {
+            audio.currentTime = audio.currentTime - 5;
+        }
+        currentTime = audio.currentTime;
+        setTrackCurrentTime();
+        getTrackCurrentTime();
     }
-    setTrackCurrentTime();
-    getTrackCurrentTime();
 }
 
 function getRangeLength(length) {
