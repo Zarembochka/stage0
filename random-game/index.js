@@ -55,6 +55,7 @@ function checkCollision() {
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
                     addCircleToStartCircles();
+                    return;
                 }
             }
         }
@@ -362,12 +363,13 @@ function checkNeighbors(i, j) {
 }
 
 function findColorMatches(ball) {
-    console.log(currentBall);
     for (let i = 0; i < circkleRowCount; i++) {
         const currentPosition = circkles[i].findIndex((element => element == ball));
         if (currentPosition != -1) {
             checkNeighbors(i, currentPosition);
             checkAllMatches();
+            deleteEmptyRows();
+            checkHendingCircles();
             return;
         }
     }
@@ -381,7 +383,6 @@ function checkAllMatches() {
             circlesMatches.push(rowMatches);
         }
     }
-    console.log(circlesMatches);
     if (circlesMatches.flat().length > 2) {
         deleteMatches(true);
         return;
@@ -400,6 +401,28 @@ function deleteMatches(flag) {
             }
         }
     }
+}
+
+function deleteEmptyRows() {
+    let doIt = true;
+    while (doIt) {
+        const circlesRow = circkles.at(-1);
+        if (circlesRow.every((element) => element.status == 0)) {
+            circkles.pop();
+            circkleRowCount -= 1;
+        } else {
+            doIt = false;
+        }
+    }
+}
+
+function checkHendingCircles() {
+    // for (let i = 0; i < circkleRowCount; i++) {
+    //     for (let j = 0; j < circkleColumnCount; j++) {
+    //         const ball = circkles[i][circkleColumnCount - 1 - j];
+
+    //     }
+    // }
 }
 
 function checkLossGame() {
