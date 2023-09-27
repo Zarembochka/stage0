@@ -1,4 +1,4 @@
-import './kejs';
+import './keys.js';
 
 const domen = 'https://api.unsplash.com/search/photos?';
 const perPage = '&per_page=24';
