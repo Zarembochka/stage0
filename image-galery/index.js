@@ -1,7 +1,11 @@
+import './kejs';
+
 const domen = 'https://api.unsplash.com/search/photos?';
 const perPage = '&per_page=24';
 const landscape = '&orientation=landscape';
-const clientId = '&client_id=Bda9lea5mENbVKHC99xZsfmKGipmZ1Z2HmXBNLQlI6M';
+const apiKey = window.keys.API_KEY;
+const clientId = `&client_id=${apiKey}`;
+//const clientId = '&client_id=Bda9lea5mENbVKHC99xZsfmKGipmZ1Z2HmXBNLQlI6M';
 
 const input = document.querySelector('.header__search__box');
 const main = document.querySelector('.main');
