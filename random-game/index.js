@@ -86,7 +86,7 @@ function calculateLength(x1, y1, x2, y2) {
 
 function isCollision(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length <= 2.5 * ballRadius) {
+    if (length <= 2 * ballRadius) {
         return true;
     }
     return false;
@@ -95,7 +95,7 @@ function isCollision(x1, y1, x2, y2) {
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
     console.log(length);
-    if (length <= 2 * ballRadius) {
+    if (length <= 2 * ballRadius + 2) {
         return true;
     }
     return false;
@@ -420,7 +420,10 @@ function deleteMatches(flag) {
             ball.isCheked = 0;
             ball.basis = 0;
             if (ball.match == 1) {
-                // ball.color = 0;
+                if (flag) {
+                    ball.color = 0;
+                }
+                //ball.color = 0;
                 ball.status = +(!flag);
                 ball.match = 0;
             }
