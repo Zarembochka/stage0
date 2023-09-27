@@ -2,26 +2,30 @@ const canvas = document.querySelector('.canvas');
 const ctx = canvas.getContext("2d");
 
 //const colors = ['yellow', 'red', 'orange', 'pink', 'blue', 'green', 'purple'];
- const colors = ['yellow', 'red', 'orange', 'blue', 'green'];
-const lengthColors = colors.length;
+let colors = ['yellow', 'red', 'orange', 'blue', 'green'];
+let lengthColors = colors.length;
+
+const setColors = new Set();
 
 let timeForMovement;
 
 let x;
 let y;
 
-const ballRadius = 10;
+const ballRadius = 20;
 let isPlaying = false;
 let currentBall;
 
 let dx;
 let dy;
 
-let circkleRowCount = 5;
-const circkleColumnCount = 14;
+let circkleRowCount = 3;
+const circkleColumnCount = 7;
 
 const circkles = [];
 let startColor = randomColor();
+
+let timeoutForMatchColors;
 
 function InitiateCircles() {
     for (let i = 0; i < circkleRowCount; i++) {
@@ -31,7 +35,7 @@ function InitiateCircles() {
                 startPosition = 1 + ballRadius * 2;
             }
         for (let j = 0; j < circkleColumnCount; j++) {
-            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: 11 + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1}
+            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1}
         }
     }
 }
@@ -60,6 +64,17 @@ function checkCollision() {
             }
         }
     }
+    checkCollisionWithCanvas();
+}
+
+function checkCollisionWithCanvas() {
+    for (let j = 0; j < circkleColumnCount; j++) {
+        const ball = circkles[0][j];
+        if (isCollision(x, y , ball.x, ball.y)) {
+            addCircleToStartCircles();
+            return;
+        }
+    }
 }
 
 function calculateLength(x1, y1, x2, y2) {
@@ -79,7 +94,8 @@ function isCollision(x1, y1, x2, y2) {
 
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length <= ballRadius + 2) {
+    console.log(length);
+    if (length <= 2 * ballRadius) {
         return true;
     }
     return false;
@@ -125,7 +141,7 @@ function addRowToStartCircles() {
     }
     const j = circkleRowCount - 1;
     for (let i = 0; i < circkleColumnCount; i++) {
-        circkles[j][i] = {x: startPosition + 2 * (ballRadius + 1) * i, y: 11 + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, basis: 1}
+        circkles[j][i] = {x: startPosition + 2 * (ballRadius + 1) * i, y: ballRadius + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, basis: 1}
     }
 }
 
@@ -173,7 +189,7 @@ function drawMainCircle(color) {
 function drawMainImage() {
     const img = createImage();
     img.onload = () => {
-        ctx.drawImage(img, x - ballRadius, y - ballRadius);
+        ctx.drawImage(img, x - ballRadius, y - ballRadius, 2 * ballRadius, 2 * ballRadius);
     }
 }
 
@@ -181,7 +197,7 @@ function draw() {
     clear();
     drowStartCircles();
     drawMainCircle(startColor);
-    // drawMainImage();
+    //drawMainImage();
     checkCollision();
     changePosition();
 }
@@ -218,9 +234,17 @@ function randomColor() {
     return colors[randomInt]
 }
 
+function setColorsArray() {
+    if (setColors.size) {
+        colors = Array.from(setColors);
+        lengthColors = colors.length;
+    }
+}
+
 function startPosition() {
+    setColorsArray();
     x = canvas.width / 2;
-    y = canvas.height - 10;
+    y = canvas.height - ballRadius;
     startColor = randomColor();
 }
 
@@ -367,6 +391,7 @@ function findColorMatches(ball) {
             checkAllMatches();
             checkHendingCircles();
             deleteEmptyRows();
+            checkWinGame();
             return;
         }
     }
@@ -388,6 +413,7 @@ function checkAllMatches() {
 }
 
 function deleteMatches(flag) {
+    setColors.clear();
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
@@ -405,6 +431,9 @@ function deleteMatches(flag) {
 function deleteEmptyRows() {
     let doIt = true;
     while (doIt) {
+        if (circkleRowCount == 0) {
+            break;
+        }
         const circlesRow = circkles.at(-1);
         if (circlesRow.every((element) => element.status == 0)) {
             circkles.pop();
@@ -540,10 +569,12 @@ function deleteCirclesWithoutBasis() {
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
-            ball.isCheked = 0;
             if (ball.basis == 0) {
                 //ball.color = 'black';
                 ball.status = 0;
+            }
+            if (ball.status == 1) {
+                setColors.add(ball.color);
             }
         }
     }
@@ -559,6 +590,15 @@ function checkLossGame() {
                return true;
             }
         }
+    }
+    return false;
+}
+
+function checkWinGame() {
+    if (circkleRowCount == 0) {
+        clear();
+        alert('Winner!');
+        return true;
     }
     return false;
 }
