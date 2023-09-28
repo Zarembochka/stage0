@@ -6,10 +6,14 @@
 
 .container {
     width: 100%;
-    max-width: 800px;
+    height: 100vh;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 20px 15px;
-    background-color: coral;
+    padding: 20px 50px;
+    background: url('./images/bg3.png') center no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .main {
@@ -21,8 +25,85 @@
     justify-content: center;
 }
 
+.main__container {
+    position: relative;
+    display: flex;
+}
+
 .canvas {
-    width: 320px;
-    height: 500px;
-    background: url('./images/bg.jpg');
+    width: 620px;
+    height: 650px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.canvas__image {
+    width: 620px;
+    height: 650px;
+    /* background-image: url('./images/start-game.png'); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.canvas__image-start {
+    background-image: url('./images/start-game.png');
+}
+
+.canvas__image-fadeout {
+    animation: fade-out 1.5s ease-in-out;
+}
+
+.canvas__image-hide {
+    visibility: hidden;
+}
+
+.canvas__image-lost {
+    visibility: visible;
+    background-image: url('./images/game-over.png');
+}
+
+.footer {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.footer__item {
+    display: flex;
+}
+
+.footer__item:first-of-type {
+    margin-right: auto;
+}
+
+.footer__item:last-of-type {
+    margin-left: auto;
+}
+
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

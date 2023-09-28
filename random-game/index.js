@@ -20,19 +20,22 @@ let dx;
 let dy;
 
 let circkleRowCount = 3;
-const circkleColumnCount = 7;
+const circkleColumnCount = 14;
 
 const circkles = [];
 let startColor = randomColor();
 
 let timeoutForMatchColors;
 
+const btnNewGame = document.querySelector('.newGame');
+const canvasImage = document.querySelector('.canvas__image');
+
 function InitiateCircles() {
     for (let i = 0; i < circkleRowCount; i++) {
         circkles[i] = [];
-        let startPosition = 1 + ballRadius;
+        let startPosition = 5 + ballRadius;
             if (i % 2 != 0) {
-                startPosition = 1 + ballRadius * 2;
+                startPosition = 5 + ballRadius * 2;
             }
         for (let j = 0; j < circkleColumnCount; j++) {
             circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1}
@@ -94,7 +97,6 @@ function isCollision(x1, y1, x2, y2) {
 
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    console.log(length);
     if (length <= 2 * ballRadius + 2) {
         return true;
     }
@@ -135,9 +137,9 @@ function addCircleToStartCircles() {
 function addRowToStartCircles() {
     circkleRowCount += 1;
     circkles.push([]);
-    let startPosition = 1 + ballRadius;
+    let startPosition = 5 + ballRadius;
     if (circkleRowCount % 2 == 0) {
-        startPosition = 1 + ballRadius * 2;
+        startPosition = 5 + ballRadius * 2;
     }
     const j = circkleRowCount - 1;
     for (let i = 0; i < circkleColumnCount; i++) {
@@ -389,9 +391,6 @@ function findColorMatches(ball) {
         if (currentPosition != -1) {
             checkNeighbors(i, currentPosition);
             checkAllMatches();
-            checkHendingCircles();
-            deleteEmptyRows();
-            checkWinGame();
             return;
         }
     }
@@ -407,6 +406,9 @@ function checkAllMatches() {
     }
     if (circlesMatches.flat().length > 2) {
         deleteMatches(true);
+        checkHendingCircles();
+        deleteEmptyRows();
+        checkWinGame();
         return;
     }
     deleteMatches(false);
@@ -569,6 +571,7 @@ function checkHendingCircles() {
 }
 
 function deleteCirclesWithoutBasis() {
+    console.log(circkles);
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
@@ -589,12 +592,18 @@ function checkLossGame() {
         const ball = lastRow[i];
         if (ball.status == 1) {
             if (ball.y + ballRadius + 2 >= canvas.height - 2 * ballRadius) {
-               alert('Looser!');
-               return true;
+                showLostImage();
+                return true;
             }
         }
     }
     return false;
+}
+
+function showLostImage() {
+    clear();
+    canvasImage.classList.remove('canvas__image-hide');
+    canvasImage.classList.add('canvas__image-lost');
 }
 
 function checkWinGame() {
@@ -608,4 +617,23 @@ function checkWinGame() {
 
 canvas.addEventListener('click', startMovement);
 
-startPlay();
+canvasImage.addEventListener('click', changeStartField);
+
+canvasImage.addEventListener('animationend', checkAnimation);
+
+function changeStartField() {
+    canvasImage.classList.add('canvas__image-fadeout');
+}
+
+function showStartFild() {
+    canvasImage.classList.add('canvas__image-hide');
+    canvasImage.classList.remove('canvas__image-fadeout');
+    canvasImage.classList.remove('canvas__image-start');
+    startPlay();
+}
+
+function checkAnimation(event) {
+    if (event.animationName === "fade-out") {
+        showStartFild();
+    }
+}
