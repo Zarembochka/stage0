@@ -1,13 +1,14 @@
 const canvas = document.querySelector('.canvas');
 const ctx = canvas.getContext("2d");
 
-//const colors = ['yellow', 'red', 'orange', 'pink', 'blue', 'green', 'purple'];
-let colors = ['yellow', 'red', 'orange', 'blue', 'green'];
-let lengthColors = colors.length;
-
 const setColors = new Set();
 
 let timeForMovement;
+let timeForAddRow;
+let timeForAddingZeroRow = false;
+
+let colors;
+let lengthColors;
 
 let x;
 let y;
@@ -19,16 +20,76 @@ let currentBall;
 let dx;
 let dy;
 
-let circkleRowCount = 3;
+let circkleRowCount;
 const circkleColumnCount = 14;
 
 const circkles = [];
-let startColor = randomColor();
 
-let timeoutForMatchColors;
+let startColor;
+let startPositionForNewRow;
+let startPositionForZeroRow;
+let flagNewRow = 1;
+let flagZeroRow = 2;
 
 const btnNewGame = document.querySelector('.newGame');
 const canvasImage = document.querySelector('.canvas__image');
+
+function getDifficulty() {
+    colors = ['yellow', 'red', 'orange', 'blue', 'green'];
+    //colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
+    startColor = randomColor();
+    lengthColors = colors.length;
+    circkleRowCount = 2;
+}
+
+function setFlagForNewRow() {
+    if (flagNewRow == 1) {
+        flagNewRow = 2;
+        return;
+    }
+    flagNewRow = 1;
+}
+
+function setStartPositionForNewRow() {
+    startPositionForNewRow = 5 + ballRadius * flagNewRow;
+    setFlagForNewRow();
+}
+
+function setStartPositionForZeroRow() {
+    startPositionForZeroRow = 5 + ballRadius * flagZeroRow;
+    if (flagZeroRow == 1) {
+        flagZeroRow = 2;
+        return;
+    }
+    flagZeroRow = 1;
+}
+
+function addZeroRowToStartCircles() {
+    const newRow = [];
+    circkles.push(newRow);
+    circkleRowCount += 1;
+    for (let i = 0; i < circkleRowCount - 1; i++) {
+        for (let j = 0; j < circkleColumnCount; j++) {
+            const row = circkleRowCount - 2 - i;
+            const ball = circkles[circkleRowCount - 2 - i][j];
+            circkles[row + 1][j] = {x: ball.x, y: ball.y + 2 * ballRadius, color: ball.color, status: ball.status, match: ball.match, isCheked: ball.isCheked, basis: ball.basis, odd: ball.odd};
+        }
+    }
+
+    for (let j = 0; j < circkleColumnCount; j++) {
+        circkles[0][j].color = randomColor();
+        circkles[0][j].y = ballRadius;
+        circkles[0][j].status = 1;
+        circkles[0][j].x = startPositionForZeroRow + 2 * (ballRadius + 1) * j;
+        circkles[0][j].odd = flagZeroRow % 2;
+    }
+    setStartPositionForZeroRow();
+    timeForAddingZeroRow = false;
+}
+
+function setFlagForAddingZeroRow() {
+    timeForAddingZeroRow = true;
+}
 
 function InitiateCircles() {
     for (let i = 0; i < circkleRowCount; i++) {
@@ -37,8 +98,9 @@ function InitiateCircles() {
             if (i % 2 != 0) {
                 startPosition = 5 + ballRadius * 2;
             }
+        let odd = i % 2;
         for (let j = 0; j < circkleColumnCount; j++) {
-            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1}
+            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1, odd: odd}
         }
     }
 }
@@ -97,7 +159,7 @@ function isCollision(x1, y1, x2, y2) {
 
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length <= 2 * ballRadius + 2) {
+    if (length <= 2 * ballRadius) {
         return true;
     }
     return false;
@@ -137,14 +199,12 @@ function addCircleToStartCircles() {
 function addRowToStartCircles() {
     circkleRowCount += 1;
     circkles.push([]);
-    let startPosition = 5 + ballRadius;
-    if (circkleRowCount % 2 == 0) {
-        startPosition = 5 + ballRadius * 2;
-    }
     const j = circkleRowCount - 1;
+    const odd = flagNewRow % 2;
     for (let i = 0; i < circkleColumnCount; i++) {
-        circkles[j][i] = {x: startPosition + 2 * (ballRadius + 1) * i, y: ballRadius + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, basis: 1}
+        circkles[j][i] = {x: startPositionForNewRow + 2 * (ballRadius + 1) * i, y: ballRadius + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, basis: 1, odd: odd}
     }
+    setStartPositionForNewRow();
 }
 
 function addCircleToNewRow() {
@@ -197,6 +257,9 @@ function drawMainImage() {
 
 function draw() {
     clear();
+    if (timeForAddingZeroRow) {
+        addZeroRowToStartCircles();
+    }
     drowStartCircles();
     drawMainCircle(startColor);
     //drawMainImage();
@@ -212,9 +275,6 @@ function createImage() {
 
 function calculateVector(x, y) {
     const length = calculateLength(canvas.width / 2, canvas.height - ballRadius, x, y);
-    //const delta = Math.sqrt( Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-    //dx = - (canvas.width / 2 - x) / 100;
-    //dy = - (canvas.height - 10 - y) / 100;
     dx = - 10 * (canvas.width / 2 - x) / length;
     dy = - 10 * (canvas.height - ballRadius - y) / length;
 }
@@ -251,11 +311,15 @@ function startPosition() {
 }
 
 function startPlay() {
+    getDifficulty();
     InitiateCircles();
     drowStartCircles();
     startPosition();
     drawMainCircle(startColor);
+    setStartPositionForNewRow();
+    setStartPositionForZeroRow();
     //drawMainImage();
+    timeForAddRow = setInterval(setFlagForAddingZeroRow, 20000);
 }
 
 function nextCircle() {
@@ -294,13 +358,13 @@ function checkColorLeftBall(i, j) {
     checkColorBall(leftBall, i, j - 1);
 }
 
-function checkColorBottomRightBall(i, j) {
+function checkColorBottomRightBall(i, j, odd) {
     if (i == circkleRowCount - 1) {
         return;
     }
     let bottomBall = circkles[i + 1][j];
     let column = j;
-    if (i % 2 != 0) {
+    if (odd != 0) {
         if (j == circkleColumnCount - 1) {
             return;
         }
@@ -314,13 +378,13 @@ function checkColorBottomRightBall(i, j) {
     checkColorBall(bottomBall, i + 1, column);
 }
 
-function checkColorBottomLeftBall(i, j) {
+function checkColorBottomLeftBall(i, j, odd) {
     if (i == circkleRowCount - 1) {
         return;
     }
     let bottomBall = circkles[i + 1][j];
     let column = j;
-    if (i % 2 == 0) {
+    if (odd == 0) {
         if (j == 0) {
             return;
         }
@@ -334,13 +398,13 @@ function checkColorBottomLeftBall(i, j) {
     checkColorBall(bottomBall, i + 1, column);
 }
 
-function checkColorTopLeftBall(i, j) {
+function checkColorTopLeftBall(i, j, odd) {
     if (i == 0) {
         return;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
-    if (i % 2 == 0) {
+    if (odd == 0) {
         if (j == 0) {
             return;
         }
@@ -354,13 +418,13 @@ function checkColorTopLeftBall(i, j) {
     checkColorBall(topBall, i - 1, column);
 }
 
-function checkColorTopRightBall(i, j) {
+function checkColorTopRightBall(i, j, odd) {
     if (i == 0) {
         return;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
-    if (i % 2 != 0) {
+    if (odd != 0) {
         if (j == circkleColumnCount - 1) {
             return;
         }
@@ -378,11 +442,11 @@ function checkNeighbors(i, j) {
     const ball = circkles[i][j];
     ball.isCheked = 1;
     checkColorRightBall(i, j);
-    checkColorBottomRightBall(i, j);
-    checkColorBottomLeftBall(i, j);
+    checkColorBottomRightBall(i, j, ball.odd);
+    checkColorBottomLeftBall(i, j, ball.odd);
     checkColorLeftBall(i, j);
-    checkColorTopLeftBall(i, j);
-    checkColorTopRightBall(i, j);
+    checkColorTopLeftBall(i, j, ball.odd);
+    checkColorTopRightBall(i, j, ball.odd);
 }
 
 function findColorMatches(ball) {
@@ -424,7 +488,7 @@ function deleteMatches(flag) {
             if (ball.match == 1) {
                 if (flag) {
                     ball.color = 0;
-                }
+                 }
                 //ball.color = 0;
                 ball.status = +(!flag);
                 ball.match = 0;
@@ -443,6 +507,7 @@ function deleteEmptyRows() {
         if (circlesRow.every((element) => element.status == 0)) {
             circkles.pop();
             circkleRowCount -= 1;
+            setStartPositionForNewRow();
         } else {
             doIt = false;
         }
@@ -456,12 +521,12 @@ function setBasisForStartRow() {
     }
 }
 
-function setBasisBottomLeftBall(i, j, basis) {
+function setBasisBottomLeftBall(i, j, odd, basis) {
     if (i == circkleRowCount - 1) {
         return;
     }
     let bottomBall = circkles[i + 1][j];
-    if (i % 2 == 0) {
+    if (odd == 0) {
         if (j == 0) {
             return;
         }
@@ -473,12 +538,12 @@ function setBasisBottomLeftBall(i, j, basis) {
     bottomBall.basis = basis;
 }
 
-function setBasisBottomRightBall(i, j, basis) {
+function setBasisBottomRightBall(i, j, odd, basis) {
     if (i == circkleRowCount - 1) {
         return;
     }
     let bottomBall = circkles[i + 1][j];
-    if (i % 2 != 0) {
+    if (odd != 0) {
         if (j == circkleColumnCount - 1) {
             return;
         }
@@ -490,12 +555,12 @@ function setBasisBottomRightBall(i, j, basis) {
     bottomBall.basis = basis;
 }
 
-function setBasisTopLeftBall(i, j, basis) {
+function setBasisTopLeftBall(i, j, odd, basis) {
     if (i == 0) {
         return;
     }
     let topBall = circkles[i - 1][j];
-    if (i % 2 == 0) {
+    if (odd == 0) {
         if (j == 0) {
             return;
         }
@@ -507,12 +572,12 @@ function setBasisTopLeftBall(i, j, basis) {
     topBall.basis = basis;
 }
 
-function setBasisTopRightBall(i, j, basis) {
+function setBasisTopRightBall(i, j, odd, basis) {
     if (i == 0) {
         return;
     }
     let topBall = circkles[i - 1][j];
-    if (i % 2 != 0) {
+    if (odd != 0) {
         if (j == circkleColumnCount - 1) {
             return 0;
         }
@@ -546,20 +611,20 @@ function setBasisLeftBall(i, j, basis) {
     leftBall.basis = basis;
 }
 
-function setBasisNeighbors(i, j, basis) {
+function setBasisNeighbors(i, j, odd, basis) {
     setBasisRightBall(i, j, basis);
-    setBasisBottomRightBall(i, j, basis);
-    setBasisBottomLeftBall(i, j, basis);
+    setBasisBottomRightBall(i, j, odd, basis);
+    setBasisBottomLeftBall(i, j, odd, basis);
     setBasisLeftBall(i, j, basis);
-    setBasisTopLeftBall(i, j, basis);
-    setBasisTopRightBall(i, j, basis);
+    setBasisTopLeftBall(i, j, odd, basis);
+    setBasisTopRightBall(i, j, odd, basis);
 }
 
 function setBasisForBottomRows() {
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
-            setBasisNeighbors(i, j, ball.basis);
+            setBasisNeighbors(i, j, ball.odd, ball.basis);
         }
     }
 }
@@ -571,13 +636,13 @@ function checkHendingCircles() {
 }
 
 function deleteCirclesWithoutBasis() {
-    console.log(circkles);
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
             if (ball.basis == 0) {
                 //ball.color = 'black';
                 ball.status = 0;
+                ball.color = 0;
             }
             if (ball.status == 1) {
                 setColors.add(ball.color);
