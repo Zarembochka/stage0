@@ -29,7 +29,7 @@ const circkles = [];
 let startColor;
 let startPositionForNewRow;
 let startPositionForZeroRow;
-let flagNewRow = 1;
+let flagNewRow = 2;
 let flagZeroRow = 2;
 
 const btnNewGame = document.querySelector('.newGame');
@@ -42,7 +42,7 @@ function getDifficulty() {
     //colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
     startColor = randomColor();
     lengthColors = colors.length;
-    circkleRowCount = 6;
+    circkleRowCount = 5;
 }
 
 function setFlagForNewRow() {
@@ -172,17 +172,22 @@ function isPositionToCircle(x1, y1, x2, y2) {
     return false;
 }
 
+function changeCircleForVisible(ball) {
+    ball.status = 1;
+    ball.color = startColor;
+    ball.match = 1;
+    currentBall = ball;
+}
+
 function findPositionToCollisionCircle() {
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
             if (ball.status == 0) {
                 if (isPositionToCircle(x, y, ball.x, ball.y)) {
-                    ball.status = 1;
-                    ball.color = startColor;
-                    ball.match = 1;
-                    currentBall = ball;
-                    //timeoutForMatchColor = setTimeout(findColorMatches, 20, currentBall);
+                    changeCircleForVisible(ball);
+                    clear();
+                    drowStartCircles();
                     findColorMatches(currentBall);
                     return;
                 }
@@ -220,11 +225,9 @@ function addCircleToNewRow() {
     for (let i = 0; i < circkleColumnCount; i++) {
         const ball = circkles[j][i];
         if (isPositionToCircle(x, y, ball.x, ball.y)) {
-            ball.status = 1;
-            ball.color = startColor;
-            ball.match = 1;
-            currentBall = ball;
-            // timeoutForMatchColor = setTimeout(findColorMatches, 20, currentBall);
+            changeCircleForVisible(ball);
+            clear();
+            drowStartCircles();
             findColorMatches(currentBall);
             return;
         }
@@ -470,6 +473,7 @@ function findColorMatches(ball) {
 }
 
 function checkAllMatches() {
+    console.log(1);
     const circlesMatches = [];
     for (let i = 0; i < circkleRowCount; i++) {
         const rowMatches = circkles[i].filter((element) => element.match == 1);
@@ -479,6 +483,8 @@ function checkAllMatches() {
     }
     if (circlesMatches.flat().length > 2) {
         deleteMatches(true);
+        clear();
+        drowStartCircles();
         checkHendingCircles();
         deleteEmptyRows();
         checkWinGame();
@@ -913,13 +919,13 @@ function deleteCirclesWithoutBasis() {
             ball.isCheked = 0;
             ball.isCheking = 0;
             if (ball.basis == 0 && ball.status != 0) {
-                ball.color = 'black';
-                //ball.status = 0;
-                //ball.color = 0;
+                //ball.color = 'black';
+                ball.status = 0;
+                ball.color = 0;
             }
-            // if (ball.status == 1) {
-            //     setColors.add(ball.color);
-            // }
+            if (ball.status == 1) {
+                setColors.add(ball.color);
+            }
         }
     }
 }
@@ -1000,5 +1006,3 @@ function deleteBalls() {
     drowStartCircles();
     drawMainCircle(startColor);
 }
-
-startPlay();
