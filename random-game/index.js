@@ -34,6 +34,8 @@ let flagZeroRow = 2;
 
 const btnNewGame = document.querySelector('.newGame');
 const canvasImage = document.querySelector('.canvas__image');
+const btnStartPlay = document.querySelector('.start__play');
+const start = document.querySelector('.start');
 
 function getDifficulty() {
     colors = ['yellow', 'red', 'orange', 'blue', 'green'];
@@ -531,150 +533,84 @@ function setBasisForStartRow() {
     }
 }
 
-// function setBasisBottomLeftBall(i, j, odd, basis) {
-//     if (i == circkleRowCount - 1) {
-//         return;
-//     }
-//     let bottomBall = circkles[i + 1][j];
-//     if (odd == 0) {
-//         if (j == 0) {
-//             return;
-//         }
-//         bottomBall = circkles[i + 1][j - 1];
-//     }
-//     if (bottomBall.status == 0 || bottomBall.basis == 1) {
-//         return;
-//     }
-//     bottomBall.basis = basis;
-// }
-
-// function setBasisBottomRightBall(i, j, odd, basis) {
-//     if (i == circkleRowCount - 1) {
-//         return;
-//     }
-//     let bottomBall = circkles[i + 1][j];
-//     if (odd != 0) {
-//         if (j == circkleColumnCount - 1) {
-//             return;
-//         }
-//         bottomBall = circkles[i + 1][j + 1];
-//     }
-//     if (bottomBall.status == 0 || bottomBall.basis == 1) {
-//         return;
-//     }
-//     bottomBall.basis = basis;
-// }
-
-// function setBasisTopLeftBall(i, j, odd, basis) {
-//     if (i == 0) {
-//         return;
-//     }
-//     let topBall = circkles[i - 1][j];
-//     if (odd == 0) {
-//         if (j == 0) {
-//             return;
-//         }
-//         topBall = circkles[i - 1][j - 1];
-//     }
-//     if (topBall.status == 0 || topBall.basis == 1) {
-//         return 0;
-//     }
-//     topBall.basis = basis;
-// }
-
-// function setBasisTopRightBall(i, j, odd, basis) {
-//     if (i == 0) {
-//         return;
-//     }
-//     let topBall = circkles[i - 1][j];
-//     if (odd != 0) {
-//         if (j == circkleColumnCount - 1) {
-//             return 0;
-//         }
-//         topBall = circkles[i - 1][j + 1];
-//     }
-//     if (topBall.status == 0 || topBall.basis == 1) {
-//         return 0;
-//     }
-//     topBall.basis = basis;
-// }
-
-// function setBasisRightBall(i, j, basis) {
-//     if (j == circkleColumnCount - 1) {
-//         return;
-//     }
-//     const rightBall = circkles[i][j + 1];
-//     if (rightBall.status == 0 || rightBall.basis == 1) {
-//         return;
-//     }
-//     rightBall.basis = basis;
-// }
-
-// function setBasisLeftBall(i, j, basis) {
-//     if (j == 0) {
-//         return;
-//     }
-//     const leftBall = circkles[i][j - 1];
-//     if (leftBall.status == 0 || leftBall.basis == 1) {
-//         return;
-//     }
-//     leftBall.basis = basis;
-//}
-
-// function setBasisNeighbors(i, j, odd, basis) {
-//     setBasisRightBall(i, j, basis);
-//     setBasisBottomRightBall(i, j, odd, basis);
-//     setBasisBottomLeftBall(i, j, odd, basis);
-//     setBasisLeftBall(i, j, basis);
-//     setBasisTopLeftBall(i, j, odd, basis);
-//     setBasisTopRightBall(i, j, odd, basis);
-// }
-
-function getBasisFromLeftBall(i, j) {
-    if (j == 0) {
-        return 0;
+function setBasisBottomLeftBall(i, j, odd) {
+    if (i == circkleRowCount - 1) {
+        return;
     }
-    const leftBall = circkles[i][j - 1];
-    if (leftBall.isCheked) {
-        return leftBall.basis;
+    let bottomBall = circkles[i + 1][j];
+    let column = j;
+    if (odd == 0) {
+        if (j == 0) {
+            return;
+        }
+        bottomBall = circkles[i + 1][j - 1];
+        column = j - 1;
     }
-    if (leftBall.status == 0) {
-        return 0;
+    if (bottomBall.isCheked) {
+        return;
     }
-    if (leftBall.isCheking) {
-        return 0;
+    if (bottomBall.status == 0) {
+        bottomBall.isCheked = 1;
+        return;
     }
-    return getBasisFromNeighbors(i, j - 1, leftBall);
+    bottomBall.isCheked = 1;
+    bottomBall.basis = 1;
+    setBasisNeighbors(i + 1, column, bottomBall);
 }
 
-function getBasisFromTopLeftBall(i, j, odd) {
+function setBasisBottomRightBall(i, j, odd) {
+    if (i == circkleRowCount - 1) {
+        return;
+    }
+    let bottomBall = circkles[i + 1][j];
+    let column = j;
+    if (odd != 0) {
+        if (j == circkleColumnCount - 1) {
+            return;
+        }
+        bottomBall = circkles[i + 1][j + 1];
+        column = j + 1;
+    }
+    if (bottomBall.isCheked) {
+        return;
+    }
+    if (bottomBall.status == 0) {
+        bottomBall.isCheked = 1;
+        return;
+    }
+    bottomBall.isCheked = 1;
+    bottomBall.basis = 1;
+    setBasisNeighbors(i + 1, column, bottomBall);
+}
+
+function setBasisTopLeftBall(i, j, odd) {
     if (i == 0) {
-        return 0;
+        return;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
     if (odd == 0) {
         if (j == 0) {
-            return 0;
+            return;
         }
         topBall = circkles[i - 1][j - 1];
         column = j - 1;
     }
     if (topBall.isCheked) {
-        return topBall.basis;
+        return;
     }
     if (topBall.status == 0) {
-        return 0;
+        topBall.isCheked = 1;
+        return;
     }
-    if (topBall.isCheking) {
-        return 0;
-    }
-    return getBasisFromNeighbors(i - 1, column, topBall);
+    topBall.isCheked = 1;
+    topBall.basis = 1;
+    setBasisNeighbors(i - 1, column, topBall);
 }
 
-function getBasisFromTopRightBall(i, j, odd) {
+function setBasisTopRightBall(i, j, odd) {
     if (i == 0) {
-        return 0;
+        return;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
@@ -686,156 +622,280 @@ function getBasisFromTopRightBall(i, j, odd) {
         column = j + 1;
     }
     if (topBall.isCheked) {
-        return topBall.basis;
+        return;
     }
     if (topBall.status == 0) {
-        return 0;
+        topBall.isCheked = 1;
+        return;
     }
-    if (topBall.isCheking) {
-        return 0;
-    }
-    return getBasisFromNeighbors(i - 1, column, topBall);
+    topBall.isCheked = 1;
+    topBall.basis = 1;
+    setBasisNeighbors(i - 1, column, topBall);
 }
 
-function getBasisFromRightBall(i, j) {
+function setBasisRightBall(i, j) {
     if (j == circkleColumnCount - 1) {
-        return 0;
+        return;
     }
     const rightBall = circkles[i][j + 1];
     if (rightBall.isCheked) {
-        return rightBall.basis;
-    }
-    if (rightBall.status == 0) {
-        return 0;
-    }
-    if (rightBall.isCheking) {
-        return 0;
-    }
-    return getBasisFromNeighbors(i, j + 1, rightBall);
-}
-
-function getBasisFromBottomRightBall(i, j, odd) {
-    if (i == circkleRowCount - 1) {
-        return 0;
-    }
-    let bottomBall = circkles[i + 1][j];
-    let column = j;
-    if (odd != 0) {
-        if (j == circkleColumnCount - 1) {
-            return 0;
-        }
-        bottomBall = circkles[i + 1][j + 1];
-        column = j + 1;
-    }
-    if (bottomBall.isCheked) {
-        return bottomBall.basis;
-    }
-    if (bottomBall.status == 0) {
-        return 0;
-    }
-    if (bottomBall.isCheking) {
-        return 0;
-    }
-    return getBasisFromNeighbors(i + 1, column, bottomBall);
-}
-
-function getBasisFromBottomLeftBall(i, j, odd) {
-    if (i == circkleRowCount - 1) {
-        return 0;
-    }
-    let bottomBall = circkles[i + 1][j];
-    let column = j;
-    if (odd == 0) {
-        if (j == 0) {
-            return 0;
-        }
-        bottomBall = circkles[i + 1][j - 1];
-        column = j - 1;
-    }
-    if (bottomBall.isCheked) {
-        return bottomBall.basis;
-    }
-    if (bottomBall.status == 0) {
-        return 0;
-    }
-    if (bottomBall.isCheking) {
-        return 0;
-    }
-    return getBasisFromNeighbors(i + 1, column, bottomBall);
-}
-
-function getBasisFromNeighbors(i, j, ball) {
-    if (ball.status == 0) {
-        ball.isCheked = 1;
-        return 0;
-    }
-    if (ball.isCheking) {
         return;
     }
-    ball.isCheking = 1;
-    if (getBasisFromLeftBall(i, j)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
+    if (rightBall.status == 0) {
+        rightBall.isCheked = 1;
+        return;
     }
-    if (getBasisFromTopLeftBall(i, j, ball.odd)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
-    }
-    if (getBasisFromTopRightBall(i, j, ball.odd)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
-    }
-    if (getBasisFromRightBall(i, j)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
-    }
-    if (getBasisFromBottomRightBall(i, j, ball.odd)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
-    }
-    if (getBasisFromBottomLeftBall(i, j, ball.odd)) {
-        ball.basis = 1;
-        ball.isCheked = 1;
-        ball.isCheking = 0;
-        return 1;
-    }
-    ball.isCheked = 1;
-    ball.isCheking = 0;
-    return 0;
+    rightBall.isCheked = 1;
+    rightBall.basis = 1;
+    setBasisNeighbors(i, j + 1, rightBall);
 }
 
-function getBasis(i, j, ball) {
-    if (ball.isCheked) {
-        return ball.basis;
+function setBasisLeftBall(i, j) {
+    if (j == 0) {
+        return;
     }
+    const leftBall = circkles[i][j - 1];
+    if (leftBall.isCheked) {
+        return;
+    }
+    if (leftBall.status == 0) {
+        leftBall.isCheked = 1;
+        return;
+    }
+    leftBall.isCheked = 1;
+    leftBall.basis = 1;
+    setBasisNeighbors(i, j - 1, leftBall);
+}
+
+function setBasisNeighbors(i, j, ball) {
     if (ball.status == 0) {
         ball.isCheked = 1;
-        return 0;
+        return;
     }
-    return getBasisFromNeighbors(i, j, ball);
+    if (ball.basis == 0) {
+        return;
+    }
+    setBasisRightBall(i, j);
+    setBasisBottomRightBall(i, j, ball.odd);
+    setBasisBottomLeftBall(i, j, ball.odd);
+    setBasisLeftBall(i, j);
+    setBasisTopLeftBall(i, j, ball.odd);
+    setBasisTopRightBall(i, j, ball.odd);
 }
 
+// function getBasisFromLeftBall(i, j) {
+//     if (j == 0) {
+//         return 0;
+//     }
+//     const leftBall = circkles[i][j - 1];
+//     if (leftBall.isCheked) {
+//         return leftBall.basis;
+//     }
+//     if (leftBall.status == 0) {
+//         return 0;
+//     }
+//     if (leftBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i, j - 1, leftBall);
+// }
+
+// function getBasisFromTopLeftBall(i, j, odd) {
+//     if (i == 0) {
+//         return 0;
+//     }
+//     let topBall = circkles[i - 1][j];
+//     let column = j;
+//     if (odd == 0) {
+//         if (j == 0) {
+//             return 0;
+//         }
+//         topBall = circkles[i - 1][j - 1];
+//         column = j - 1;
+//     }
+//     if (topBall.isCheked) {
+//         return topBall.basis;
+//     }
+//     if (topBall.status == 0) {
+//         return 0;
+//     }
+//     if (topBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i - 1, column, topBall);
+// }
+
+// function getBasisFromTopRightBall(i, j, odd) {
+//     if (i == 0) {
+//         return 0;
+//     }
+//     let topBall = circkles[i - 1][j];
+//     let column = j;
+//     if (odd != 0) {
+//         if (j == circkleColumnCount - 1) {
+//             return 0;
+//         }
+//         topBall = circkles[i - 1][j + 1];
+//         column = j + 1;
+//     }
+//     if (topBall.isCheked) {
+//         return topBall.basis;
+//     }
+//     if (topBall.status == 0) {
+//         return 0;
+//     }
+//     if (topBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i - 1, column, topBall);
+// }
+
+// function getBasisFromRightBall(i, j) {
+//     if (j == circkleColumnCount - 1) {
+//         return 0;
+//     }
+//     const rightBall = circkles[i][j + 1];
+//     if (rightBall.isCheked) {
+//         return rightBall.basis;
+//     }
+//     if (rightBall.status == 0) {
+//         return 0;
+//     }
+//     if (rightBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i, j + 1, rightBall);
+// }
+
+// function getBasisFromBottomRightBall(i, j, odd) {
+//     if (i == circkleRowCount - 1) {
+//         return 0;
+//     }
+//     let bottomBall = circkles[i + 1][j];
+//     let column = j;
+//     if (odd != 0) {
+//         if (j == circkleColumnCount - 1) {
+//             return 0;
+//         }
+//         bottomBall = circkles[i + 1][j + 1];
+//         column = j + 1;
+//     }
+//     if (bottomBall.isCheked) {
+//         return bottomBall.basis;
+//     }
+//     if (bottomBall.status == 0) {
+//         return 0;
+//     }
+//     if (bottomBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i + 1, column, bottomBall);
+// }
+
+// function getBasisFromBottomLeftBall(i, j, odd) {
+//     if (i == circkleRowCount - 1) {
+//         return 0;
+//     }
+//     let bottomBall = circkles[i + 1][j];
+//     let column = j;
+//     if (odd == 0) {
+//         if (j == 0) {
+//             return 0;
+//         }
+//         bottomBall = circkles[i + 1][j - 1];
+//         column = j - 1;
+//     }
+//     if (bottomBall.isCheked) {
+//         return bottomBall.basis;
+//     }
+//     if (bottomBall.status == 0) {
+//         return 0;
+//     }
+//     if (bottomBall.isCheking) {
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i + 1, column, bottomBall);
+// }
+
+// function getBasisFromNeighbors(i, j, ball) {
+//     if (ball.status == 0) {
+//         ball.isCheked = 1;
+//         return 0;
+//     }
+//     if (ball.isCheking) {
+//         return;
+//     }
+//     ball.isCheking = 1;
+//     if (getBasisFromLeftBall(i, j)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     if (getBasisFromTopLeftBall(i, j, ball.odd)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     if (getBasisFromTopRightBall(i, j, ball.odd)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     if (getBasisFromRightBall(i, j)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     if (getBasisFromBottomRightBall(i, j, ball.odd)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     if (getBasisFromBottomLeftBall(i, j, ball.odd)) {
+//         ball.basis = 1;
+//         ball.isCheked = 1;
+//         ball.isCheking = 0;
+//         return 1;
+//     }
+//     ball.isCheked = 1;
+//     ball.isCheking = 0;
+//     return 0;
+// }
+
+// function getBasis(i, j, ball) {
+//     if (ball.isCheked) {
+//         return ball.basis;
+//     }
+//     if (ball.status == 0) {
+//         ball.isCheked = 1;
+//         return 0;
+//     }
+//     return getBasisFromNeighbors(i, j, ball);
+// }
+
 function setBasisForBottomRows() {
-    for (let i = 1; i < circkleRowCount; i++) {
-        for (let j = 0; j < circkleColumnCount; j++) {
-            const ball = circkles[i][j];
-            if (!ball.isCheked) {
-                //ball.basis = getBasis(i, j, ball);
-                ball.basis = getBasisFromNeighbors(i, j, ball)
-            }
-            // if (ball.status != 0) {
-            //     setBasisNeighbors(i, j, ball.odd, ball.basis);
-            // }
+    // for (let i = 0; i < circkleRowCount; i++) {
+    //     for (let j = 0; j < circkleColumnCount; j++) {
+    //         const ball = circkles[i][j];
+    //         if (ball.isCheked) {
+    //             //setBasisNeighbors(i, j, ball);
+    //             //ball.basis = getBasis(i, j, ball);
+    //             //ball.basis = getBasisFromNeighbors(i, j, ball)
+    //         }
+    //         // if (ball.status != 0) {
+    //         //     setBasisNeighbors(i, j, ball.odd, ball.basis);
+    //         // }
+    //     }
+    // }
+    for (let j = 0; j < circkleColumnCount; j++) {
+        const ball = circkles[0][j];
+        if (ball.isCheked) {
+            setBasisNeighbors(0, j, ball);
         }
     }
 }
@@ -895,18 +955,26 @@ function checkWinGame() {
 
 canvas.addEventListener('click', startMovement);
 
-canvasImage.addEventListener('click', changeStartField);
+btnStartPlay.addEventListener('click', changeStartField);
 
-canvasImage.addEventListener('animationend', checkAnimation);
+//canvasImage.addEventListener('click', changeStartField);
+
+//canvasImage.addEventListener('animationend', checkAnimation);
+
+start.addEventListener('animationend', checkAnimation);
 
 function changeStartField() {
-    canvasImage.classList.add('canvas__image-fadeout');
+    //canvasImage.classList.add('canvas__image-fadeout');
+    start.classList.add('start-fadeout');
 }
 
 function showStartFild() {
-    canvasImage.classList.add('canvas__image-hide');
-    canvasImage.classList.remove('canvas__image-fadeout');
-    canvasImage.classList.remove('canvas__image-start');
+    // canvasImage.classList.add('canvas__image-hide');
+    // canvasImage.classList.remove('canvas__image-fadeout');
+    // canvasImage.classList.remove('canvas__image-start');
+    start.classList.add('start-hide');
+    start.classList.remove('canvas__image-fadeout');
+    canvas.classList.add('canvas-show');
     startPlay();
 }
 
@@ -932,3 +1000,5 @@ function deleteBalls() {
     drowStartCircles();
     drawMainCircle(startColor);
 }
+
+startPlay();
