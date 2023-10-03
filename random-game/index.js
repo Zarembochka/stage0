@@ -31,11 +31,14 @@ let startPositionForNewRow;
 let startPositionForZeroRow;
 let flagNewRow = 2;
 let flagZeroRow = 2;
+let score = 0;
 
 const btnNewGame = document.querySelector('.newGame');
 const canvasImage = document.querySelector('.canvas__image');
 const btnStartPlay = document.querySelector('.start__play');
 const start = document.querySelector('.start');
+const header = document.querySelector('.header');
+const scoreText = document.querySelector('.score__value');
 
 function getDifficulty() {
     colors = ['yellow', 'red', 'orange', 'blue', 'green'];
@@ -483,6 +486,7 @@ function checkAllMatches() {
     }
     if (circlesMatches.flat().length > 2) {
         deleteMatches(true);
+        changeScore();
         clear();
         drowStartCircles();
         checkHendingCircles();
@@ -504,6 +508,7 @@ function deleteMatches(flag) {
             if (ball.match == 1) {
                 if (flag) {
                     ball.color = 0;
+                    score += 10;
                     //ball.color = 'aqua';
                  }
                 //ball.color = 0;
@@ -689,215 +694,7 @@ function setBasisNeighbors(i, j, ball) {
     setBasisTopRightBall(i, j, ball.odd);
 }
 
-// function getBasisFromLeftBall(i, j) {
-//     if (j == 0) {
-//         return 0;
-//     }
-//     const leftBall = circkles[i][j - 1];
-//     if (leftBall.isCheked) {
-//         return leftBall.basis;
-//     }
-//     if (leftBall.status == 0) {
-//         return 0;
-//     }
-//     if (leftBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i, j - 1, leftBall);
-// }
-
-// function getBasisFromTopLeftBall(i, j, odd) {
-//     if (i == 0) {
-//         return 0;
-//     }
-//     let topBall = circkles[i - 1][j];
-//     let column = j;
-//     if (odd == 0) {
-//         if (j == 0) {
-//             return 0;
-//         }
-//         topBall = circkles[i - 1][j - 1];
-//         column = j - 1;
-//     }
-//     if (topBall.isCheked) {
-//         return topBall.basis;
-//     }
-//     if (topBall.status == 0) {
-//         return 0;
-//     }
-//     if (topBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i - 1, column, topBall);
-// }
-
-// function getBasisFromTopRightBall(i, j, odd) {
-//     if (i == 0) {
-//         return 0;
-//     }
-//     let topBall = circkles[i - 1][j];
-//     let column = j;
-//     if (odd != 0) {
-//         if (j == circkleColumnCount - 1) {
-//             return 0;
-//         }
-//         topBall = circkles[i - 1][j + 1];
-//         column = j + 1;
-//     }
-//     if (topBall.isCheked) {
-//         return topBall.basis;
-//     }
-//     if (topBall.status == 0) {
-//         return 0;
-//     }
-//     if (topBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i - 1, column, topBall);
-// }
-
-// function getBasisFromRightBall(i, j) {
-//     if (j == circkleColumnCount - 1) {
-//         return 0;
-//     }
-//     const rightBall = circkles[i][j + 1];
-//     if (rightBall.isCheked) {
-//         return rightBall.basis;
-//     }
-//     if (rightBall.status == 0) {
-//         return 0;
-//     }
-//     if (rightBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i, j + 1, rightBall);
-// }
-
-// function getBasisFromBottomRightBall(i, j, odd) {
-//     if (i == circkleRowCount - 1) {
-//         return 0;
-//     }
-//     let bottomBall = circkles[i + 1][j];
-//     let column = j;
-//     if (odd != 0) {
-//         if (j == circkleColumnCount - 1) {
-//             return 0;
-//         }
-//         bottomBall = circkles[i + 1][j + 1];
-//         column = j + 1;
-//     }
-//     if (bottomBall.isCheked) {
-//         return bottomBall.basis;
-//     }
-//     if (bottomBall.status == 0) {
-//         return 0;
-//     }
-//     if (bottomBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i + 1, column, bottomBall);
-// }
-
-// function getBasisFromBottomLeftBall(i, j, odd) {
-//     if (i == circkleRowCount - 1) {
-//         return 0;
-//     }
-//     let bottomBall = circkles[i + 1][j];
-//     let column = j;
-//     if (odd == 0) {
-//         if (j == 0) {
-//             return 0;
-//         }
-//         bottomBall = circkles[i + 1][j - 1];
-//         column = j - 1;
-//     }
-//     if (bottomBall.isCheked) {
-//         return bottomBall.basis;
-//     }
-//     if (bottomBall.status == 0) {
-//         return 0;
-//     }
-//     if (bottomBall.isCheking) {
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i + 1, column, bottomBall);
-// }
-
-// function getBasisFromNeighbors(i, j, ball) {
-//     if (ball.status == 0) {
-//         ball.isCheked = 1;
-//         return 0;
-//     }
-//     if (ball.isCheking) {
-//         return;
-//     }
-//     ball.isCheking = 1;
-//     if (getBasisFromLeftBall(i, j)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     if (getBasisFromTopLeftBall(i, j, ball.odd)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     if (getBasisFromTopRightBall(i, j, ball.odd)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     if (getBasisFromRightBall(i, j)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     if (getBasisFromBottomRightBall(i, j, ball.odd)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     if (getBasisFromBottomLeftBall(i, j, ball.odd)) {
-//         ball.basis = 1;
-//         ball.isCheked = 1;
-//         ball.isCheking = 0;
-//         return 1;
-//     }
-//     ball.isCheked = 1;
-//     ball.isCheking = 0;
-//     return 0;
-// }
-
-// function getBasis(i, j, ball) {
-//     if (ball.isCheked) {
-//         return ball.basis;
-//     }
-//     if (ball.status == 0) {
-//         ball.isCheked = 1;
-//         return 0;
-//     }
-//     return getBasisFromNeighbors(i, j, ball);
-// }
-
 function setBasisForBottomRows() {
-    // for (let i = 0; i < circkleRowCount; i++) {
-    //     for (let j = 0; j < circkleColumnCount; j++) {
-    //         const ball = circkles[i][j];
-    //         if (ball.isCheked) {
-    //             //setBasisNeighbors(i, j, ball);
-    //             //ball.basis = getBasis(i, j, ball);
-    //             //ball.basis = getBasisFromNeighbors(i, j, ball)
-    //         }
-    //         // if (ball.status != 0) {
-    //         //     setBasisNeighbors(i, j, ball.odd, ball.basis);
-    //         // }
-    //     }
-    // }
     for (let j = 0; j < circkleColumnCount; j++) {
         const ball = circkles[0][j];
         if (ball.isCheked) {
@@ -922,6 +719,7 @@ function deleteCirclesWithoutBasis() {
                 //ball.color = 'black';
                 ball.status = 0;
                 ball.color = 0;
+                score += 10;
             }
             if (ball.status == 1) {
                 setColors.add(ball.color);
@@ -981,6 +779,7 @@ function showStartFild() {
     start.classList.add('start-hide');
     start.classList.remove('canvas__image-fadeout');
     canvas.classList.add('canvas-show');
+    header.classList.add('header-show');
     startPlay();
 }
 
@@ -991,6 +790,10 @@ function checkAnimation(event) {
 }
 
 btnNewGame.addEventListener('click', deleteBalls);
+
+function changeScore() {
+    scoreText.textContent = score.toString(10);
+}
 
 function deleteBalls() {
     for (let i = 0; i < circkleRowCount; i++) {
