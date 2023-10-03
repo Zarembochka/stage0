@@ -1,6 +1,7 @@
 :root {
     --title-font-family: 'Bungee Spice', cursive;
     --main-font-family: 'Grandstander', cursive;
+    --color-fill: rgb(224, 97, 20);
 }
 
 * {
@@ -41,6 +42,7 @@
     background-color: rgba(255, 255, 0, 0.5);
     border: none;
     cursor: pointer;
+    border-radius: 10%;
 }
 
 .sound {
@@ -58,6 +60,7 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
+    border-radius: 10px / 10px;
 }
 
 .score__value {
@@ -195,7 +198,7 @@
     border-radius: 50%;
     cursor: pointer;
     outline: none;
-    border: 5px solid rgb(224, 97, 20);
+    border: 5px solid var(--color-fill);
     transition: background-color 0.3s ease-in-out;
     margin-bottom: 20px;
 }
@@ -231,11 +234,11 @@
 
 @media (hover: hover) {
     .btn:hover {
-        fill: rgb(224, 97, 20);
+        fill: var(--color-fill);
     }
 
     .footer__ico:hover {
-        fill: rgb(224, 97, 20);
+        fill: var(--color-fill);
     }
 
     .start__play:hover ~ .start__inner > .start__circle-bam {

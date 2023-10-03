@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const setColors = new Set();
 
+
 let timeForMovement;
 let timeoutForMatchColor;
 let timeForAddRow;
@@ -132,6 +133,7 @@ function checkCollision() {
             const ball = circkles[i][j];
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
+                    console.log(circkles);
                     addCircleToStartCircles();
                     return;
                 }
@@ -769,6 +771,7 @@ start.addEventListener('animationend', checkAnimation);
 
 function changeStartField() {
     //canvasImage.classList.add('canvas__image-fadeout');
+    playStartSound();
     start.classList.add('start-fadeout');
 }
 
@@ -789,7 +792,7 @@ function checkAnimation(event) {
     }
 }
 
-btnNewGame.addEventListener('click', deleteBalls);
+// btnNewGame.addEventListener('click', deleteBalls);
 
 function changeScore() {
     scoreText.textContent = score.toString(10);
@@ -809,3 +812,5 @@ function deleteBalls() {
     drowStartCircles();
     drawMainCircle(startColor);
 }
+
+
