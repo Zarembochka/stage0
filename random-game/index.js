@@ -5,7 +5,6 @@ const setColors = new Set();
 
 
 let timeForMovement;
-let timeoutForMatchColor;
 let timeForAddRow;
 let timeForAddingZeroRow = false;
 
@@ -30,9 +29,9 @@ const circkles = [];
 let startColor;
 let startPositionForNewRow;
 let startPositionForZeroRow;
-let flagNewRow = 2;
-let flagZeroRow = 2;
-let score = 0;
+let flagNewRow;
+let flagZeroRow;
+let score;
 
 const btnNewGame = document.querySelector('.newGame');
 const canvasImage = document.querySelector('.canvas__image');
@@ -41,12 +40,20 @@ const start = document.querySelector('.start');
 const header = document.querySelector('.header');
 const scoreText = document.querySelector('.score__value');
 
+function newGame() {
+    changeScoreToZero();
+    circkles.length = 0;
+    clearTimeout(timeForAddRow);
+    flagNewRow = 2;
+    flagZeroRow = 2;
+}
+
 function getDifficulty() {
     colors = ['yellow', 'red', 'orange', 'blue', 'green'];
     //colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
-    startColor = randomColor();
     lengthColors = colors.length;
-    circkleRowCount = 5;
+    startColor = randomColor();
+    circkleRowCount = 1;
 }
 
 function setFlagForNewRow() {
@@ -133,7 +140,7 @@ function checkCollision() {
             const ball = circkles[i][j];
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
-                    console.log(circkles);
+                    console.log(ball);
                     addCircleToStartCircles();
                     return;
                 }
@@ -147,7 +154,6 @@ function checkCollisionWithCanvas() {
     for (let j = 0; j < circkleColumnCount; j++) {
         const ball = circkles[0][j];
         if (isCollision(x, y , ball.x, ball.y)) {
-            console.log('колизия с началом');
             addCircleToStartCircles();
             return;
         }
@@ -298,6 +304,7 @@ function calculateVector(x, y) {
 
 function startMovement(event) {
     if (!isPlaying) {
+        playSoundShoot();
         calculateVector(event.offsetX, event.offsetY);
         timeForMovement = setInterval(draw, 10);
         isPlaying = true;
@@ -328,6 +335,8 @@ function startPosition() {
 }
 
 function startPlay() {
+    clear();
+    newGame();
     getDifficulty();
     InitiateCircles();
     drowStartCircles();
@@ -478,7 +487,6 @@ function findColorMatches(ball) {
 }
 
 function checkAllMatches() {
-    console.log(1);
     const circlesMatches = [];
     for (let i = 0; i < circkleRowCount; i++) {
         const rowMatches = circkles[i].filter((element) => element.match == 1);
@@ -487,6 +495,7 @@ function checkAllMatches() {
         }
     }
     if (circlesMatches.flat().length > 2) {
+        playSoundMatch(getSoundMatch(circlesMatches.flat().length));
         deleteMatches(true);
         changeScore();
         clear();
@@ -736,7 +745,8 @@ function checkLossGame() {
         const ball = lastRow[i];
         if (ball.status == 1) {
             if (ball.y + ballRadius + 2 >= canvas.height - 2 * ballRadius) {
-                showLostImage();
+                playSoundLose();
+                showLostField();
                 return true;
             }
         }
@@ -744,16 +754,36 @@ function checkLossGame() {
     return false;
 }
 
-function showLostImage() {
-    clear();
-    canvasImage.classList.remove('canvas__image-hide');
-    canvasImage.classList.add('canvas__image-lost');
+function changeStartFieldToEnd(word1, word2) {
+    const startTitle = document.querySelector('.start__title-one');
+    startTitle.textContent = word1;
+    startTitle.nextElementSibling.textContent = word2;
+    const startText = document.querySelector('.start__text');
+    startText.textContent = 'Press PLAY for start new game';
+}
+
+function showLostField() {
+    prepareToShowField();
+    changeStartFieldToEnd('Game', 'over');
+}
+
+function prepareToShowField() {
+    canvas.classList.remove('canvas-show');
+    start.classList.remove('start-hide');
+    header.classList.add('end');
+}
+
+function showWinField() {
+    prepareToShowField();
+    changeStartFieldToEnd('You', 'win');
+    start.classList.add('win');
 }
 
 function checkWinGame() {
     if (circkleRowCount == 0) {
-        clear();
-        alert('Winner!');
+        isPlaying = false;
+        showWinField();
+        playSoundWin();
         return true;
     }
     return false;
@@ -763,32 +793,27 @@ canvas.addEventListener('click', startMovement);
 
 btnStartPlay.addEventListener('click', changeStartField);
 
-//canvasImage.addEventListener('click', changeStartField);
-
-//canvasImage.addEventListener('animationend', checkAnimation);
-
 start.addEventListener('animationend', checkAnimation);
 
 function changeStartField() {
-    //canvasImage.classList.add('canvas__image-fadeout');
-    playStartSound();
+    loadSounds();
+    playSoundStart();
     start.classList.add('start-fadeout');
 }
 
-function showStartFild() {
-    // canvasImage.classList.add('canvas__image-hide');
-    // canvasImage.classList.remove('canvas__image-fadeout');
-    // canvasImage.classList.remove('canvas__image-start');
+function showStartField() {
     start.classList.add('start-hide');
-    start.classList.remove('canvas__image-fadeout');
+    start.classList.remove('start-fadeout');
     canvas.classList.add('canvas-show');
+    header.classList.remove('end');
+    start.classList.remove('win');
     header.classList.add('header-show');
     startPlay();
 }
 
 function checkAnimation(event) {
     if (event.animationName === "fade-out") {
-        showStartFild();
+        showStartField();
     }
 }
 
@@ -798,19 +823,24 @@ function changeScore() {
     scoreText.textContent = score.toString(10);
 }
 
-function deleteBalls() {
-    for (let i = 0; i < circkleRowCount; i++) {
-        for (let j = 0; j < circkleColumnCount; j++) {
-            const ball = circkles[i][j];
-            if (ball.color == 'black') {
-                ball.status = 0;
-                ball.color = 0;
-            }
-        }
-    }
-    clear();
-    drowStartCircles();
-    drawMainCircle(startColor);
+function changeScoreToZero() {
+    score = 0;
+    changeScore();
 }
+
+// function deleteBalls() {
+//     for (let i = 0; i < circkleRowCount; i++) {
+//         for (let j = 0; j < circkleColumnCount; j++) {
+//             const ball = circkles[i][j];
+//             if (ball.color == 'black') {
+//                 ball.status = 0;
+//                 ball.color = 0;
+//             }
+//         }
+//     }
+//     clear();
+//     drowStartCircles();
+//     drawMainCircle(startColor);
+// }
 
 

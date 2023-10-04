@@ -1,5 +1,19 @@
 const soundStart = new Audio();
+const soundShoot = new Audio();
+const soundHolyshit = new Audio();
+const soundWin = new Audio();
+const soundLosePart1 = new Audio();
+const soundLosePart2 = new Audio();
+const soundNewHighScore = new Audio();
+const soundAccuracy = new Audio();
+const soundRocket = new Audio();
+const soundExcellent = new Audio();
+const soundImpressive = new Audio();
+const soundPerfect = new Audio();
+const soundBig = new Audio();
 
+const soundsFiveMatch = [soundExcellent, soundImpressive, soundPerfect, soundBig];
+const soundsThreeMatch = [soundAccuracy, soundRocket];
 
 const muteSvg = `<svg width="35px" height="35px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
 <path d="M16 28.469c-6.887 0-12.469-5.582-12.469-12.469s5.582-12.469 12.469-12.469c6.886 0 12.469 5.582 12.469 12.469s-5.583 12.469-12.469 12.469zM11.997 9.473c-0.861 0-1.559 0.93-1.559 2.078s0.697 2.078 1.559 2.078c0.86 0 1.559-0.931 1.559-2.078 0-1.149-0.699-2.078-1.559-2.078zM11.849 18.391l-0.52 0.9 3.659 2.113-3.725 2.149 0.52 0.899 4.244-2.449 4.244 2.449 0.52-0.899-3.725-2.149 3.659-2.113-0.52-0.9-4.179 2.413-4.177-2.413zM20.047 9.481c-0.859 0-1.558 0.931-1.558 2.078s0.698 2.078 1.558 2.078c0.861 0 1.56-0.93 1.56-2.078-0.001-1.147-0.699-2.078-1.56-2.078z"></path>
@@ -27,18 +41,142 @@ let isSound = true;
 
 const volume = document.querySelector('.btn-volume');
 
-function playStartSound() {
-    soundStart.src = './sounds/start.mp3';
+function playSoundStart() {
     soundStart.play();
+}
+
+function playSoundShoot() {
+    soundShoot.play();
+    soundShoot.currentTime = 0;
+}
+
+function playSoundLose() {
+    soundLosePart2.play();
+    soundLosePart2.currentTime = 0;
+}
+
+function playSoundLose2() {
+    soundLosePart1.play();
+    soundLosePart1.currentTime = 0;
+}
+
+function playSoundWin() {
+    soundWin.play();
+    soundWin.currentTime = 0;
+}
+
+soundLosePart2.addEventListener('ended', playSoundLose2);
+
+function playSoundMatch(element) {
+    element.play();
+    element.currentTime = 0;
+}
+
+function getSoundFiveMatch() {
+    const randomInt = getRandomInt(soundsFiveMatch.length);
+    return soundsFiveMatch[randomInt];
+}
+
+function getSoundThreeMatch() {
+    const randomInt = getRandomInt(soundsThreeMatch.length);
+    return soundsThreeMatch[randomInt];
+}
+
+function getSoundMatch(count) {
+    if (count >= 9) {
+        return soundHolyshit;
+    }
+    if (count >= 5) {
+        return getSoundFiveMatch();
+    }
+    return getSoundThreeMatch();
+}
+
+function muteOn() {
+    soundShoot.muted = true;
+    soundHolyshit.muterd = true;
+    soundAccuracy.muted = true;
+    soundBig.muted = true;
+    soundExcellent.muted = true;
+    soundImpressive.muted = true;
+    soundLosePart1.muted = true;
+    soundLosePart2.muted = true;
+    soundNewHighScore.muted = true;
+    soundPerfect.muted = true;
+    soundRocket.muted = true;
+}
+
+function muteOff() {
+    soundShoot.muted = false;
+    soundHolyshit.muterd = false;
+    soundAccuracy.muted = false;
+    soundBig.muted = false;
+    soundExcellent.muted = false;
+    soundImpressive.muted = false;
+    soundLosePart1.muted = false;
+    soundLosePart2.muted = false;
+    soundNewHighScore.muted = false;
+    soundPerfect.muted = false;
+    soundRocket.muted = false;
 }
 
 function muteOnOff() {
     if (isSound) {
         volume.innerHTML = muteSvg;
+        muteOn();
     } else {
         volume.innerHTML = volumeSvg;
+        muteOff();
     }
     isSound = !isSound;
+}
+
+function loadSoundStart() {
+    soundStart.src = './sounds/start.mp3';
+}
+
+function loadSoundShoot() {
+    soundShoot.src = './sounds/Shoot.mp3';
+}
+
+function loadSoundThreeMatch() {
+    soundAccuracy.src = './sounds/accuracy.wav';
+    soundRocket.src = './sounds/Rocket.mp3';
+}
+
+function loadSoundFiveMatch() {
+    soundExcellent.src = './sounds/Excellent.mp3';
+    soundImpressive.src = './sounds/Impressive.mp3';
+    soundPerfect.src = './sounds/Perfect.mp3';
+    soundBig.src = './sounds/Big.mp3';
+}
+
+function loadSoundNineMatch() {
+    soundHolyshit.src = './sounds/holyshit.wav';
+}
+
+function loadSoundWin() {
+    soundWin.src = './sounds/win.mp3';
+}
+
+function loadSoundLose() {
+    soundLosePart1.src = './sounds/yousuck.wav';
+    soundLosePart2.src = './sounds/you_lose.wav';
+}
+
+function loadSoundNewHighScore() {
+    soundNewHighScore.src = './sounds/new_high_score.wav';
+}
+
+function loadSounds() {
+    loadSoundStart();
+    loadSoundShoot();
+    loadSoundThreeMatch();
+    loadSoundFiveMatch();
+    loadSoundNineMatch();
+    loadSoundWin();
+    loadSoundLose();
+    loadSoundNewHighScore();
 }
 
 volume.addEventListener('click', muteOnOff);

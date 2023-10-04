@@ -37,6 +37,14 @@
     animation: fade-in 0.8s ease-in-out;
 }
 
+.header.end .sound {
+    visibility: hidden;
+}
+
+.header.end .settings {
+    visibility: hidden;
+}
+
 .btn {
     padding: 5px;
     background-color: rgba(255, 255, 0, 0.5);
@@ -209,6 +217,14 @@
 
 .start-hide {
     visibility: hidden;
+}
+
+.start.win .start__circle {
+    right: 79px;
+}
+
+.start.win .start__circle-bam {
+    right: 82px;
 }
 
 .footer {
