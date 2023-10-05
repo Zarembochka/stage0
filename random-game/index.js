@@ -33,7 +33,6 @@ let flagNewRow;
 let flagZeroRow;
 let score;
 
-const btnNewGame = document.querySelector('.newGame');
 const canvasImage = document.querySelector('.canvas__image');
 const btnStartPlay = document.querySelector('.start__play');
 const start = document.querySelector('.start');

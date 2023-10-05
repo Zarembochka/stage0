@@ -1,7 +1,7 @@
 :root {
     --title-font-family: 'Bungee Spice', cursive;
     --main-font-family: 'Grandstander', cursive;
-    --color-fill: rgb(224, 97, 20);
+    --color-fill: #e06114;
 }
 
 * {
@@ -202,7 +202,7 @@
     font-size: 48px;
     color: rgb(204, 20, 0);
     background-color: rgb(244, 162, 1);
-    padding: 20px 30px;
+    padding: 20px 50px;
     border-radius: 50%;
     cursor: pointer;
     outline: none;
@@ -269,10 +269,10 @@
 
 .modal {
     position: fixed;
-    width: 510px;
-    height: 400px;
-    top: calc(50% - 200px);
-    left: calc(50% - 255px);
+    width: 574px;
+    height: 450px;
+    top: calc(50% - 225px);
+    left: calc(50% - 287px);
     visibility: hidden;
     z-index: 2000;
     backface-visibility: hidden;
@@ -282,8 +282,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 25px;
-    padding: 35px 15px;
+    row-gap: 15px;
+    padding: 15px 15px;
     background-image: url('./images/modal.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -298,7 +298,7 @@
 .modal__title {
     margin: 0;
     font-family: var(--title-font-family);
-    font-size: 40px;
+    font-size: 55px;
     position: relative;
 }
 
@@ -349,11 +349,57 @@
     width: 100%;
     font-family: var(--main-font-family);
     font-size: 30px;
+    fill: rgb(204, 20, 0);
     color: rgb(204, 20, 0);
-    background-color: rgb(244, 162, 1);
+    background-color: #f4a201;
     border: 5px solid var(--color-fill);
-    padding: 10px;
-    border-radius: 10px;
+    padding: 15px 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    cursor: pointer;
+}
+
+.yesOrNo {
+    width: 100%;
+    display: none;;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+    padding: 20px 70px;
+}
+
+.question {
+    font-family: var(--main-font-family);
+    font-size: 30px;
+}
+
+.yesOrNo__btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.yesOrNo__btn {
+    background-color: #f4a201;
+    border: 5px solid var(--color-fill);
+    color: rgb(204, 20, 0);
+    font-family: var(--main-font-family);
+    font-size: 30px;
+    border-radius: 50%;
+    padding: 20px 50px;
+    cursor: pointer;
+}
+
+.modal.ask .modal__ul {
+    display: none;
+}
+
+.modal.ask .yesOrNo {
+    display: flex;
 }
 
 @media (hover: hover) {
@@ -377,6 +423,17 @@
     .modal__close:hover .modal__close__line {
         background-color: rgb(204, 20, 0);
     }
+
+    .btnModal:hover {
+        color: var(--color-fill);
+        fill: var(--color-fill);
+        background-color: rgb(245, 174, 32);
+    }
+
+    .yesOrNo__btn:hover {
+        background-color: rgb(245, 174, 32);
+    }
+
 }
 
 @keyframes fade-out {
