@@ -14,6 +14,7 @@
 <body>
     <script src="index.js" defer></script>
     <script src="sounds.js" defer></script>
+    <script src="modal.js" defer></script>
     <div class="container">
         <header class="header">
             <div class="sound">
@@ -83,6 +84,34 @@
                 </a>
             </div>
         </footer>
+    </div>
+    <div class="modal__background">
+        <div class="modal">
+            <h2 class="modal__title">
+                Settings
+            </h2>
+            <button class="modal__close">
+                <span class="modal__close__line"></span>
+                <span class="modal__close__line"></span>
+            </button>
+            <ul class="modal__ul">
+                <li class="modal__li">
+                    <button class="btnModal">
+                        New game
+                    </button>
+                </li>
+                <li class="modal__li">
+                    <button class="btnModal">
+                        Difficulty
+                    </button>
+                </li>
+                <li class="modal__li">
+                    <button class="btnModal">
+                        Leaders
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

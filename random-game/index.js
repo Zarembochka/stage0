@@ -177,7 +177,7 @@ function isCollision(x1, y1, x2, y2) {
 
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length <= 2 * ballRadius) {
+    if (length < 2 * ballRadius) {
         return true;
     }
     return false;
