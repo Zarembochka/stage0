@@ -403,6 +403,40 @@
     display: flex;
 }
 
+.leaders {
+    width: 638px;
+    height: 500px;
+    position: fixed;
+    top: calc(50% - 250px);
+    left: calc(50% - 319px);
+    display: none;
+    background-image: url('./images/start.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    flex-direction: column;
+    row-gap: 15px;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.leaders-active {
+    display: flex;
+}
+
+.leaders__ol {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--title-font-family);
+    font-size: 35px;
+}
+
+.leaders__li {
+    text-align: center;
+}
+
 @media (hover: hover) {
     .btn:hover {
         fill: var(--color-fill);
