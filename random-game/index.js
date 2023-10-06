@@ -16,6 +16,7 @@ let y;
 
 const ballRadius = 20;
 let isPlaying = false;
+let isPaused = false;
 let currentBall;
 
 let dx;
@@ -32,6 +33,8 @@ let startPositionForZeroRow;
 let flagNewRow;
 let flagZeroRow;
 let score;
+let speedForAddingRow;
+let koefForScore;
 
 const canvasImage = document.querySelector('.canvas__image');
 const btnStartPlay = document.querySelector('.start__play');
@@ -48,11 +51,25 @@ function newGame() {
 }
 
 function getDifficulty() {
-    colors = ['yellow', 'red', 'orange', 'blue', 'green'];
-    //colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
+    if (difficulty == 1) {
+        colors = ['yellow', 'red', 'orange', 'blue', 'green'];
+        circkleRowCount = 3;
+        koefForScore = 1;
+    }
+    if (difficulty == 2) {
+        colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
+        circkleRowCount = 3;
+        speedForAddingRow = 20000;
+        koefForScore = 1.5;
+    }
+    if (difficulty == 3) {
+        colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
+        circkleRowCount = 5;
+        speedForAddingRow = 10000;
+        koefForScore = 2;
+    }
     lengthColors = colors.length;
     startColor = randomColor();
-    circkleRowCount = 1;
 }
 
 function setFlagForNewRow() {
@@ -278,15 +295,17 @@ function drawMainImage() {
 }
 
 function draw() {
-    clear();
-    if (timeForAddingZeroRow) {
-        addZeroRowToStartCircles();
+    if (!isPaused) {
+        clear();
+        if (timeForAddingZeroRow) {
+            addZeroRowToStartCircles();
+        }
+        drowStartCircles();
+        drawMainCircle(startColor);
+        //drawMainImage();
+        checkCollision();
+        changePosition();
     }
-    drowStartCircles();
-    drawMainCircle(startColor);
-    //drawMainImage();
-    checkCollision();
-    changePosition();
 }
 
 function createImage() {
@@ -344,7 +363,9 @@ function startPlay() {
     setStartPositionForNewRow();
     setStartPositionForZeroRow();
     //drawMainImage();
-    timeForAddRow = setInterval(setFlagForAddingZeroRow, 20000);
+    if (difficulty != 1) {
+        timeForAddRow = setInterval(setFlagForAddingZeroRow, speedForAddingRow);
+    }
 }
 
 function nextCircle() {
@@ -359,11 +380,18 @@ function checkColorBall(ball, i, j) {
     }
 }
 
-function checkColorRightBall(i, j) {
+function getRightBall(i, j) {
     if (j == circkleColumnCount - 1) {
+        return 0;
+    }
+    return circkles[i][j + 1];
+}
+
+function checkColorRightBall(i, j) {
+    const rightBall = getRightBall(i, j);
+    if (rightBall == 0) {
         return;
     }
-    const rightBall = circkles[i][j + 1];
     if (rightBall.status == 0 || rightBall.isCheked == 1) {
         return;
     }
@@ -371,11 +399,18 @@ function checkColorRightBall(i, j) {
     checkColorBall(rightBall, i, j + 1);
 }
 
-function checkColorLeftBall(i, j) {
+function getLeftBall(i, j) {
     if (j == 0) {
+        return 0;
+    }
+    return circkles[i][j - 1];
+}
+
+function checkColorLeftBall(i, j) {
+    const leftBall = getLeftBall(i, j);
+    if (leftBall == 0) {
         return;
     }
-    const leftBall = circkles[i][j - 1];
     if (leftBall.status == 0 || leftBall.isCheked == 1) {
         return;
     }
@@ -383,84 +418,120 @@ function checkColorLeftBall(i, j) {
     checkColorBall(leftBall, i, j - 1);
 }
 
-function checkColorBottomRightBall(i, j, odd) {
+function getBottomRightBall(i, j, odd) {
     if (i == circkleRowCount - 1) {
-        return;
+        return 0;
     }
     let bottomBall = circkles[i + 1][j];
     let column = j;
     if (odd != 0) {
         if (j == circkleColumnCount - 1) {
-            return;
+            return 0;
         }
         bottomBall = circkles[i + 1][j + 1];
         column = j + 1;
     }
+    return [bottomBall, i + 1, column];
+}
+
+function checkColorBottomRightBall(i, j, odd) {
+    const result = getBottomRightBall(i, j, odd);
+    if (result == 0) {
+        return;
+    }
+    const bottomBall = result[0];
     if (bottomBall.status == 0 || bottomBall.isCheked == 1) {
         return;
     }
     bottomBall.isCheked = 1;
-    checkColorBall(bottomBall, i + 1, column);
+    checkColorBall(bottomBall, result[1], result[2]);
 }
 
-function checkColorBottomLeftBall(i, j, odd) {
+function getBottomLeftBall(i, j, odd) {
     if (i == circkleRowCount - 1) {
-        return;
+        return 0;
     }
     let bottomBall = circkles[i + 1][j];
     let column = j;
     if (odd == 0) {
         if (j == 0) {
-            return;
+            return 0;
         }
         bottomBall = circkles[i + 1][j - 1];
         column = j - 1;
     }
+    return [bottomBall, i + 1, column];
+}
+
+function checkColorBottomLeftBall(i, j, odd) {
+    const result = getBottomLeftBall(i, j, odd);
+    if (result == 0) {
+        return;
+    }
+    const bottomBall = result[0];
     if (bottomBall.status == 0 || bottomBall.isCheked == 1) {
         return;
     }
     bottomBall.isCheked = 1;
-    checkColorBall(bottomBall, i + 1, column);
+    checkColorBall(bottomBall, result[1], result[2]);
 }
 
-function checkColorTopLeftBall(i, j, odd) {
+function getTopLeftBall(i, j, odd) {
     if (i == 0) {
-        return;
+        return 0;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
     if (odd == 0) {
         if (j == 0) {
-            return;
+            return 0;
         }
         topBall = circkles[i - 1][j - 1];
         column = j - 1;
     }
+    return [topBall, i - 1, column];
+}
+
+function checkColorTopLeftBall(i, j, odd) {
+    const result = getTopLeftBall(i, j, odd);
+    if (result == 0) {
+        return;
+    }
+    const topBall = result[0];
     if (topBall.status == 0 || topBall.isCheked == 1) {
         return;
     }
     topBall.isCheked = 1;
-    checkColorBall(topBall, i - 1, column);
+    checkColorBall(topBall, result[1], result[2]);
 }
 
-function checkColorTopRightBall(i, j, odd) {
+function getTopRightBall(i, j, odd) {
     if (i == 0) {
-        return;
+        return 0;
     }
     let topBall = circkles[i - 1][j];
     let column = j;
     if (odd != 0) {
         if (j == circkleColumnCount - 1) {
-            return;
+            return 0;
         }
         topBall = circkles[i - 1][j + 1];
         column = j + 1;
     }
+    return [topBall, i - 1, column];
+}
+
+function checkColorTopRightBall(i, j, odd) {
+    const result = getTopRightBall(i, j, odd);
+    if (result == 0) {
+        return;
+    }
+    const topBall = result[0];
     if (topBall.status == 0 || topBall.isCheked == 1) {
         return;
     }
     topBall.isCheked = 1;
-    checkColorBall(topBall, i - 1, column);
+    checkColorBall(topBall, result[1], result[2]);
 }
 
 function checkNeighbors(i, j) {
@@ -518,7 +589,7 @@ function deleteMatches(flag) {
             if (ball.match == 1) {
                 if (flag) {
                     ball.color = 0;
-                    score += 10;
+                    score += 10 * koefForScore;
                     //ball.color = 'aqua';
                  }
                 //ball.color = 0;
@@ -555,18 +626,11 @@ function setBasisForStartRow() {
 }
 
 function setBasisBottomLeftBall(i, j, odd) {
-    if (i == circkleRowCount - 1) {
+    const result = getBottomLeftBall(i, j, odd);
+    if (result == 0) {
         return;
     }
-    let bottomBall = circkles[i + 1][j];
-    let column = j;
-    if (odd == 0) {
-        if (j == 0) {
-            return;
-        }
-        bottomBall = circkles[i + 1][j - 1];
-        column = j - 1;
-    }
+    const bottomBall = result[0];
     if (bottomBall.isCheked) {
         return;
     }
@@ -576,22 +640,15 @@ function setBasisBottomLeftBall(i, j, odd) {
     }
     bottomBall.isCheked = 1;
     bottomBall.basis = 1;
-    setBasisNeighbors(i + 1, column, bottomBall);
+    setBasisNeighbors(result[1], result[2], bottomBall);
 }
 
 function setBasisBottomRightBall(i, j, odd) {
-    if (i == circkleRowCount - 1) {
+    const result = getBottomRightBall(i, j, odd);
+    if (result == 0) {
         return;
     }
-    let bottomBall = circkles[i + 1][j];
-    let column = j;
-    if (odd != 0) {
-        if (j == circkleColumnCount - 1) {
-            return;
-        }
-        bottomBall = circkles[i + 1][j + 1];
-        column = j + 1;
-    }
+    const bottomBall = result[0];
     if (bottomBall.isCheked) {
         return;
     }
@@ -601,47 +658,30 @@ function setBasisBottomRightBall(i, j, odd) {
     }
     bottomBall.isCheked = 1;
     bottomBall.basis = 1;
-    setBasisNeighbors(i + 1, column, bottomBall);
+    setBasisNeighbors(result[1], result[2], bottomBall);
 }
 
 function setBasisTopLeftBall(i, j, odd) {
-    if (i == 0) {
+    const result = getTopLeftBall(i, j, odd);
+    if (result == 0) {
         return;
     }
-    let topBall = circkles[i - 1][j];
-    let column = j;
-    if (odd == 0) {
-        if (j == 0) {
-            return;
-        }
-        topBall = circkles[i - 1][j - 1];
-        column = j - 1;
-    }
-    if (topBall.isCheked) {
-        return;
-    }
+    const topBall = result[0];
     if (topBall.status == 0) {
         topBall.isCheked = 1;
         return;
     }
     topBall.isCheked = 1;
     topBall.basis = 1;
-    setBasisNeighbors(i - 1, column, topBall);
+    setBasisNeighbors(result[1], result[2], topBall);
 }
 
 function setBasisTopRightBall(i, j, odd) {
-    if (i == 0) {
+    const result = getTopRightBall(i, j, odd);
+    if (result == 0) {
         return;
     }
-    let topBall = circkles[i - 1][j];
-    let column = j;
-    if (odd != 0) {
-        if (j == circkleColumnCount - 1) {
-            return 0;
-        }
-        topBall = circkles[i - 1][j + 1];
-        column = j + 1;
-    }
+    const topBall = result[0];
     if (topBall.isCheked) {
         return;
     }
@@ -651,14 +691,14 @@ function setBasisTopRightBall(i, j, odd) {
     }
     topBall.isCheked = 1;
     topBall.basis = 1;
-    setBasisNeighbors(i - 1, column, topBall);
+    setBasisNeighbors(result[1], result[2], topBall);
 }
 
 function setBasisRightBall(i, j) {
-    if (j == circkleColumnCount - 1) {
+    const rightBall = getRightBall(i, j);
+    if (rightBall == 0) {
         return;
     }
-    const rightBall = circkles[i][j + 1];
     if (rightBall.isCheked) {
         return;
     }
@@ -672,10 +712,10 @@ function setBasisRightBall(i, j) {
 }
 
 function setBasisLeftBall(i, j) {
-    if (j == 0) {
+    const leftBall = getLeftBall(i, j);
+    if (leftBall == 0) {
         return;
     }
-    const leftBall = circkles[i][j - 1];
     if (leftBall.isCheked) {
         return;
     }
@@ -729,7 +769,7 @@ function deleteCirclesWithoutBasis() {
                 //ball.color = 'black';
                 ball.status = 0;
                 ball.color = 0;
-                score += 10;
+                score += 10 * koefForScore;
             }
             if (ball.status == 1) {
                 setColors.add(ball.color);
@@ -816,8 +856,6 @@ function checkAnimation(event) {
     }
 }
 
-// btnNewGame.addEventListener('click', deleteBalls);
-
 function changeScore() {
     scoreText.textContent = score.toString(10);
 }
@@ -826,20 +864,5 @@ function changeScoreToZero() {
     score = 0;
     changeScore();
 }
-
-// function deleteBalls() {
-//     for (let i = 0; i < circkleRowCount; i++) {
-//         for (let j = 0; j < circkleColumnCount; j++) {
-//             const ball = circkles[i][j];
-//             if (ball.color == 'black') {
-//                 ball.status = 0;
-//                 ball.color = 0;
-//             }
-//         }
-//     }
-//     clear();
-//     drowStartCircles();
-//     drawMainCircle(startColor);
-// }
 
 

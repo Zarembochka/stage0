@@ -90,6 +90,7 @@ btnNo.addEventListener('click', answerNo);
 btnYes.addEventListener('click', answerYes);
 
 function showModal() {
+    isPaused = true;
     oldDifficulty = difficulty;
     modalBackground.classList.add('modal__background-active');
 }
@@ -104,6 +105,7 @@ function checkDifficulty() {
 function hideModal() {
     if (!checkDifficulty()) {
         modalBackground.classList.remove('modal__background-active');
+        isPaused = false;
         return;
     }
     askQuestion();
