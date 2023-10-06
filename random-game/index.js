@@ -53,7 +53,7 @@ function newGame() {
 function getDifficulty() {
     if (difficulty == 1) {
         colors = ['yellow', 'red', 'orange', 'blue', 'green'];
-        circkleRowCount = 3;
+        circkleRowCount = 1;
         koefForScore = 1;
     }
     if (difficulty == 2) {
@@ -823,6 +823,7 @@ function checkWinGame() {
         isPlaying = false;
         showWinField();
         playSoundWin();
+        checkScoring();
         return true;
     }
     return false;
@@ -863,6 +864,54 @@ function changeScore() {
 function changeScoreToZero() {
     score = 0;
     changeScore();
+}
+
+function getScoringFromLs() {
+    return JSON.parse(localStorage.getItem('LH_leaders'));
+}
+
+function saveScoreToLs(arr) {
+    localStorage.setItem('LH_leaders', JSON.stringify(arr));
+}
+
+function sortBestResults(arr) {
+    arr.sort((a, b) => b - a);
+}
+
+function removeLastBestResult(arr) {
+    arr.pop();
+}
+
+function addNewBestResult(arr, score) {
+    arr.push(score);
+    const newSet = new Set(arr);
+    return Array.from(newSet);
+}
+
+function getLastBestResult(arr) {
+    return arr.at(-1);
+}
+
+function checkScoring() {
+    let bestResults = getScoringFromLs();
+    if (bestResults) {
+        if (score > getLastBestResult(bestResults)) {
+            bestResults = addNewBestResult(bestResults, score);
+            sortBestResults(bestResults);
+            if (bestResults.length > 10) {
+                removeLastBestResult(bestResults);
+            }
+            saveScoreToLs(bestResults);
+            return;
+        }
+        if (bestResults.length < 10) {
+            bestResults = addNewBestResult(bestResults, score);
+            sortBestResults(bestResults);
+            saveScoreToLs(bestResults);
+            return;
+        }
+    }
+    saveScoreToLs([score]);
 }
 
 
