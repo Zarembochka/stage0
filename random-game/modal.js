@@ -7,7 +7,7 @@ const btnNewGame = document.querySelector('.btn-newGame');
 const btnDifficulty = document.querySelector('.btn-difficulty');
 const btnYes = document.querySelector('.yesOrNo__btn-yes');
 const btnNo = document.querySelector('.yesOrNo__btn-no');
-const btnLeaders = document.querySelector('.btn-leaders');
+const btnLeaders = document.querySelectorAll('.btn-leaders');
 const tableLeaders = document.querySelector('.leaders');
 const btnCloseLeaders = document.querySelector('.leaders__close');
 const listLeaders = tableLeaders.querySelector('.leaders__ol');
@@ -93,7 +93,11 @@ btnNo.addEventListener('click', answerNo);
 
 btnYes.addEventListener('click', answerYes);
 
-btnLeaders.addEventListener('click', showLeaders);
+btnLeaders.forEach((element) => {
+    element.addEventListener('click', showLeaders);
+});
+
+//btnLeaders.addEventListener('click', showLeaders);
 
 btnCloseLeaders.addEventListener('click', hideLeaders);
 
@@ -178,18 +182,44 @@ function addNewLeaders() {
     for (let i = 0; i < bestResults.length; i++) {
         const newLiItem = createNewLiItem();
         newLiItem.textContent = bestResults[i].toString(10);
+        if (bestResults[i] == score) {
+            newLiItem.classList.add('leaders__li-current');
+        }
         addNewLiItemToDocument(newLiItem);
+    }
+    checkLeadScore(bestResults[0]);
+}
+
+function showTableLeaders() {
+    if (!modalBackground.classList.contains('modal__background-active')) {
+        modalBackground.classList.add('modal__background-active');
+    }
+}
+
+function hideTableLeaders() {
+    if (start.classList.contains('win')) {
+        modalBackground.classList.remove('modal__background-active');
+    }
+}
+
+function checkLeadScore(bestResult) {
+    if (bestResult) {
+        if (bestResult == score) {
+            playSoundNewHighScore();
+        }
     }
 }
 
 function showLeaders() {
     removeOldLeaders();
     addNewLeaders();
+    showTableLeaders();
     tableLeaders.classList.add('leaders-active');
 }
 
 function hideLeaders() {
     tableLeaders.classList.remove('leaders-active');
+    hideTableLeaders();
 }
 
 function startNewGame() {

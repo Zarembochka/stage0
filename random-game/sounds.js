@@ -65,6 +65,11 @@ function playSoundWin() {
     soundWin.currentTime = 0;
 }
 
+function playSoundNewHighScore() {
+    soundNewHighScore.play();
+    soundNewHighScore.currentTime = 0;
+}
+
 soundLosePart2.addEventListener('ended', playSoundLose2);
 
 function playSoundMatch(element) {
