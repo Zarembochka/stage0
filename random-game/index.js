@@ -28,6 +28,7 @@ const circkleColumnCount = 14;
 const circkles = [];
 
 let startColor;
+let nextStartColor;
 let startPositionForNewRow;
 let startPositionForZeroRow;
 let flagNewRow;
@@ -53,7 +54,7 @@ function newGame() {
 function getDifficulty() {
     if (difficulty == 1) {
         colors = ['yellow', 'red', 'orange', 'blue', 'green'];
-        circkleRowCount = 1;
+        circkleRowCount = 3;
         koefForScore = 1;
     }
     if (difficulty == 2) {
@@ -70,6 +71,7 @@ function getDifficulty() {
     }
     lengthColors = colors.length;
     startColor = randomColor();
+    nextStartColor = randomColor();
 }
 
 function setFlagForNewRow() {
@@ -156,8 +158,8 @@ function checkCollision() {
             const ball = circkles[i][j];
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
-                    console.log(ball);
                     addCircleToStartCircles();
+                    //addCircleToStartCircles(ball, i, j);
                     return;
                 }
             }
@@ -170,7 +172,7 @@ function checkCollisionWithCanvas() {
     for (let j = 0; j < circkleColumnCount; j++) {
         const ball = circkles[0][j];
         if (isCollision(x, y , ball.x, ball.y)) {
-            addCircleToStartCircles();
+            addCircleToStartCircles(ball, 0, j);
             return;
         }
     }
@@ -185,7 +187,7 @@ function calculateLength(x1, y1, x2, y2) {
 
 function isCollision(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length <= 2 * ballRadius) {
+    if (length < 2 * ballRadius) {
         return true;
     }
     return false;
@@ -193,6 +195,7 @@ function isCollision(x1, y1, x2, y2) {
 
 function isPositionToCircle(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
+    console.log(length);
     if (length < 2 * ballRadius) {
         return true;
     }
@@ -206,7 +209,101 @@ function changeCircleForVisible(ball) {
     currentBall = ball;
 }
 
+function checkLeftBallForCollision(ball, i, j) {
+    const leftBall = getLeftBall(i, j);
+    if (leftBall) {
+        if (leftBall.status == 0 && isPositionToCircle(x, y, leftBall.x, leftBall.y)) {
+            changeCircleForVisible(leftBall);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkTopLeftBallForCollision(ball, i, j) {
+    const topBall = getTopLeftBall(i, j, ball.odd);
+    if (topBall[0]) {
+        if (topBall[0].status == 0 && isPositionToCircle(x, y, topBall[0].x, topBall[0].y)) {
+            changeCircleForVisible(topBall[0]);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkTopRightBallForCollision(ball, i, j) {
+    const topBall = getTopRightBall(i, j, ball.odd);
+    if (topBall[0]) {
+        if (topBall[0].status == 0 && isPositionToCircle(x, y, topBall[0].x, topBall[0].y)) {
+            changeCircleForVisible(topBall[0]);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkRightBallForCollision(ball, i, j) {
+    const rightBall = getRightBall(i, j);
+    if (rightBall) {
+        if (rightBall.status == 0 && isPositionToCircle(x, y, rightBall.x, rightBall.y)) {
+            changeCircleForVisible(rightBall);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkBottomRightBallForCollision(ball, i, j) {
+    const bottom = getBottomRightBall(i, j, ball.odd);
+    if (bottom[0]) {
+        if (bottom[0].status == 0 && isPositionToCircle(x, y, bottom[0].x, bottom[0].y)) {
+            changeCircleForVisible(bottom[0]);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkBottomLeftBallForCollision(ball, i, j) {
+    const bottom = getBottomLeftBall(i, j, ball.odd);
+    if (bottom[0]) {
+        if (bottom[0].status == 0 && isPositionToCircle(x, y, bottom[0].x, bottom[0].y)) {
+            changeCircleForVisible(bottom[0]);
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkNeighborsForCollision(ball, i, j) {
+    if (checkLeftBallForCollision(ball, i, j)) {
+        return true;
+    }
+    if (checkTopLeftBallForCollision(ball, i, j)) {
+        return true;
+    }
+    if (checkTopRightBallForCollision(ball, i, j)) {
+        return true;
+    }
+    if (checkRightBallForCollision(ball, i, j)) {
+        return true;
+    }
+    if (checkBottomRightBallForCollision(ball, i, j)) {
+        return true;
+    }
+    if (checkBottomLeftBallForCollision(ball, i, j)) {
+        return true;
+    }
+    return false;
+}
+
 function findPositionToCollisionCircle() {
+    // if (checkNeighborsForCollision(ball, i, j)) {
+    //     clear();
+    //     drowStartCircles();
+    //     findColorMatches(currentBall);
+    //     return;
+    // }
     for (let i = 0; i < circkleRowCount; i++) {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
@@ -228,6 +325,7 @@ function findPositionToCollisionCircle() {
 function addCircleToStartCircles() {
     clearInterval(timeForMovement);
     findPositionToCollisionCircle();
+    //findPositionToCollisionCircle(ball, i, j);
     clear();
     drowStartCircles();
     if (!checkLossGame()) {
@@ -287,6 +385,14 @@ function drawMainCircle(color) {
     ctx.closePath();
 }
 
+function drawNextMainCircle(color) {
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2 - 2 * ballRadius - 2, canvas.height - ballRadius, ballRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.closePath();
+}
+
 function drawMainImage() {
     const img = createImage();
     img.onload = () => {
@@ -302,6 +408,7 @@ function draw() {
         }
         drowStartCircles();
         drawMainCircle(startColor);
+        drawNextMainCircle(nextStartColor);
         //drawMainImage();
         checkCollision();
         changePosition();
@@ -349,7 +456,9 @@ function startPosition() {
     setColorsArray();
     x = canvas.width / 2;
     y = canvas.height - ballRadius;
-    startColor = randomColor();
+    //startColor = randomColor();
+    startColor = nextStartColor;
+    nextStartColor = randomColor();
 }
 
 function startPlay() {
@@ -360,6 +469,7 @@ function startPlay() {
     drowStartCircles();
     startPosition();
     drawMainCircle(startColor);
+    drawNextMainCircle(nextStartColor);
     setStartPositionForNewRow();
     setStartPositionForZeroRow();
     //drawMainImage();
@@ -371,6 +481,7 @@ function startPlay() {
 function nextCircle() {
     startPosition();
     drawMainCircle(startColor);
+    drawNextMainCircle(nextStartColor);
 }
 
 function checkColorBall(ball, i, j) {
@@ -567,10 +678,10 @@ function checkAllMatches() {
     if (circlesMatches.flat().length > 2) {
         playSoundMatch(getSoundMatch(circlesMatches.flat().length));
         deleteMatches(true);
-        changeScore();
         clear();
         drowStartCircles();
         checkHendingCircles();
+        changeScore();
         deleteEmptyRows();
         checkWinGame();
         return;
