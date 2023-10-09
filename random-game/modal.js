@@ -3,10 +3,14 @@ const modal = modalBackground.querySelector('.modal');
 
 const btnSettings = document.querySelector('.btn-settings');
 const btnCloseModal = document.querySelector('.modal__close');
-const btnNewGame = document.querySelector('.newGame');
-const btnDifficulty = document.querySelector('.difficulty');
+const btnNewGame = document.querySelector('.btn-newGame');
+const btnDifficulty = document.querySelector('.btn-difficulty');
 const btnYes = document.querySelector('.yesOrNo__btn-yes');
 const btnNo = document.querySelector('.yesOrNo__btn-no');
+const btnLeaders = document.querySelectorAll('.btn-leaders');
+const tableLeaders = document.querySelector('.leaders');
+const btnCloseLeaders = document.querySelector('.leaders__close');
+const listLeaders = tableLeaders.querySelector('.leaders__ol');
 
 const svgEasy = `<svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9 10H9.01M15 10H15.01M8.53516 14C9.22678 15.1956 10.5195 16 12 16C13.4806 16 14.7733 15.1956 15.4649 14M12 20C15.7277 20 18.8599 17.4505 19.748 14H20C21.1046 14 22 13.1046 22 12C22 10.8954 21.1046 10 20 10H19.748C18.8599 6.54955 15.7277 4 12 4C8.27232 4 5.14012 6.54955 4.25204 10H4C2.89543 10 2 10.8954 2 12C2 13.1046 2.89543 14 4 14H4.25204C5.14012 17.4505 8.27232 20 12 20Z" stroke="rgb(204, 20, 0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,6 +93,14 @@ btnNo.addEventListener('click', answerNo);
 
 btnYes.addEventListener('click', answerYes);
 
+btnLeaders.forEach((element) => {
+    element.addEventListener('click', showLeaders);
+});
+
+//btnLeaders.addEventListener('click', showLeaders);
+
+btnCloseLeaders.addEventListener('click', hideLeaders);
+
 function showModal() {
     isPaused = true;
     oldDifficulty = difficulty;
@@ -149,6 +161,65 @@ function changeTitleForButton() {
         return;
     }
     btnDifficulty.innerHTML = svgHard + 'Hard';
+}
+
+function removeOldLeaders() {
+    listLeaders.innerHTML = '';
+}
+
+function createNewLiItem() {
+    const newLiItem = document.createElement('li');
+    newLiItem.classList.add('leaders__li');
+    return newLiItem;
+}
+
+function addNewLiItemToDocument(item) {
+    listLeaders.append(item);
+}
+
+function addNewLeaders() {
+    const bestResults = getScoringFromLs();
+    for (let i = 0; i < bestResults.length; i++) {
+        const newLiItem = createNewLiItem();
+        newLiItem.textContent = bestResults[i].toString(10);
+        if (bestResults[i] == score) {
+            newLiItem.classList.add('leaders__li-current');
+        }
+        addNewLiItemToDocument(newLiItem);
+    }
+    checkLeadScore(bestResults[0]);
+}
+
+function showTableLeaders() {
+    if (!modalBackground.classList.contains('modal__background-active')) {
+        modalBackground.classList.add('modal__background-active');
+    }
+}
+
+function hideTableLeaders() {
+    if (start.classList.contains('win')) {
+        modalBackground.classList.remove('modal__background-active');
+    }
+}
+
+function checkLeadScore(bestResult) {
+    if (bestResult) {
+        if (bestResult == score) {
+            playSoundNewHighScore();
+        }
+    }
+}
+
+function showLeaders() {
+    removeOldLeaders();
+    addNewLeaders();
+    showTableLeaders();
+    tableLeaders.classList.add('leaders-active');
+}
+
+function hideLeaders() {
+    tableLeaders.classList.remove('leaders-active');
+    hideTableLeaders();
 }
 
 function startNewGame() {
