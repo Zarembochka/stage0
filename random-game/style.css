@@ -64,7 +64,7 @@
 .score {
     padding: 4px 0;
     background-color: rgba(255, 255, 0, 0.5);
-    width: 150px;
+    /* width: 150px; */
     display: flex;
     align-items: center;
     column-gap: 10px;
@@ -149,7 +149,7 @@
 }
 
 .start__inner {
-    padding: 20px;
+    padding: 0px 35px;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -161,6 +161,7 @@
     font-family: var(--title-font-family);
     font-size: 100px;
     justify-content: flex-start;
+    margin-bottom: 0;
 }
 
 .start__title-one {
@@ -175,15 +176,15 @@
 
 .start__circle {
     position: absolute;
-    top: 55px;
-    right: 91px;
+    top: 35px;
+    right: 103px;
     z-index: 5;
 }
 
 .start__circle-bam {
     position: absolute;
-    top: 53px;
-    right: 93px;
+    top: 35px;
+    right: 105px;
     z-index: 1;
     visibility: hidden;
 }
@@ -194,13 +195,13 @@
     animation: text 2s infinite;
 }
 
-.start__btns {
+/* .start__btns {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 0 50px 0 25px;
     fill: rgb(204, 20, 0);
-}
+} */
 
 .start__btn {
     font-family: var(--main-font-family);
@@ -212,13 +213,18 @@
     cursor: pointer;
     outline: none;
     border: 5px solid var(--color-fill);
+    fill: rgb(204, 20, 0);
     transition: background-color 0.3s ease-in-out;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .start__btn:first-of-type {
-    font-size: 28px;
+    font-size: 15px;
     display: none;
+}
+
+.start__btn:last-of-type {
+    margin-bottom: 20px;
 }
 
 .start-fadeout {
@@ -229,12 +235,12 @@
     visibility: hidden;
 }
 
-.start.win .start__btns {
-    justify-content: space-between;
+.start.win .start__btn:last-of-type {
+    margin-bottom: 0;
 }
 
-.start.lost .start__btns {
-    justify-content: space-between;
+.start.lost .start__btn:last-of-type {
+    margin-bottom: 0;
 }
 
 .start.win .start__btn:first-of-type {
@@ -246,11 +252,11 @@
 }
 
 .start.win .start__circle {
-    right: 79px;
+    right: 94px;
 }
 
 .start.win .start__circle-bam {
-    right: 82px;
+    right: 96px;
 }
 
 .footer {
