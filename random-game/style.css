@@ -233,7 +233,15 @@
     justify-content: space-between;
 }
 
+.start.lost .start__btns {
+    justify-content: space-between;
+}
+
 .start.win .start__btn:first-of-type {
+    display: inline;
+}
+
+.start.lost .start__btn:first-of-type {
     display: inline;
 }
 

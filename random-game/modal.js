@@ -197,7 +197,7 @@ function showTableLeaders() {
 }
 
 function hideTableLeaders() {
-    if (start.classList.contains('win')) {
+    if (start.classList.contains('win') || start.classList.contains('lost')) {
         modalBackground.classList.remove('modal__background-active');
     }
 }
