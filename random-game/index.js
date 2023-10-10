@@ -19,6 +19,7 @@ let isPlaying = false;
 let isPaused = false;
 let currentBall;
 let deletedBalls = 0;
+const neighborsBalls = [];
 
 let dx;
 let dy;
@@ -48,6 +49,7 @@ function newGame() {
     changeScoreToZero();
     circkles.length = 0;
     clearTimeout(timeForAddRow);
+    timeForAddingZeroRow = false;
     flagNewRow = 2;
     flagZeroRow = 2;
 }
@@ -159,8 +161,8 @@ function checkCollision() {
             const ball = circkles[i][j];
             if (ball.status == 1) {
                 if (isCollision(x, y , ball.x, ball.y)) {
-                    addCircleToStartCircles();
-                    //addCircleToStartCircles(ball, i, j);
+                    //addCircleToStartCircles();
+                    addCircleToStartCircles(ball, i, j);
                     return;
                 }
             }
@@ -173,7 +175,8 @@ function checkCollisionWithCanvas() {
     for (let j = 0; j < circkleColumnCount; j++) {
         const ball = circkles[0][j];
         if (isCollision(x, y , ball.x, ball.y)) {
-            addCircleToStartCircles(ball, 0, j);
+            addCirckleToFirstRow(ball, j);
+            //addCircleToStartCircles(ball, 0, j);
             return;
         }
     }
@@ -182,26 +185,25 @@ function checkCollisionWithCanvas() {
 function calculateLength(x1, y1, x2, y2) {
     const deltaX = x2 - x1;
     const deltaY = y2 - y1;
-    const length = Math.sqrt( Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    const length = +(Math.sqrt( Math.pow(deltaX, 2) + Math.pow(deltaY, 2))).toFixed(5);
     return length;
 }
 
 function isCollision(x1, y1, x2, y2) {
     const length = calculateLength(x1, y1, x2, y2);
-    if (length < 2 * ballRadius) {
+    if (length < 1.75 * ballRadius) {
         return true;
     }
     return false;
 }
 
-function isPositionToCircle(x1, y1, x2, y2) {
-    const length = calculateLength(x1, y1, x2, y2);
-    console.log(length);
-    if (length < 2 * ballRadius) {
-        return true;
-    }
-    return false;
-}
+// function isPositionToCircle(x1, y1, x2, y2) {
+//     const length = calculateLength(x1, y1, x2, y2);
+//     if (length < 2 * ballRadius) {
+//         return true;
+//     }
+//     return false;
+// }
 
 function changeCircleForVisible(ball) {
     ball.status = 1;
@@ -210,124 +212,133 @@ function changeCircleForVisible(ball) {
     currentBall = ball;
 }
 
-function checkLeftBallForCollision(ball, i, j) {
+function checkLeftBallForCollision(circkle, i, j) {
     const leftBall = getLeftBall(i, j);
     if (leftBall) {
-        if (leftBall.status == 0 && isPositionToCircle(x, y, leftBall.x, leftBall.y)) {
-            changeCircleForVisible(leftBall);
-            return true;
+        if (leftBall.status == 0) {
+            neighborsBalls.push({ball: leftBall, length: calculateLength(x, y, leftBall.x, leftBall.y), i: i, j: j - 1});
         }
     }
-    return false;
 }
 
-function checkTopLeftBallForCollision(ball, i, j) {
-    const topBall = getTopLeftBall(i, j, ball.odd);
+function checkTopLeftBallForCollision(circkle, i, j) {
+    const topBall = getTopLeftBall(i, j, circkle.odd);
     if (topBall[0]) {
-        if (topBall[0].status == 0 && isPositionToCircle(x, y, topBall[0].x, topBall[0].y)) {
-            changeCircleForVisible(topBall[0]);
-            return true;
+        if (topBall[0].status == 0) {
+            neighborsBalls.push({ball: topBall[0], length: calculateLength(x, y, topBall[0].x, topBall[0].y), i: topBall[1], j: topBall[2]});
         }
     }
-    return false;
 }
 
-function checkTopRightBallForCollision(ball, i, j) {
-    const topBall = getTopRightBall(i, j, ball.odd);
+function checkTopRightBallForCollision(circkle, i, j) {
+    const topBall = getTopRightBall(i, j, circkle.odd);
     if (topBall[0]) {
-        if (topBall[0].status == 0 && isPositionToCircle(x, y, topBall[0].x, topBall[0].y)) {
-            changeCircleForVisible(topBall[0]);
-            return true;
+        if (topBall[0].status == 0) {
+            neighborsBalls.push({ball: topBall[0], length: calculateLength(x, y, topBall[0].x, topBall[0].y), i: topBall[1], j: topBall[2]});
         }
     }
-    return false;
 }
 
-function checkRightBallForCollision(ball, i, j) {
+function checkRightBallForCollision(circkle, i, j) {
     const rightBall = getRightBall(i, j);
     if (rightBall) {
-        if (rightBall.status == 0 && isPositionToCircle(x, y, rightBall.x, rightBall.y)) {
-            changeCircleForVisible(rightBall);
-            return true;
+        if (rightBall.status == 0) {
+            neighborsBalls.push({ball: rightBall, length: calculateLength(x, y, rightBall.x, rightBall.y), i: i, j: j + 1});
         }
     }
-    return false;
 }
 
-function checkBottomRightBallForCollision(ball, i, j) {
-    const bottom = getBottomRightBall(i, j, ball.odd);
+function checkBottomRightBallForCollision(circkle, i, j) {
+    const bottom = getBottomRightBall(i, j, circkle.odd);
     if (bottom[0]) {
-        if (bottom[0].status == 0 && isPositionToCircle(x, y, bottom[0].x, bottom[0].y)) {
-            changeCircleForVisible(bottom[0]);
-            return true;
+        if (bottom[0].status == 0) {
+            neighborsBalls.push({ball: bottom[0], length: calculateLength(x, y, bottom[0].x, bottom[0].y), i: bottom[1], j: bottom[2]});
         }
     }
-    return false;
 }
 
-function checkBottomLeftBallForCollision(ball, i, j) {
-    const bottom = getBottomLeftBall(i, j, ball.odd);
+function checkBottomLeftBallForCollision(circkle, i, j) {
+    const bottom = getBottomLeftBall(i, j, circkle.odd);
     if (bottom[0]) {
-        if (bottom[0].status == 0 && isPositionToCircle(x, y, bottom[0].x, bottom[0].y)) {
-            changeCircleForVisible(bottom[0]);
-            return true;
+        if (bottom[0].status == 0) {
+            neighborsBalls.push({ball: bottom[0], length: calculateLength(x, y, bottom[0].x, bottom[0].y), i: bottom[1], j: bottom[2]});
         }
+    }
+}
+
+function sortArray(arr) {
+    arr.sort((a, b) => a.length - b.length);
+}
+
+function isMinimumLength(arr) {
+    const minLength = arr[0].length;
+    if (minLength < 1.75 * ballRadius) {
+        return true;
     }
     return false;
 }
 
 function checkNeighborsForCollision(ball, i, j) {
-    if (checkLeftBallForCollision(ball, i, j)) {
-        return true;
+    neighborsBalls.length = 0;
+    checkLeftBallForCollision(ball, i, j);
+    checkTopLeftBallForCollision(ball, i, j);
+    checkTopRightBallForCollision(ball, i, j);
+    checkRightBallForCollision(ball, i, j);
+    checkBottomRightBallForCollision(ball, i, j);
+    checkBottomLeftBallForCollision(ball, i, j);
+    if (neighborsBalls.length == 0) {
+        return false;
     }
-    if (checkTopLeftBallForCollision(ball, i, j)) {
-        return true;
-    }
-    if (checkTopRightBallForCollision(ball, i, j)) {
-        return true;
-    }
-    if (checkRightBallForCollision(ball, i, j)) {
-        return true;
-    }
-    if (checkBottomRightBallForCollision(ball, i, j)) {
-        return true;
-    }
-    if (checkBottomLeftBallForCollision(ball, i, j)) {
+    sortArray(neighborsBalls);
+    if (isMinimumLength(neighborsBalls)) {
+        changeCircleForVisible(neighborsBalls[0].ball);
         return true;
     }
     return false;
 }
 
-function findPositionToCollisionCircle() {
-    // if (checkNeighborsForCollision(ball, i, j)) {
-    //     clear();
-    //     drowStartCircles();
-    //     findColorMatches(currentBall);
-    //     return;
-    // }
-    for (let i = 0; i < circkleRowCount; i++) {
-        for (let j = 0; j < circkleColumnCount; j++) {
-            const ball = circkles[i][j];
-            if (ball.status == 0) {
-                if (isPositionToCircle(x, y, ball.x, ball.y)) {
-                    changeCircleForVisible(ball);
-                    clear();
-                    drowStartCircles();
-                    //findColorMatches(currentBall, i, j);
-                    findColorMatches(i, j);
-                    return;
-                }
-            }
-        }
+function findPositionToCollisionCircle(ball, i, j) {
+    if (checkNeighborsForCollision(ball, i, j)) {
+        clear();
+        drowStartCircles();
+        findColorMatches(neighborsBalls[0].i, neighborsBalls[0].j);
+        return;
     }
+    // for (let i = 0; i < circkleRowCount; i++) {
+    //     for (let j = 0; j < circkleColumnCount; j++) {
+    //         const ball = circkles[i][j];
+    //         if (ball.status == 0) {
+    //             if (isPositionToCircle(x, y, ball.x, ball.y)) {
+    //                 changeCircleForVisible(ball);
+    //                 clear();
+    //                 drowStartCircles();
+    //                 //findColorMatches(currentBall, i, j);
+    //                 findColorMatches(i, j);
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }
     addRowToStartCircles();
     addCircleToNewRow();
 }
 
-function addCircleToStartCircles() {
+function addCirckleToFirstRow(ball, j) {
     clearInterval(timeForMovement);
-    findPositionToCollisionCircle();
-    //findPositionToCollisionCircle(ball, i, j);
+    changeCircleForVisible(ball);
+    clear();
+    drowStartCircles();
+    findColorMatches(0, j);
+    if (!checkLossGame()) {
+        nextCircle();
+    }
+    isPlaying = false;
+}
+
+function addCircleToStartCircles(ball, i, j) {
+    clearInterval(timeForMovement);
+    //findPositionToCollisionCircle();
+    findPositionToCollisionCircle(ball, i, j);
     clear();
     drowStartCircles();
     if (!checkLossGame()) {
@@ -351,7 +362,8 @@ function addCircleToNewRow() {
     const j = circkleRowCount - 1;
     for (let i = 0; i < circkleColumnCount; i++) {
         const ball = circkles[j][i];
-        if (isPositionToCircle(x, y, ball.x, ball.y)) {
+        //if (isPositionToCircle(x, y, ball.x, ball.y)) {
+        if (isCollision(x, y, ball.x, ball.y)) {
             changeCircleForVisible(ball);
             clear();
             drowStartCircles();
@@ -685,9 +697,11 @@ function checkAllMatches() {
         deletedBalls = circlesMatches.flat().length;
         //playSoundMatch(getSoundMatch(circlesMatches.flat().length));
         deleteMatches(true);
+        // clear();
+        // drowStartCircles();
+        checkHendingCircles();
         clear();
         drowStartCircles();
-        checkHendingCircles();
         changeScore();
         deleteEmptyRows();
         checkWinGame();
@@ -903,9 +917,10 @@ function checkLossGame() {
     for (let i = 0; i < circkleColumnCount; i++) {
         const ball = lastRow[i];
         if (ball.status == 1) {
-            if (ball.y + ballRadius + 2 >= canvas.height - 2 * ballRadius) {
+            if (ball.y + ballRadius + 2 >= canvas.height - 4 * ballRadius - 2) {
                 playSoundLose();
                 showLostField();
+                checkScoring();
                 return true;
             }
         }
@@ -924,6 +939,7 @@ function changeStartFieldToEnd(word1, word2) {
 function showLostField() {
     prepareToShowField();
     changeStartFieldToEnd('Game', 'over');
+    start.classList.add('lost');
 }
 
 function prepareToShowField() {
@@ -967,6 +983,7 @@ function showStartField() {
     canvas.classList.add('canvas-show');
     header.classList.remove('end');
     start.classList.remove('win');
+    start.classList.remove('lost');
     header.classList.add('header-show');
     startPlay();
 }
