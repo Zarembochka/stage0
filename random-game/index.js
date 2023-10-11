@@ -69,7 +69,7 @@ function getDifficulty() {
     if (difficulty == 3) {
         colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
         circkleRowCount = 5;
-        speedForAddingRow = 10000;
+        speedForAddingRow = 15000;
         koefForScore = 2;
     }
     lengthColors = colors.length;
@@ -1045,6 +1045,7 @@ function checkScoring() {
             saveScoreToLs(bestResults);
             return;
         }
+        return;
     }
     saveScoreToLs([score]);
 }
