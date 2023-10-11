@@ -107,8 +107,12 @@ function getSoundMatch(count) {
 }
 
 function muteOn() {
+    soundStart.muted = true;
     soundShoot.muted = true;
-    soundHolyshit.muterd = true;
+    soundHolyshit.muted = true;
+    soundWin.muted = true;
+    soundLosePart1.muted = true;
+    soundLosePart2.muted = true;
     soundAccuracy.muted = true;
     soundShotgun.muted = true;
     soundPlasma.muted = true;
@@ -122,8 +126,12 @@ function muteOn() {
 }
 
 function muteOff() {
+    soundStart.muted = false;
     soundShoot.muted = false;
-    soundHolyshit.muterd = false;
+    soundHolyshit.muted = false;
+    soundWin.muted = false;
+    soundLosePart1.muted = false;
+    soundLosePart2.muted = false;
     soundAccuracy.muted = false;
     soundShotgun.muted = false;
     soundPlasma.muted = false;
