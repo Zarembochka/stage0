@@ -69,7 +69,7 @@ function getDifficulty() {
     if (difficulty == 3) {
         colors = ['yellow', 'red', 'orange', 'blue', 'green', 'blueviolet'];
         circkleRowCount = 5;
-        speedForAddingRow = 10000;
+        speedForAddingRow = 15000;
         koefForScore = 2;
     }
     lengthColors = colors.length;
@@ -107,7 +107,7 @@ function addZeroRowToStartCircles() {
         for (let j = 0; j < circkleColumnCount; j++) {
             const row = circkleRowCount - 2 - i;
             const ball = circkles[circkleRowCount - 2 - i][j];
-            circkles[row + 1][j] = {x: ball.x, y: ball.y + 2 * ballRadius + 1, color: ball.color, status: ball.status, match: ball.match, isCheked: ball.isCheked, isCheking: ball.isCheking, basis: ball.basis, odd: ball.odd};
+            circkles[row + 1][j] = {x: ball.x, y: ball.y + 2 * ballRadius + 1, color: ball.color, status: ball.status, match: ball.match, isCheked: ball.isCheked, basis: ball.basis, odd: ball.odd};
         }
     }
 
@@ -135,7 +135,7 @@ function InitiateCircles() {
             }
         let odd = i % 2;
         for (let j = 0; j < circkleColumnCount; j++) {
-            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 5 + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, isCheking: 0, basis: 1, odd: odd}
+            circkles[i][j] = {x: startPosition + 2 * (ballRadius + 1) * j, y: ballRadius + 5 + 2 * (ballRadius + 0.5) * i, color: randomColor(), status: 1, match: 0, isCheked: 0, basis: 1, odd: odd}
         }
     }
 }
@@ -353,7 +353,7 @@ function addRowToStartCircles() {
     const j = circkleRowCount - 1;
     const odd = flagNewRow % 2;
     for (let i = 0; i < circkleColumnCount; i++) {
-        circkles[j][i] = {x: startPositionForNewRow + 2 * (ballRadius + 1) * i, y: ballRadius + 5 + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, isCheking: 0, basis: 1, odd: odd}
+        circkles[j][i] = {x: startPositionForNewRow + 2 * (ballRadius + 1) * i, y: ballRadius + 5 + 2 * (ballRadius + 0.5) * j, color: 0, status: 0, match: 0, isCheked: 0, basis: 1, odd: odd}
     }
     setStartPositionForNewRow();
 }
@@ -717,7 +717,6 @@ function deleteMatches(flag) {
             const ball = circkles[i][j];
             ball.isCheked = 0;
             ball.basis = 0;
-            ball.isCheking = 0;
             if (ball.match == 1) {
                 if (flag) {
                     ball.color = 0;
@@ -897,7 +896,6 @@ function deleteCirclesWithoutBasis() {
         for (let j = 0; j < circkleColumnCount; j++) {
             const ball = circkles[i][j];
             ball.isCheked = 0;
-            ball.isCheking = 0;
             if (ball.basis == 0 && ball.status != 0) {
                 //ball.color = 'black';
                 ball.status = 0;
@@ -1047,6 +1045,7 @@ function checkScoring() {
             saveScoreToLs(bestResults);
             return;
         }
+        return;
     }
     saveScoreToLs([score]);
 }
